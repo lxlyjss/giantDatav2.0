@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>giant大数据|产品评价列表</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
+    <link rel="stylesheet" href="css/zTreeStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/lxl.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/moment.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/daterangepicker.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.ztree.core.min.js"></script>
+    <script src="js/jquery.ztree.excheck.min.js"></script>
+    <script>
+        $(function () {
+            //判断当前设备屏幕宽度
+            var deviceWidth = $(document).width();
+            if (deviceWidth > 1000) {
+                $("body").addClass("nav-md");
+            } else {
+                $("body").addClass("nav-sm");
+            }
+            //当前文档的高度
+
+            $("#content").css("height", $(window).height());
+            //时间选择
+            var dateOption = {
+                //最大时间
+                maxDate: moment().subtract(1, 'days'),
+                startDate: moment().subtract(90, 'days'),
+                endDate: moment().subtract(1, 'days'),
+                locale: {
+                    format: 'YYYY/MM/DD'
+                },
+                ranges: {
+                    "最近3日": [moment().subtract(3, 'days'), moment()],
+                    '最近7日': [moment().subtract(7, 'days'), moment()],
+                    '最近30日': [moment().subtract(30, 'days'), moment()]
+                }
+            };
+            //时间选择
+            $('#dateInput').daterangepicker(dateOption);
+        })
+    </script>
+    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body class="vip-change">
+<div class="loading-wrapper" style="display: none;">
+    <div class="spinner"></div>
+</div>
+<!--头部 开始-->
+<div class="header">
+    <div class="menu-btn">
+        <i class="iconfont icon-caidan caidan-btn"></i>
+    </div>
+    <div class="header-title">
+        <p>捷安特大数据中心</p>
+    </div>
+    <div class="user-manage">
+        <div class="user-content">
+            <div class="imgBox"></div>
+        </div>
+        <ul class="drop-down">
+            <li><a href="http://www.giant.com.cn/front/loginout">退出</a></li>
+        </ul>
+    </div>
+</div>
+<!--头部 结束-->
+<div id="page">
+    <div id="aside">
+        <div class="navbar">
+            <div class="return-giant">
+                <a href="http://www.giant.com.cn">
+                    <i class="iconfont icon-fangxiangzuo"></i>
+                    <span>返回捷安特官网</span></a>
+            </div>
+            <div class="user-info">
+                <div class="user-img">
+                    <div class="user-img-circle">
+                        <div class="img-outside"></div>
+                    </div>
+                </div>
+                <div class="user-welcome">
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="close-btn">
+                <i class="iconfont icon-guanbi"></i>
+            </div>
+            <ul class="nav-slide-menu">
+                <li class="nav-list home-page">
+                    <a href="index.html">
+                        <i class="iconfont icon-home"></i>
+                        首页
+                    </a>
+                </li>
+                <li class="nav-list">
+                    <a>
+                        <i class="iconfont icon-shuju"></i>
+                        会员
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu">
+                        <li>
+                            <a href="vipData.html">会员数据</a>
+                        </li>
+                        <li>
+                            <a href="vipDrawing.html">数据画像</a>
+                        </li>
+                        <li>
+                            <a href="vipBuy.html">消费能力</a>
+                        </li>
+                        <li>
+                            <a href="vipList.html">会员列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-list home-page active">
+                    <a>
+                        <i class="iconfont icon-xiaoxi"></i>
+                        产品
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu" style="display: block;">
+                        <li>
+                            <a href="product.html">产品数据</a>
+                        </li>
+                        <li>
+                            <a href="productData.html">QRcode</a>
+                        </li>
+                        <li>
+                            <a href="productSell.html">产品销量</a>
+                        </li>
+                        <li>
+                            <a href="productPing.html">产品评价</a>
+                        </li>
+                        <li>
+                            <a href="productList.html">产品评价列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-list">
+                    <a>
+                        <i class="iconfont icon-shuju"></i>
+                        门店
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu">
+                        <li>
+                            <a href="store.html">门店数据</a>
+                        </li>
+                        <li>
+                            <a href="storeData.html">QRcode</a>
+                        </li>
+                        <li>
+                            <a href="storeSell.html">门店销量</a>
+                        </li>
+                        <li>
+                            <a href="storePing.html">门店服务评价</a>
+                        </li>
+                        <li>
+                            <a href="storeList.html">服务评价列表</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--左侧边栏结束-->
+    <!--右侧内容开始-->
+    <div id="content">
+        <!--中间内容开始-->
+        <div class="content">
+            <p>本页面根据昨日24点数据来计算</p>
+            <div class="row search-content" style="padding: 10px 0;margin-bottom: 10px;">
+                <div class="col-md-5 col-sm-5">
+                    <div class="input-group date-select">
+                        <span class="input-group-addon">时间段</span>
+                        <input type="text" class="form-control" id="dateInput"/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">查询</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <div class="btn-group">
+                        <button class="btn btn-primary" id="search-btn1">品牌车系车型筛选</button>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 sm-marginTop">
+                    <div class="btn btn-success">下载表格</div>
+                </div>
+            </div>
+            <!--产品数据-->
+            <div class="row vip-wrapper" style="background: #fff;">
+                <div class="result-title">
+                    <p style="line-height: 40px;color: #fff;padding-left: 20px;">产品评价列表</p>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="vip-container">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr style="text-align: center">
+                                    <td>品牌</td>
+                                    <td>车系</td>
+                                    <td>车型</td>
+                                    <td>车架号</td>
+                                    <td>外观评价</td>
+                                    <td>性能评价</td>
+                                    <td>价格评价</td>
+                                    <td>评价内容</td>
+                                    <td>会员账号</td>
+                                    <td>评价时间</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 page-container page-selection" style="display: none">
+                    <nav aria-label="Page navigation" style="text-align: center">
+                        <ul class="pagination"></ul>
+                    </nav>
+                </div>
+                <div class="col-md-4 page-selection" style="display: none">
+                    <div class="input-group page-select">
+                        <span class="input-group-addon">跳转页</span>
+                        <input type="number" class="form-control" id="pageInput"/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">查询</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--会员数据-->
+        </div>
+        <!--中间内容结束-->
+        <div id="menuContent" class="menuContent" style="background: #fff;">
+            <ul id="treeBox" class="ztree"></ul>
+            <div class="btn btn-primary" id="filterBtn" style="margin-top: 10px;margin-left: 110px;">
+                搜索
+            </div>
+        </div>
+    </div>
+    <!--右侧内容结束-->
+</div>
+<script>
+    $(function () {
+        //$.fn.isSign();
+        var tableData;//存储数据
+        var filterData;//存储筛选条件
+        var filter = {
+            page: 1,
+            pageNum: "30",
+            type: 2,//1电动车,2为自行车
+            brandCode: "",//品牌
+            bikelineId: "",//车系
+            bikeId: ""//车型
+        };
+        tableData = {
+            result:"1",
+            count:"5487",
+            list:[
+                {
+                    id:"1",
+                    brandName:"捷安特",
+                    bikelineName:"xtc",
+                    bikeName:"xtc 880",
+                    bikeCode:"142265658898",
+                    appearanceScore:"4",
+                    propertyScore:"5",
+                    priceScore:"4.6",
+                    content:"挺不错的",
+                    userName:"18721478786",
+                    createDate:"2017-10-25 15:32:25"
+                },
+                {
+                    id:"1",
+                    brandName:"捷安特",
+                    bikelineName:"xtc",
+                    bikeName:"xtc 880",
+                    bikeCode:"142265658898",
+                    appearanceScore:"4",
+                    propertyScore:"5",
+                    priceScore:"4.6",
+                    content:"挺不错的",
+                    userName:"18721478786",
+                    createDate:"2017-10-25 15:32:25"
+                },
+                {
+                    id:"1",
+                    brandName:"捷安特",
+                    bikelineName:"xtc",
+                    bikeName:"xtc 880",
+                    bikeCode:"142265658898",
+                    appearanceScore:"4",
+                    propertyScore:"5",
+                    priceScore:"4.6",
+                    content:"挺不错的",
+                    userName:"18721478786",
+                    createDate:"2017-10-25 15:32:25"
+                },
+                {
+                    id:"1",
+                    brandName:"捷安特",
+                    bikelineName:"xtc",
+                    bikeName:"xtc 880",
+                    bikeCode:"142265658898",
+                    appearanceScore:"4",
+                    propertyScore:"5",
+                    priceScore:"4.6",
+                    content:"挺不错的dddddddddfsadfsa",
+                    userName:"18721478786",
+                    createDate:"2017-10-25 15:32:25"
+                }
+            ]
+        };
+        //选页
+        window.selectPage = function (n) {
+            if (n > 0 && n <= tableData.count) {
+                filter.page = n;
+                $(".loading-wrapper").show();
+                getTableData();
+            } else {
+                alert("没有更多了^_^");
+            }
+        };
+        //获取后台数据,页面初始化
+        function getTableData() {
+            $.ajax({
+                url: "http://" + window.roleInfo.url1 + "/giantService/report/selectProductScore",
+                data: filter
+            }).done(function (res){
+                if(res.result == 1){
+                    setTableData();
+                }
+            }).fail(function (){
+                alert("获取数据失败")
+            });
+        }
+        //获取筛选接口
+        function getFilterData() {
+            $.ajax({
+                url: "http://" + window.roleInfo.url1 + "/giantService/report/selectProductScore",
+                data: filter
+            }).done(function (res){
+                if(res.result == 1){
+                    setTableData();
+                }
+            }).fail(function (){
+                alert("获取数据失败")
+            });
+        }
+        //展示数据
+        function setTableData() {
+            var pageData = tableData.list;
+            var tempList = [];
+            for (var i = 0; i < pageData.length; i++) {
+                var tableList = $("<tr style=\"text-align: center;\">" +
+                    "<td>" + (pageData[i].brandName == null ? "" : pageData[i].brandName) + "</td>" +
+                    "<td>" + (pageData[i].bikelineName == null ? "" : pageData[i].bikelineName) + "</td>" +
+                    "<td>" + (pageData[i].bikeName == null ? "" : pageData[i].bikeName) + "</td>" +
+                    "<td>" + (pageData[i].bikeCode == null ? "" : pageData[i].bikeCode) + "</td>" +
+                    "<td>" + (pageData[i].appearanceScore == null ? "" : pageData[i].appearanceScore) + "</td>" +
+                    "<td>" + (pageData[i].propertyScore == null ? "" : pageData[i].propertyScore) + "</td>" +
+                    "<td>" + (pageData[i].priceScore == null ? "" : pageData[i].priceScore) + "</td>" +
+                    "<td>" + (pageData[i].content == null ? "" : isMore(pageData[i].content, i)) + "</td>" +
+                    "<td>" + (pageData[i].userName == null ? "" : pageData[i].userName) + "</td>" +
+                    "<td>" + (pageData[i].createDate == null ? "" : pageData[i].createDate) + "</td>" +
+                    "</tr>");
+                tempList.push(tableList);
+            }
+            $(".vip-container table tbody").empty().append(tempList);
+            $.fn.cutPage(Math.ceil(tableData.count/30),filter.page);
+            $(".page-selection").show()
+        }
+        setTableData();
+        //查看详细评价内容
+        window.showMoreContent = function (t, index) {
+            $(t).parent().text(tableData.list[index].content);
+        };
+
+        //当评价内容字数超过10个字
+        function isMore(str, index) {
+            var temp = "";
+            if (str.length > 10) {
+                temp = str.slice(0, 10) + "...<a href='javascript:;' onclick='showMoreContent(this," + index + ")'>详细</a>";
+            } else {
+                temp = str;
+            }
+            return temp;
+        }
+        //跳转页
+        $(".page-select .btn").click(function () {
+            var page = parseInt($(".page-select input[type=number]").val());
+            var reg = /([1-9]\d+)|[2-9]/;
+            if (reg.test(page) && page > 0) {
+                if (page > tableData.count) {
+                    alert("输入的页数超过了最大页数!请重新输入!");
+                } else {
+                    $(".loading-wrapper").show();
+                    filter.page = page;
+                    getTableData(filter);
+                }
+            } else {
+                alert("请输入大于0的正整数!")
+            }
+        });
+        $.getJSON("http://localhost:4396/giantData-v2/data.min.json",function (res){
+            var newBrand = new setBrandData("#treeBox",res);
+            $("#search-btn1").click(function (){
+                newBrand.showMenu(this);
+            });
+        });
+        //查询条件搜索
+        function selectFilter(){
+            $("#filterBtn").click(function (){
+                var zTree = $.fn.zTree.getZTreeObj("treeBox"),
+                    nodes = zTree.getCheckedNodes(true);
+                var tempArr = [];
+                for(var i = 0; i < nodes.length;i++){
+                    tempArr.push(nodes[i].dictCode);
+                }
+                filter.brandCode = tempArr;
+                console.log(tempArr);
+                //getTableData(filter);
+            });
+        }
+        selectFilter();
+        //初始化页面
+        function initFun() {
+
+        }
+        //initFun();
+        //选择品牌车系车型
+        function setBrandData(ele,data) {
+            this.setting = {
+                check: {
+                    enable: true,
+                    chkboxType: {"Y": "", "N": "s"}
+                },
+                view: {
+                    dblClickExpand: false
+                },
+                data: {
+                    simpleData: {
+                        enable: true
+                    }
+                },
+                callback: {
+                    beforeClick: function (treeId, treeNode) {
+                        var zTree = $.fn.zTree.getZTreeObj("treeBox");
+                        zTree.checkNode(treeNode, !treeNode.checked, null, true);
+                        return false;
+                    },
+                    onCheck: function (e, treeId, treeNode) {
+                        var zTree = $.fn.zTree.getZTreeObj("treeBox"),
+                            nodes = zTree.getCheckedNodes(true),
+                            noCheckNode = zTree.getCheckedNodes(false),
+                            disNode = zTree.getNodesByParam("chkDisabled", true);
+                    }
+                }
+            };
+            this.select = [];
+            this.zNodes = [];
+            this.jsonData = data;
+            this.setJsonData = function () {
+                this.zNodes = [];
+                console.log(this.jsonData);
+                for (var i = 0; i < this.jsonData.list.length; i++) {
+                    var temp1 = {
+                        id: (i + 1) * 2000, pId: 0, name: this.jsonData.list[i].dictName,
+                        dictCode: this.jsonData.list[i].dictCode,
+                        dictName: this.jsonData.list[i].dictName, nocheck: false
+                    };
+                    for (var j = 0; j < this.jsonData.list[i].list.length; j++) {
+                        var temp2 = {
+                            id: (i + 1) * 1000 + (j + 1), pId: (i + 1) * 2000, name: this.jsonData.list[i].list[j].dictName,
+                            dictCode: this.jsonData.list[i].list[j].dictCode,
+                            dictName: this.jsonData.list[i].list[j].dictName, nocheck: false
+                        };
+                        for (var k = 0; k < this.jsonData.list[i].list[j].list.length; k++) {
+                            var temp3 = {
+                                id: (i + 1) * 10000 + (j + 1) * 1000 + (k + 1),
+                                pId: (i + 1) * 1000 + (j + 1),
+                                name: this.jsonData.list[i].list[j].list[k].dictName,
+                                dictCode: this.jsonData.list[i].list[j].list[k].dictCode,
+                                dictName: this.jsonData.list[i].list[j].list[k].dictName,
+                                nocheck: false
+                            };
+                            this.zNodes.push(temp3);
+                        }
+                        this.zNodes.push(temp2);
+                    }
+                    this.zNodes.push(temp1);
+                }
+                console.log(this.zNodes)
+                $.fn.zTree.init($(ele), this.setting, this.zNodes);
+            };
+            this.beforeClick = function (treeId, treeNode) {
+                var zTree = $.fn.zTree.getZTreeObj("treeBox");
+                zTree.checkNode(treeNode, !treeNode.checked, null, true);
+                return false;
+            };
+            this.showMenu = function (This) {
+                var cityObj = $(This);
+                var cityOffset = $(This).offset();
+                var scrollTop = $("#content").scrollTop();
+                $("#menuContent").css({
+                    left: cityOffset.left - 230 <= 10 ? 10 : cityOffset.left - 230 + "px",
+                    top: cityOffset.top + cityObj.outerHeight() + scrollTop + "px"
+                }).slideDown("fast");
+                $("#menuContent").slideDown("fast");
+                $("body").bind("mousedown", this.onBodyDown.bind(this));
+                this.setJsonData();
+            };
+            this.hideMenu = function () {
+                $("#menuContent").fadeOut("fast");
+                $("body").unbind("mousedown", this.onBodyDown);
+            };
+            this.onBodyDown = function (event) {
+                if (!(event.target.id == "menuContent" || $(event.target).parents("#menuContent").length > 0)) {
+                    this.hideMenu();
+                }
+            };
+        };
+    });
+</script>
+</body>
+</html>

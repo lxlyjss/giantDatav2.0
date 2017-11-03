@@ -1,0 +1,3530 @@
+{
+  "list": [
+    {
+      "dictCode": "GCC",
+      "dictName": "GCC",
+      "list": [
+        {
+          "dictCode": "2001",
+          "dictName": "捷安特百花 CYCLING WORLD"
+        },
+        {
+          "dictCode": "2002",
+          "dictName": "捷安特科华北路 CYCLING WORLD"
+        },
+        {
+          "dictCode": "2003",
+          "dictName": "捷安特建设北路奇虎专卖店"
+        },
+        {
+          "dictCode": "2004",
+          "dictName": "捷安特崇州专卖店"
+        },
+        {
+          "dictCode": "2009",
+          "dictName": "捷安特牛市口申迅专卖店"
+        },
+        {
+          "dictCode": "2010",
+          "dictName": "捷安特青羊安达CYCLING WORLD"
+        },
+        {
+          "dictCode": "2012",
+          "dictName": "捷安特青白江CYCLING WORLD"
+        },
+        {
+          "dictCode": "2013",
+          "dictName": "捷安特青白江专卖店"
+        },
+        {
+          "dictCode": "2014",
+          "dictName": "青白江仓库"
+        },
+        {
+          "dictCode": "2015",
+          "dictName": "捷安特崇州学府街CYCLING WORLD"
+        },
+        {
+          "dictCode": "2016",
+          "dictName": "捷安特新都专卖店"
+        },
+        {
+          "dictCode": "2017",
+          "dictName": "新都新跃仓库"
+        },
+        {
+          "dictCode": "2018",
+          "dictName": "捷安特龙泉专卖店"
+        },
+        {
+          "dictCode": "2019",
+          "dictName": "捷安特龙舟路专卖店"
+        },
+        {
+          "dictCode": "2022",
+          "dictName": "捷安特青白江单车翼专卖店"
+        },
+        {
+          "dictCode": "2023",
+          "dictName": "崇州仓库"
+        },
+        {
+          "dictCode": "2024",
+          "dictName": "捷安特红牌楼乐旺专卖店"
+        },
+        {
+          "dictCode": "2026",
+          "dictName": "捷安特邛崃CYCLING WORLD"
+        },
+        {
+          "dictCode": "2027",
+          "dictName": "捷安特新津CYCLING WORLD"
+        },
+        {
+          "dictCode": "2028",
+          "dictName": "捷安特龙马大道红星路口专卖店"
+        },
+        {
+          "dictCode": "2029",
+          "dictName": "捷安特泸州专卖店"
+        },
+        {
+          "dictCode": "2032",
+          "dictName": "捷安特铁骑金马专卖店"
+        },
+        {
+          "dictCode": "2034",
+          "dictName": "捷安特绵阳极限专卖店"
+        },
+        {
+          "dictCode": "2035",
+          "dictName": "绵阳仓库"
+        },
+        {
+          "dictCode": "2036",
+          "dictName": "璧山仓库"
+        },
+        {
+          "dictCode": "2038",
+          "dictName": "捷安特外双楠俊骑专卖店"
+        },
+        {
+          "dictCode": "2039",
+          "dictName": "捷安特华阳中学专卖店"
+        },
+        {
+          "dictCode": "2040",
+          "dictName": "捷安特府青路专卖店"
+        },
+        {
+          "dictCode": "2041",
+          "dictName": "捷安特新南门专卖店"
+        },
+        {
+          "dictCode": "2042",
+          "dictName": "捷安特友缘单车专卖店"
+        },
+        {
+          "dictCode": "2043",
+          "dictName": "捷安特广汉穿越 CYCLING WORLD"
+        },
+        {
+          "dictCode": "2044",
+          "dictName": "捷安特乐山联友专卖店"
+        },
+        {
+          "dictCode": "2045",
+          "dictName": "捷安特温江文化路CYCLING WORLD"
+        },
+        {
+          "dictCode": "2047",
+          "dictName": "捷安特眉山裴城路CYCLING WORLD"
+        },
+        {
+          "dictCode": "2050",
+          "dictName": "捷安特普洱专卖店"
+        },
+        {
+          "dictCode": "2051",
+          "dictName": "捷安特都江堰专卖店"
+        },
+        {
+          "dictCode": "2052",
+          "dictName": "捷安特内江专卖店"
+        },
+        {
+          "dictCode": "2053",
+          "dictName": "捷安特自贡专卖店"
+        },
+        {
+          "dictCode": "2054",
+          "dictName": "捷安特宜宾骑健专卖店"
+        },
+        {
+          "dictCode": "2055",
+          "dictName": "捷安特郫县CYCLING WORLD"
+        },
+        {
+          "dictCode": "2056",
+          "dictName": "捷安特广元市刘二精品车行"
+        },
+        {
+          "dictCode": "2057",
+          "dictName": "捷安特郫县快乐专卖店"
+        },
+        {
+          "dictCode": "2058",
+          "dictName": "捷安特西北桥骑乐无尽专卖店"
+        },
+        {
+          "dictCode": "2059",
+          "dictName": "安县飞扬"
+        },
+        {
+          "dictCode": "2060",
+          "dictName": "邛崃超霸"
+        },
+        {
+          "dictCode": "2061",
+          "dictName": "捷安特新繁CYCLING WORLD"
+        },
+        {
+          "dictCode": "2062",
+          "dictName": "捷安特青羊区骑爱专卖店"
+        },
+        {
+          "dictCode": "2063",
+          "dictName": "捷安特温江柳台大道专卖店"
+        },
+        {
+          "dictCode": "2064",
+          "dictName": "捷安特簇桥民意专卖店"
+        },
+        {
+          "dictCode": "2067",
+          "dictName": "捷安特德阳CYCLING WORLD"
+        },
+        {
+          "dictCode": "2068",
+          "dictName": "捷安特衣冠庙捷鹰专卖店"
+        },
+        {
+          "dictCode": "2069",
+          "dictName": "捷安特德阳市区耐力专卖店"
+        },
+        {
+          "dictCode": "2070",
+          "dictName": "德阳电动车店"
+        },
+        {
+          "dictCode": "2071",
+          "dictName": "捷安特彭州CYCLING WORLD"
+        },
+        {
+          "dictCode": "2072",
+          "dictName": "捷安特文星专卖店"
+        },
+        {
+          "dictCode": "2073",
+          "dictName": "捷安特双流专卖店"
+        },
+        {
+          "dictCode": "2074",
+          "dictName": "捷安特新友缘专卖店"
+        },
+        {
+          "dictCode": "2076",
+          "dictName": "捷安特绵竹剑南镇专卖店"
+        },
+        {
+          "dictCode": "2077",
+          "dictName": "捷安特十陵专卖店"
+        },
+        {
+          "dictCode": "2078",
+          "dictName": "捷安特绵阳两轮专卖店"
+        },
+        {
+          "dictCode": "2079",
+          "dictName": "捷安特瑞联专卖店"
+        },
+        {
+          "dictCode": "2080",
+          "dictName": "捷安特金堂CYCLING WORLD"
+        },
+        {
+          "dictCode": "2081",
+          "dictName": "捷安特营门口专卖店"
+        },
+        {
+          "dictCode": "2082",
+          "dictName": "捷安特保山正阳北路专卖店"
+        },
+        {
+          "dictCode": "2083",
+          "dictName": "捷安特大理苍山路专卖店"
+        },
+        {
+          "dictCode": "2084",
+          "dictName": "捷安特仁寿专卖店"
+        },
+        {
+          "dictCode": "2090",
+          "dictName": "捷安特攀枝花极限专卖店"
+        },
+        {
+          "dictCode": "2092",
+          "dictName": "大理仓库"
+        },
+        {
+          "dictCode": "2093",
+          "dictName": "捷安特大竹竹阳镇专卖店"
+        },
+        {
+          "dictCode": "2097",
+          "dictName": "捷安特安县专卖店"
+        },
+        {
+          "dictCode": "2098",
+          "dictName": "捷安特龙潭寺专卖店"
+        },
+        {
+          "dictCode": "2101",
+          "dictName": "简阳骑士"
+        },
+        {
+          "dictCode": "2102",
+          "dictName": "捷安特资阳专卖店"
+        },
+        {
+          "dictCode": "2103",
+          "dictName": "捷安特峨眉喜路专卖店"
+        },
+        {
+          "dictCode": "2104",
+          "dictName": "捷安特成温立交力行专卖店"
+        },
+        {
+          "dictCode": "2108",
+          "dictName": "捷安特龙泉专卖店"
+        },
+        {
+          "dictCode": "2114",
+          "dictName": "叙永华通"
+        },
+        {
+          "dictCode": "2116",
+          "dictName": "捷安特洛带租赁体验站"
+        },
+        {
+          "dictCode": "2117",
+          "dictName": "捷安特雅安名山专卖店"
+        },
+        {
+          "dictCode": "2121",
+          "dictName": "捷安特南充CYCLING WORLD"
+        },
+        {
+          "dictCode": "2123",
+          "dictName": "龙华仓库"
+        },
+        {
+          "dictCode": "2124",
+          "dictName": "莫曼顿南充嘉陵区专卖店"
+        },
+        {
+          "dictCode": "2125",
+          "dictName": "捷安特南充大润发正阳店"
+        },
+        {
+          "dictCode": "2126",
+          "dictName": "捷安特交大路西欣专卖店"
+        },
+        {
+          "dictCode": "2137",
+          "dictName": "捷安特郫县官海专卖店"
+        },
+        {
+          "dictCode": "2139",
+          "dictName": "捷安特大邑晋原CYCLING WORLD"
+        },
+        {
+          "dictCode": "2143",
+          "dictName": "捷安特青神专卖店"
+        },
+        {
+          "dictCode": "2144",
+          "dictName": "捷安特冕宁专卖店"
+        },
+        {
+          "dictCode": "2145",
+          "dictName": "捷安特双流华阳专卖店"
+        },
+        {
+          "dictCode": "2148",
+          "dictName": "捷安特江油市中坝协力专卖店"
+        },
+        {
+          "dictCode": "2149",
+          "dictName": "广安凯达"
+        },
+        {
+          "dictCode": "2150",
+          "dictName": "捷安特宜宾南溪专卖店"
+        },
+        {
+          "dictCode": "2152",
+          "dictName": "捷安特曲靖紫云路专卖店"
+        },
+        {
+          "dictCode": "2153",
+          "dictName": "捷安特解放路骑由专卖店"
+        },
+        {
+          "dictCode": "2154",
+          "dictName": "荥经捷安特"
+        },
+        {
+          "dictCode": "2155",
+          "dictName": "捷安特雅安市汉源县专卖店"
+        },
+        {
+          "dictCode": "2157",
+          "dictName": "捷安特蒲江专卖店"
+        },
+        {
+          "dictCode": "2158",
+          "dictName": "捷安特威远专卖店"
+        },
+        {
+          "dictCode": "2164",
+          "dictName": "捷安特广元专卖店"
+        },
+        {
+          "dictCode": "2165",
+          "dictName": "捷安特宜宾成旺专卖店"
+        },
+        {
+          "dictCode": "2167",
+          "dictName": "捷安特眉山府街专卖店"
+        },
+        {
+          "dictCode": "2168",
+          "dictName": "捷安特米易专卖店"
+        },
+        {
+          "dictCode": "2169",
+          "dictName": "捷安特资中专卖店"
+        },
+        {
+          "dictCode": "2170",
+          "dictName": "捷安特什邡市家友专卖店"
+        },
+        {
+          "dictCode": "2171",
+          "dictName": "捷安特中江专卖店"
+        },
+        {
+          "dictCode": "2172",
+          "dictName": "犀浦"
+        },
+        {
+          "dictCode": "2173",
+          "dictName": "卓二功商行"
+        },
+        {
+          "dictCode": "2175",
+          "dictName": "捷安特阆中市刘氏专卖店"
+        },
+        {
+          "dictCode": "2187",
+          "dictName": "捷安特新都大丰专卖店"
+        },
+        {
+          "dictCode": "2188",
+          "dictName": "捷安特红星路专卖店"
+        },
+        {
+          "dictCode": "2388",
+          "dictName": "捷安特石屏专卖店"
+        },
+        {
+          "dictCode": "2613",
+          "dictName": "捷安特宣威专卖店"
+        },
+        {
+          "dictCode": "2701",
+          "dictName": "捷安特乌市西北路专卖店"
+        },
+        {
+          "dictCode": "2702",
+          "dictName": "捷安特库尔勒市建国路专卖店"
+        },
+        {
+          "dictCode": "2703",
+          "dictName": "捷安特轮台县专卖店"
+        },
+        {
+          "dictCode": "2704",
+          "dictName": "捷安特哈密市CYCLING WORLD"
+        },
+        {
+          "dictCode": "2705",
+          "dictName": "捷安特五家渠市专卖店"
+        },
+        {
+          "dictCode": "2706",
+          "dictName": "捷安特玛纳斯县专卖店"
+        },
+        {
+          "dictCode": "2707",
+          "dictName": "捷安特石河子CYCLING WORLD"
+        },
+        {
+          "dictCode": "2708",
+          "dictName": "捷安特沙湾县专卖店"
+        },
+        {
+          "dictCode": "2709",
+          "dictName": "捷安特塔城市专卖店"
+        },
+        {
+          "dictCode": "2710",
+          "dictName": "捷安特伊宁市红旗路专卖店"
+        },
+        {
+          "dictCode": "2711",
+          "dictName": "捷安特新源县专卖店"
+        },
+        {
+          "dictCode": "2712",
+          "dictName": "捷安特喀什市专卖店"
+        },
+        {
+          "dictCode": "2713",
+          "dictName": "捷安特阿拉尔市专卖店"
+        },
+        {
+          "dictCode": "2714",
+          "dictName": "捷安特库尔勒石化大道CYCLING"
+        },
+        {
+          "dictCode": "2715",
+          "dictName": "捷安特阿勒泰市专卖店"
+        },
+        {
+          "dictCode": "2716",
+          "dictName": "捷安特伊宁市经典花园专卖店"
+        },
+        {
+          "dictCode": "2717",
+          "dictName": "捷安特克拉玛依市独山子区专卖店"
+        },
+        {
+          "dictCode": "2718",
+          "dictName": "捷安特尼勒克县专卖店"
+        },
+        {
+          "dictCode": "2719",
+          "dictName": "捷安特乌苏市专卖店"
+        },
+        {
+          "dictCode": "2720",
+          "dictName": "捷安特布尔津县专卖店"
+        },
+        {
+          "dictCode": "2721",
+          "dictName": "捷安特北屯县专卖店"
+        },
+        {
+          "dictCode": "2722",
+          "dictName": "捷安特库车县专卖店"
+        },
+        {
+          "dictCode": "2723",
+          "dictName": "捷安特和田市专卖店"
+        },
+        {
+          "dictCode": "2724",
+          "dictName": "捷安特巩留县专卖店"
+        },
+        {
+          "dictCode": "2725",
+          "dictName": "捷安特阜康市店中店"
+        },
+        {
+          "dictCode": "2726",
+          "dictName": "捷安特呼图壁县专卖店"
+        },
+        {
+          "dictCode": "2727",
+          "dictName": "捷安特阿克苏市专卖店"
+        },
+        {
+          "dictCode": "2728",
+          "dictName": "捷安特奎屯市专卖店"
+        },
+        {
+          "dictCode": "2729",
+          "dictName": "捷安特乌市长春路专卖店"
+        },
+        {
+          "dictCode": "2730",
+          "dictName": "捷安特乌市科学院专卖店"
+        },
+        {
+          "dictCode": "2731",
+          "dictName": "捷安特乌市北京路专卖店"
+        },
+        {
+          "dictCode": "2732",
+          "dictName": "捷安特青河县专卖店"
+        },
+        {
+          "dictCode": "2733",
+          "dictName": "捷安特博乐市专卖店"
+        },
+        {
+          "dictCode": "2734",
+          "dictName": "捷安特乌市新民西路专卖店"
+        },
+        {
+          "dictCode": "2735",
+          "dictName": "捷安特乌市阿勒泰路专卖店"
+        },
+        {
+          "dictCode": "2737",
+          "dictName": "捷安特南岸专卖店"
+        },
+        {
+          "dictCode": "2738",
+          "dictName": "捷安特重庆市区专卖店"
+        },
+        {
+          "dictCode": "2739",
+          "dictName": "捷安特昭通凤霞路专卖店"
+        },
+        {
+          "dictCode": "2740",
+          "dictName": "捷安特芒市目瑙纵歌路专卖店"
+        },
+        {
+          "dictCode": "2741",
+          "dictName": "捷安特玉龙街捷达专卖店"
+        },
+        {
+          "dictCode": "2742",
+          "dictName": "捷安特牛市口电动车专卖店"
+        },
+        {
+          "dictCode": "2743",
+          "dictName": "捷安特建设北路电动车专卖店"
+        },
+        {
+          "dictCode": "2744",
+          "dictName": "捷安特红星路店"
+        },
+        {
+          "dictCode": "2745",
+          "dictName": "捷安特成温立交力行专卖店"
+        },
+        {
+          "dictCode": "2746",
+          "dictName": "捷安特解放路骑由专卖店"
+        },
+        {
+          "dictCode": "2747",
+          "dictName": "捷安特中和现代车行专卖店"
+        },
+        {
+          "dictCode": "2748",
+          "dictName": "捷安特琉璃场专卖店"
+        },
+        {
+          "dictCode": "2749",
+          "dictName": "捷安特府青路专卖店"
+        },
+        {
+          "dictCode": "2751",
+          "dictName": "捷安特家乐福量贩专业店"
+        },
+        {
+          "dictCode": "2752",
+          "dictName": "捷安特欧尚（蜀汉店）量贩专业店"
+        },
+        {
+          "dictCode": "2753",
+          "dictName": "捷安特欧尚（高新店）量贩专业店"
+        },
+        {
+          "dictCode": "2754",
+          "dictName": "捷安特欧尚（华阳店）量贩专业店"
+        },
+        {
+          "dictCode": "2755",
+          "dictName": "捷安特家乐福量贩专业店"
+        },
+        {
+          "dictCode": "2756",
+          "dictName": "捷安特家乐福华阳店量贩专业店"
+        },
+        {
+          "dictCode": "2757",
+          "dictName": "捷安特家乐福双桥子量贩专业店"
+        },
+        {
+          "dictCode": "2758",
+          "dictName": "捷安特丹棱专卖店"
+        },
+        {
+          "dictCode": "2759",
+          "dictName": "捷安特犍为专卖店"
+        },
+        {
+          "dictCode": "2760",
+          "dictName": "捷安特乐山怡达专卖店"
+        },
+        {
+          "dictCode": "2761",
+          "dictName": "捷安特雅安专卖店"
+        },
+        {
+          "dictCode": "2762",
+          "dictName": "捷安特越西专卖店"
+        },
+        {
+          "dictCode": "2763",
+          "dictName": "捷安特会理专卖店"
+        },
+        {
+          "dictCode": "2764",
+          "dictName": "捷安特天全专卖店"
+        },
+        {
+          "dictCode": "2765",
+          "dictName": "捷安特仁和专卖店"
+        },
+        {
+          "dictCode": "2767",
+          "dictName": "捷安特洪雅专卖店"
+        },
+        {
+          "dictCode": "2768",
+          "dictName": "捷安特西昌风情园路专卖店"
+        },
+        {
+          "dictCode": "2769",
+          "dictName": "捷安特府街电动车店"
+        },
+        {
+          "dictCode": "2770",
+          "dictName": "捷安特夹江专卖店"
+        },
+        {
+          "dictCode": "2771",
+          "dictName": "捷安特彭山专卖店"
+        },
+        {
+          "dictCode": "2773",
+          "dictName": "捷安特康定专卖店"
+        },
+        {
+          "dictCode": "2774",
+          "dictName": "捷安特沐川卖店"
+        },
+        {
+          "dictCode": "2775",
+          "dictName": "捷安特峨眉喜路专卖店"
+        },
+        {
+          "dictCode": "2776",
+          "dictName": "捷安特沙湾专卖店"
+        },
+        {
+          "dictCode": "2777",
+          "dictName": "捷安特五通桥专卖店"
+        },
+        {
+          "dictCode": "2778",
+          "dictName": "捷安特仁寿专卖店"
+        },
+        {
+          "dictCode": "2779",
+          "dictName": "捷安特会东专卖店"
+        },
+        {
+          "dictCode": "2781",
+          "dictName": "捷安特犀浦专卖店"
+        },
+        {
+          "dictCode": "2782",
+          "dictName": "捷安特一里阳光街专卖店"
+        },
+        {
+          "dictCode": "2784",
+          "dictName": "捷安特温江云溪路专卖店"
+        },
+        {
+          "dictCode": "2785",
+          "dictName": "捷安特邛崃羊安专卖店"
+        },
+        {
+          "dictCode": "2786",
+          "dictName": "捷安特邛崃渔桥专卖店"
+        },
+        {
+          "dictCode": "2787",
+          "dictName": "捷安特遂宁CYCLING WORLD"
+        },
+        {
+          "dictCode": "2788",
+          "dictName": "捷安特广汉市明建专卖店"
+        },
+        {
+          "dictCode": "2789",
+          "dictName": "捷安特邻水县鑫宝专卖店"
+        },
+        {
+          "dictCode": "2790",
+          "dictName": "捷安特铁骑金马专卖店"
+        },
+        {
+          "dictCode": "2791",
+          "dictName": "捷安特岳池县原动力专卖店"
+        },
+        {
+          "dictCode": "2792",
+          "dictName": "捷安特射洪县太和镇专卖店"
+        },
+        {
+          "dictCode": "2794",
+          "dictName": "华蓥天行健"
+        },
+        {
+          "dictCode": "2795",
+          "dictName": "捷安特渠县"
+        },
+        {
+          "dictCode": "2797",
+          "dictName": "捷安特剑南镇大世界专卖店"
+        },
+        {
+          "dictCode": "2798",
+          "dictName": "捷安特凯江镇洋马专卖店"
+        },
+        {
+          "dictCode": "2799",
+          "dictName": "莫曼顿中坝协力专卖店"
+        },
+        {
+          "dictCode": "2801",
+          "dictName": "捷安特兴安中街CYCLING WORLD"
+        },
+        {
+          "dictCode": "2802",
+          "dictName": "莫曼顿孝泉专卖店"
+        },
+        {
+          "dictCode": "2803",
+          "dictName": "捷安特梓潼县极限专卖店"
+        },
+        {
+          "dictCode": "2804",
+          "dictName": "捷安特苍溪专卖店"
+        },
+        {
+          "dictCode": "2805",
+          "dictName": "捷安特武胜县沿口天虎专卖店"
+        },
+        {
+          "dictCode": "2806",
+          "dictName": "捷安特中江专卖店"
+        },
+        {
+          "dictCode": "2807",
+          "dictName": "捷安特西充专卖店"
+        },
+        {
+          "dictCode": "2808",
+          "dictName": "捷安特安岳专卖店"
+        },
+        {
+          "dictCode": "2810",
+          "dictName": "捷安特长宁专卖店"
+        },
+        {
+          "dictCode": "2811",
+          "dictName": "捷安特泸县专卖店"
+        },
+        {
+          "dictCode": "2812",
+          "dictName": "捷安特自贡丹桂大街专卖店"
+        },
+        {
+          "dictCode": "2816",
+          "dictName": "捷安特简阳雄州大道专卖店"
+        },
+        {
+          "dictCode": "2817",
+          "dictName": "捷安特乐至专卖店"
+        },
+        {
+          "dictCode": "2818",
+          "dictName": "捷安特泸州专卖店"
+        },
+        {
+          "dictCode": "2822",
+          "dictName": "捷安特隆昌专卖店"
+        },
+        {
+          "dictCode": "2823",
+          "dictName": "捷安特双流白河苑专卖店"
+        },
+        {
+          "dictCode": "2824",
+          "dictName": "捷安特新津武阳中路专卖店"
+        },
+        {
+          "dictCode": "2825",
+          "dictName": "捷安特华阳专卖店"
+        },
+        {
+          "dictCode": "2826",
+          "dictName": "捷安特华阳新希望大道专卖店"
+        },
+        {
+          "dictCode": "2827",
+          "dictName": "捷安特新都西龙电动车专卖店"
+        },
+        {
+          "dictCode": "2830",
+          "dictName": "捷安特青白江三桥专卖店"
+        },
+        {
+          "dictCode": "2831",
+          "dictName": "捷安特彭州专卖店"
+        },
+        {
+          "dictCode": "2832",
+          "dictName": "捷安特都江堰专卖店"
+        },
+        {
+          "dictCode": "2834",
+          "dictName": "捷安特金堂县店中店"
+        },
+        {
+          "dictCode": "2835",
+          "dictName": "捷安特景洪专卖店"
+        },
+        {
+          "dictCode": "2836",
+          "dictName": "捷安特勐腊专卖店"
+        },
+        {
+          "dictCode": "2837",
+          "dictName": "捷安特普洱专卖店"
+        },
+        {
+          "dictCode": "2838",
+          "dictName": "捷安特石屏专卖店"
+        },
+        {
+          "dictCode": "2839",
+          "dictName": "捷安特玉溪专卖店"
+        },
+        {
+          "dictCode": "2840",
+          "dictName": "捷安特红塔区东风中路专卖店"
+        },
+        {
+          "dictCode": "2841",
+          "dictName": "捷安特大理古城专卖店"
+        },
+        {
+          "dictCode": "2842",
+          "dictName": "捷安特大理大丽路专卖店"
+        },
+        {
+          "dictCode": "2843",
+          "dictName": "捷安特瑞丽专卖店"
+        },
+        {
+          "dictCode": "2844",
+          "dictName": "捷安特隆阳区专卖店"
+        },
+        {
+          "dictCode": "2845",
+          "dictName": "捷安特文山专卖店"
+        },
+        {
+          "dictCode": "2846",
+          "dictName": "捷安特宣威专卖店"
+        },
+        {
+          "dictCode": "2847",
+          "dictName": "捷安特宣威专卖店"
+        },
+        {
+          "dictCode": "2848",
+          "dictName": "捷安特昆明环城南路专卖店"
+        },
+        {
+          "dictCode": "2849",
+          "dictName": "捷安特河口人民路电动车专卖店"
+        },
+        {
+          "dictCode": "2850",
+          "dictName": "捷安特河口河边街专卖店"
+        },
+        {
+          "dictCode": "2852",
+          "dictName": "捷安特永善店中店"
+        },
+        {
+          "dictCode": "2867",
+          "dictName": "捷安特昌吉市骑健专卖店"
+        },
+        {
+          "dictCode": "2868",
+          "dictName": "捷安特克拉玛依市专卖店"
+        },
+        {
+          "dictCode": "2871",
+          "dictName": "捷安特彭水专卖店"
+        },
+        {
+          "dictCode": "2872",
+          "dictName": "捷安特武隆专卖店"
+        },
+        {
+          "dictCode": "2873",
+          "dictName": "捷安特江津专卖店"
+        },
+        {
+          "dictCode": "2879",
+          "dictName": "捷安特万州专卖店"
+        },
+        {
+          "dictCode": "2880",
+          "dictName": "捷安特万州云阳专卖店"
+        },
+        {
+          "dictCode": "2882",
+          "dictName": "捷安特荣昌专卖店"
+        },
+        {
+          "dictCode": "2883",
+          "dictName": "捷安特开县专卖店"
+        },
+        {
+          "dictCode": "2884",
+          "dictName": "捷安特大学城专卖店"
+        },
+        {
+          "dictCode": "2889",
+          "dictName": "捷安特合川大润发专卖店"
+        },
+        {
+          "dictCode": "2890",
+          "dictName": "捷安特万盛专卖店"
+        },
+        {
+          "dictCode": "2893",
+          "dictName": "捷安特拉萨专卖店"
+        },
+        {
+          "dictCode": "2894",
+          "dictName": "飞鸽自行车电动车专卖店"
+        },
+        {
+          "dictCode": "2895",
+          "dictName": "捷安特l林芝专卖店"
+        },
+        {
+          "dictCode": "2944",
+          "dictName": "捷安特新疆克市追风专卖店"
+        },
+        {
+          "dictCode": "2945",
+          "dictName": "捷安特青年路日月星光专卖店"
+        },
+        {
+          "dictCode": "2946",
+          "dictName": "捷安特阿市卓争专卖店"
+        },
+        {
+          "dictCode": "2951",
+          "dictName": "捷安特乐山苏稽专卖店"
+        },
+        {
+          "dictCode": "3001",
+          "dictName": "捷安特郫县学府专卖店"
+        },
+        {
+          "dictCode": "3002",
+          "dictName": "捷安特马尔康专卖店"
+        },
+        {
+          "dictCode": "3004",
+          "dictName": "捷安特玉龙安达电动车店"
+        },
+        {
+          "dictCode": "3005",
+          "dictName": "捷安特邛崃电动车店"
+        },
+        {
+          "dictCode": "3006",
+          "dictName": "捷安特眉山正西街专卖店"
+        },
+        {
+          "dictCode": "3008",
+          "dictName": "捷安特合川布卢特户外运动专卖店"
+        },
+        {
+          "dictCode": "3010",
+          "dictName": "捷安特双流专卖店"
+        },
+        {
+          "dictCode": "3015",
+          "dictName": "捷安特超越户外专卖店"
+        },
+        {
+          "dictCode": "3100",
+          "dictName": "捷安特普洱专卖店"
+        },
+        {
+          "dictCode": "3106",
+          "dictName": "捷安特安县花荄铁马骑士专卖店"
+        },
+        {
+          "dictCode": "3107",
+          "dictName": "捷安蓝天电动车专卖店"
+        },
+        {
+          "dictCode": "3108",
+          "dictName": "捷安特欧尚（华阳店）量贩专业店"
+        },
+        {
+          "dictCode": "3115",
+          "dictName": "捷安特乌鲁木齐市头屯河区专卖店"
+        },
+        {
+          "dictCode": "3118",
+          "dictName": "捷安特内江极限专卖店"
+        },
+        {
+          "dictCode": "3129",
+          "dictName": "捷安特华侨城专卖店"
+        },
+        {
+          "dictCode": "3202",
+          "dictName": "捷安特财大CYCLING WORLD"
+        },
+        {
+          "dictCode": "3342",
+          "dictName": "捷安特花荄铁马骑士专卖店"
+        },
+        {
+          "dictCode": "3343",
+          "dictName": "捷安特牛市口电动车专卖店"
+        },
+        {
+          "dictCode": "3345",
+          "dictName": "捷安特欧尚（华阳店）量贩专业店"
+        },
+        {
+          "dictCode": "3346",
+          "dictName": "捷安特库车县步行街店中店"
+        },
+        {
+          "dictCode": "3347",
+          "dictName": "捷安特富蕴县专卖店"
+        },
+        {
+          "dictCode": "3348",
+          "dictName": "捷安特福海县专卖店"
+        },
+        {
+          "dictCode": "3349",
+          "dictName": "捷安特哈密市石油基地专卖店"
+        },
+        {
+          "dictCode": "3350",
+          "dictName": "捷安特阿克苏塔中路专卖店"
+        },
+        {
+          "dictCode": "3351",
+          "dictName": "捷安特头屯河区专卖店"
+        },
+        {
+          "dictCode": "3353",
+          "dictName": "捷安特乌市新民西街专卖店"
+        },
+        {
+          "dictCode": "3356",
+          "dictName": "捷安特水磨专卖店"
+        },
+        {
+          "dictCode": "3359",
+          "dictName": "机投百信"
+        },
+        {
+          "dictCode": "3360",
+          "dictName": "捷安特南岸区风火轮专卖店"
+        },
+        {
+          "dictCode": "3361",
+          "dictName": "捷安特铄洋渝州路专卖店"
+        },
+        {
+          "dictCode": "3363",
+          "dictName": "捷安特金牛区小敏专卖店"
+        },
+        {
+          "dictCode": "3364",
+          "dictName": "成都市金牛区天回新兴家电行"
+        },
+        {
+          "dictCode": "3365",
+          "dictName": "捷安特勐腊专卖店"
+        },
+        {
+          "dictCode": "3366",
+          "dictName": "捷安特内江专卖店"
+        },
+        {
+          "dictCode": "3369",
+          "dictName": "捷安特乌市青年路日月星光专卖店"
+        },
+        {
+          "dictCode": "3370",
+          "dictName": "捷安特焉耆县店中店"
+        },
+        {
+          "dictCode": "3371",
+          "dictName": "捷安特库尔勒市新城区专卖店"
+        },
+        {
+          "dictCode": "3377",
+          "dictName": "捷安特开县专卖店"
+        },
+        {
+          "dictCode": "3379",
+          "dictName": "捷安特昌吉市专卖店"
+        },
+        {
+          "dictCode": "3380",
+          "dictName": "捷安特新市区专卖店"
+        },
+        {
+          "dictCode": "3381",
+          "dictName": "捷安特抚琴专卖店"
+        },
+        {
+          "dictCode": "3389",
+          "dictName": "成都中京体育文化传播有限公司"
+        },
+        {
+          "dictCode": "3410",
+          "dictName": "荣县店"
+        },
+        {
+          "dictCode": "3434",
+          "dictName": "丰都"
+        },
+        {
+          "dictCode": "3435",
+          "dictName": "捷安特船山区挑战者专卖店"
+        },
+        {
+          "dictCode": "3436",
+          "dictName": "遂宁东南角"
+        },
+        {
+          "dictCode": "3437",
+          "dictName": "大英店"
+        },
+        {
+          "dictCode": "3440",
+          "dictName": "罗江专卖店"
+        },
+        {
+          "dictCode": "3441",
+          "dictName": "三台店"
+        },
+        {
+          "dictCode": "3442",
+          "dictName": "旺苍店"
+        },
+        {
+          "dictCode": "3450",
+          "dictName": "捷安特西充专卖店"
+        },
+        {
+          "dictCode": "3489",
+          "dictName": "捷安特朝阳街专卖店"
+        },
+        {
+          "dictCode": "3490",
+          "dictName": "捷安特柏孜路专卖店"
+        },
+        {
+          "dictCode": "3491",
+          "dictName": "捷安特美居市场电动车专卖店"
+        },
+        {
+          "dictCode": "3492",
+          "dictName": "莫曼顿西北路专卖店"
+        },
+        {
+          "dictCode": "3493",
+          "dictName": "捷安特银川路专卖店"
+        },
+        {
+          "dictCode": "3494",
+          "dictName": "捷安特北庭路专卖店"
+        },
+        {
+          "dictCode": "3504",
+          "dictName": "捷安特山南店"
+        },
+        {
+          "dictCode": "3505",
+          "dictName": "捷安特林芝店"
+        },
+        {
+          "dictCode": "3506",
+          "dictName": "家乐福"
+        },
+        {
+          "dictCode": "3507",
+          "dictName": "捷安特蜀汉轮回专卖店"
+        },
+        {
+          "dictCode": "3508",
+          "dictName": "欧尚高新"
+        },
+        {
+          "dictCode": "3509",
+          "dictName": "光华店"
+        },
+        {
+          "dictCode": "3510",
+          "dictName": "华阳店"
+        },
+        {
+          "dictCode": "3511",
+          "dictName": "双桥店"
+        },
+        {
+          "dictCode": "3512",
+          "dictName": "欧尚华阳"
+        },
+        {
+          "dictCode": "3536",
+          "dictName": "澄江店"
+        },
+        {
+          "dictCode": "3550",
+          "dictName": "维西店"
+        },
+        {
+          "dictCode": "3559",
+          "dictName": "硬石头两路"
+        },
+        {
+          "dictCode": "3560",
+          "dictName": "北川羌族自治县永昌镇四通达车行"
+        },
+        {
+          "dictCode": "3561",
+          "dictName": "捷安特乌鲁木齐市迎宾路店"
+        },
+        {
+          "dictCode": "3562",
+          "dictName": "捷安特石河子北一东路专卖店"
+        },
+        {
+          "dictCode": "3563",
+          "dictName": "捷安特 精河县专卖店"
+        },
+        {
+          "dictCode": "3564",
+          "dictName": "捷安特吉木乃专卖店"
+        },
+        {
+          "dictCode": "3565",
+          "dictName": "隆昌永昌"
+        },
+        {
+          "dictCode": "3566",
+          "dictName": "捷安特 哈巴河县专卖店"
+        },
+        {
+          "dictCode": "3568",
+          "dictName": "捷安特欧特斯奥威专卖店"
+        },
+        {
+          "dictCode": "3570",
+          "dictName": "捷安特电子科大专卖店"
+        },
+        {
+          "dictCode": "3571",
+          "dictName": "莫曼顿富顺县专卖店"
+        },
+        {
+          "dictCode": "3572",
+          "dictName": "合江县绿源自行车行"
+        },
+        {
+          "dictCode": "3581",
+          "dictName": "捷安特上西街专卖店"
+        },
+        {
+          "dictCode": "3583",
+          "dictName": "华西南TDC"
+        },
+        {
+          "dictCode": "3586",
+          "dictName": "捷安特乌市米东CYCLING WORLD"
+        },
+        {
+          "dictCode": "3587",
+          "dictName": "捷安特德阳超美专卖店"
+        },
+        {
+          "dictCode": "3589",
+          "dictName": "捷安特淮口华英城专卖店"
+        },
+        {
+          "dictCode": "3595",
+          "dictName": "捷安特裕民县专卖店"
+        },
+        {
+          "dictCode": "3596",
+          "dictName": "捷安特 芳草湖农场专卖店"
+        },
+        {
+          "dictCode": "3602",
+          "dictName": "洪雅县明志自行车经营部"
+        },
+        {
+          "dictCode": "3604",
+          "dictName": "捷安特沙湾宁安路专卖店"
+        },
+        {
+          "dictCode": "3605",
+          "dictName": "捷安特南充市嘉陵专卖店"
+        },
+        {
+          "dictCode": "3611",
+          "dictName": "捷安特普洱文华路专卖店"
+        },
+        {
+          "dictCode": "3614",
+          "dictName": "捷安特乌市喀什东路专卖店"
+        },
+        {
+          "dictCode": "3615",
+          "dictName": "捷安特阜康天山骑客店专卖店"
+        },
+        {
+          "dictCode": "3616",
+          "dictName": "捷安特濛阳镇专卖店"
+        },
+        {
+          "dictCode": "3618",
+          "dictName": "捷安特江川专卖店"
+        },
+        {
+          "dictCode": "3620",
+          "dictName": "捷安特天山骑客CYCLING WORLD"
+        },
+        {
+          "dictCode": "3625",
+          "dictName": "捷安特自贡专卖店"
+        },
+        {
+          "dictCode": "3627",
+          "dictName": "捷安百花自行车专卖店店"
+        },
+        {
+          "dictCode": "3628",
+          "dictName": "捷安特濛阳专卖店"
+        },
+        {
+          "dictCode": "3629",
+          "dictName": "捷安特新繁自行车专卖店"
+        },
+        {
+          "dictCode": "3630",
+          "dictName": "捷安特青白江CYCLING WORLD"
+        },
+        {
+          "dictCode": "3631",
+          "dictName": "捷安特哈密CYCLING WORLD"
+        },
+        {
+          "dictCode": "3634",
+          "dictName": "捷安特乌鲁木齐市长春路专卖店"
+        },
+        {
+          "dictCode": "3635",
+          "dictName": "捷安特阿勒泰专卖店"
+        },
+        {
+          "dictCode": "3636",
+          "dictName": "捷安特乌鲁木齐市北京中路专卖店"
+        },
+        {
+          "dictCode": "3638",
+          "dictName": "捷安特古蔺专卖店"
+        },
+        {
+          "dictCode": "3639",
+          "dictName": "捷安特邻水自行车店中店"
+        },
+        {
+          "dictCode": "3640",
+          "dictName": "捷安特绵阳传奇自行车专卖店"
+        },
+        {
+          "dictCode": "3642",
+          "dictName": "捷安特华阳心飞扬专卖店"
+        },
+        {
+          "dictCode": "3643",
+          "dictName": "捷安特和硕店中店"
+        },
+        {
+          "dictCode": "3644",
+          "dictName": "捷安特尉犁店中店"
+        },
+        {
+          "dictCode": "3645",
+          "dictName": "捷安特和静店中店"
+        },
+        {
+          "dictCode": "3646",
+          "dictName": "捷安特焉耆店中店"
+        },
+        {
+          "dictCode": "3647",
+          "dictName": "捷安特轮台店中店"
+        },
+        {
+          "dictCode": "3649",
+          "dictName": "捷安特宜宾小熊自行车行专卖店"
+        },
+        {
+          "dictCode": "3652",
+          "dictName": "捷安特广汉穿越CYCLING WORLD"
+        },
+        {
+          "dictCode": "3653",
+          "dictName": "捷安特普洱科技园店专卖店"
+        },
+        {
+          "dictCode": "3658",
+          "dictName": "捷安特广汉穿越自行车专卖店"
+        },
+        {
+          "dictCode": "3661",
+          "dictName": "捷安特大足"
+        },
+        {
+          "dictCode": "3663",
+          "dictName": "捷安特巴中自行车专卖店"
+        },
+        {
+          "dictCode": "3666",
+          "dictName": "捷安特乐至专卖店"
+        },
+        {
+          "dictCode": "3667",
+          "dictName": "捷安特宜宾市珙县店中店"
+        },
+        {
+          "dictCode": "3668",
+          "dictName": "捷安特绵阳大润发专卖店"
+        },
+        {
+          "dictCode": "3669",
+          "dictName": "捷安特曲靖捷安特专卖店"
+        },
+        {
+          "dictCode": "3672",
+          "dictName": "莫曼顿乐至县顺捷自行车行专卖店"
+        },
+        {
+          "dictCode": "3673",
+          "dictName": "捷安特大竹县东湖单车驿站专卖店"
+        },
+        {
+          "dictCode": "3674",
+          "dictName": "捷安特伊宁骑客专卖店"
+        },
+        {
+          "dictCode": "3675",
+          "dictName": "捷安特奇台县火烽极限户外专卖店"
+        },
+        {
+          "dictCode": "3676",
+          "dictName": "捷安特双流县文星镇五一八车行专"
+        },
+        {
+          "dictCode": "2174",
+          "dictName": "捷安特西昌专卖店"
+        },
+        {
+          "dictCode": "3680",
+          "dictName": "捷安特昭苏县专卖店"
+        },
+        {
+          "dictCode": "3683",
+          "dictName": "捷安特霍城县专卖店"
+        },
+        {
+          "dictCode": "3684",
+          "dictName": "捷安特曲靖市麒麟区老兵自行车"
+        },
+        {
+          "dictCode": "3576",
+          "dictName": "捷安特西充专卖店"
+        },
+        {
+          "dictCode": "3686",
+          "dictName": "捷安特石河子专卖店"
+        },
+        {
+          "dictCode": "3687",
+          "dictName": "捷安特西充专卖店"
+        },
+        {
+          "dictCode": "3691",
+          "dictName": "捷安特乐旺自行车专"
+        },
+        {
+          "dictCode": "3692",
+          "dictName": "捷安特龙潭寺自行车专卖店"
+        },
+        {
+          "dictCode": "3694",
+          "dictName": "捷安特万源专卖店"
+        },
+        {
+          "dictCode": "3697",
+          "dictName": "捷安特昌都专卖店"
+        },
+        {
+          "dictCode": "3700",
+          "dictName": "捷安特射洪太和大道北（射洪一中"
+        },
+        {
+          "dictCode": "3679",
+          "dictName": "捷安特清水河镇专卖店"
+        }
+      ]
+    },
+    {
+      "code": null,
+      "dictCode": "GY",
+      "dictName": "贵阳万里行",
+      "remarks": null,
+      "list": [
+        {
+          "dictCode": "2094",
+          "dictName": "贵阳市府路店"
+        },
+        {
+          "dictCode": "2095",
+          "dictName": "捷安特贵阳太慈桥专卖店"
+        },
+        {
+          "dictCode": "2096",
+          "dictName": "捷安持贵阳金阳新区专卖店"
+        },
+        {
+          "dictCode": "2109",
+          "dictName": "捷安特贵阳花溪专卖店"
+        },
+        {
+          "dictCode": "2112",
+          "dictName": "捷安特黔西专卖店"
+        },
+        {
+          "dictCode": "2113",
+          "dictName": "捷安特桐梓市专卖店"
+        },
+        {
+          "dictCode": "2120",
+          "dictName": "捷安特都匀专卖店"
+        },
+        {
+          "dictCode": "2128",
+          "dictName": "捷安特李其凡专卖店"
+        },
+        {
+          "dictCode": "2129",
+          "dictName": "捷安特红花岗CYCLING WORLD"
+        },
+        {
+          "dictCode": "2134",
+          "dictName": "捷安特毕节专卖店"
+        },
+        {
+          "dictCode": "2896",
+          "dictName": "捷安特贵阳专卖店"
+        },
+        {
+          "dictCode": "2901",
+          "dictName": "捷安特遵义市CYCLING WORLD"
+        },
+        {
+          "dictCode": "2902",
+          "dictName": "捷安特石阡专卖店"
+        },
+        {
+          "dictCode": "2904",
+          "dictName": "捷安特贵阳花溪专卖店"
+        },
+        {
+          "dictCode": "2905",
+          "dictName": "捷安特独山专卖店"
+        },
+        {
+          "dictCode": "2906",
+          "dictName": "捷安特普定县专卖店"
+        },
+        {
+          "dictCode": "2907",
+          "dictName": "捷安特三都县专卖店"
+        },
+        {
+          "dictCode": "2908",
+          "dictName": "捷安特威宁专卖店"
+        },
+        {
+          "dictCode": "2909",
+          "dictName": "捷安特福泉专卖店"
+        },
+        {
+          "dictCode": "2911",
+          "dictName": "捷安特安顺专卖店"
+        },
+        {
+          "dictCode": "2912",
+          "dictName": "捷安特遵义凤岗专卖店"
+        },
+        {
+          "dictCode": "2913",
+          "dictName": "捷安特凯里专卖店"
+        },
+        {
+          "dictCode": "2914",
+          "dictName": "捷安特都匀专卖店"
+        },
+        {
+          "dictCode": "2915",
+          "dictName": "莫曼顿遵义市专卖店"
+        },
+        {
+          "dictCode": "2916",
+          "dictName": "捷安特黔西专卖店"
+        },
+        {
+          "dictCode": "2917",
+          "dictName": "捷安特桐梓市专卖店"
+        },
+        {
+          "dictCode": "2918",
+          "dictName": "捷安特毕节专卖店"
+        },
+        {
+          "dictCode": "2919",
+          "dictName": "捷安特遵义市专卖店"
+        },
+        {
+          "dictCode": "3552",
+          "dictName": "盘县店"
+        },
+        {
+          "dictCode": "3554",
+          "dictName": "大方店"
+        },
+        {
+          "dictCode": "3555",
+          "dictName": "安顺店中店"
+        },
+        {
+          "dictCode": "3556",
+          "dictName": "安顺专卖店"
+        },
+        {
+          "dictCode": "3557",
+          "dictName": "金沙店"
+        },
+        {
+          "dictCode": "3558",
+          "dictName": "兴义店"
+        },
+        {
+          "dictCode": "3588",
+          "dictName": "捷安特仁怀专卖店"
+        },
+        {
+          "dictCode": "3590",
+          "dictName": "捷安特仁怀市山岩专卖店"
+        },
+        {
+          "dictCode": "3621",
+          "dictName": "捷安特六枝特区专卖店"
+        },
+        {
+          "dictCode": "3622",
+          "dictName": "捷安特六盘水专卖店"
+        },
+        {
+          "dictCode": "3623",
+          "dictName": "捷安特小河专卖店"
+        },
+        {
+          "dictCode": "3624",
+          "dictName": "捷安特六盘水专卖店"
+        },
+        {
+          "dictCode": "3633",
+          "dictName": "捷安特赤水专卖店"
+        },
+        {
+          "dictCode": "3648",
+          "dictName": "捷安特瓮安专卖店"
+        },
+        {
+          "dictCode": "2107",
+          "dictName": "捷安特遵义市捷安特专卖店"
+        },
+        {
+          "dictCode": "3591",
+          "dictName": "捷安特道真专卖店"
+        },
+        {
+          "dictCode": "2910",
+          "dictName": "捷安特湄潭专卖店"
+        },
+        {
+          "dictCode": "3685",
+          "dictName": "捷安特思南"
+        },
+        {
+          "dictCode": "3688",
+          "dictName": "捷安特清镇专卖店"
+        },
+        {
+          "dictCode": "3698",
+          "dictName": "捷安特黎平专卖店"
+        }
+      ]
+    },
+    {
+      "code": null,
+      "dictCode": "HT",
+      "dictName": "鸿捷体育",
+      "remarks": null,
+      "list": [
+        {
+          "dictCode": "2008",
+          "dictName": "捷安特西宁南小街专卖店"
+        },
+        {
+          "dictCode": "2011",
+          "dictName": "捷安特西宁夏都大街专卖店"
+        },
+        {
+          "dictCode": "2330",
+          "dictName": "捷安特民和英杰体育专卖店"
+        },
+        {
+          "dictCode": "2331",
+          "dictName": "捷安特德令哈市专卖店"
+        },
+        {
+          "dictCode": "3584",
+          "dictName": "莫曼顿玉树专卖店"
+        },
+        {
+          "dictCode": "3612",
+          "dictName": "捷安特青海湟源南大街专卖店"
+        }
+      ]
+    },
+    {
+      "code": null,
+      "dictCode": "KM",
+      "dictName": "昆明",
+      "remarks": null,
+      "list": [
+        {
+          "dictCode": "2020",
+          "dictName": "捷安特西昌路专卖店"
+        },
+        {
+          "dictCode": "2021",
+          "dictName": "捷安特西昌路CYCLING WORLD"
+        },
+        {
+          "dictCode": "2085",
+          "dictName": "捷安特昆明北辰大道专卖店"
+        },
+        {
+          "dictCode": "2086",
+          "dictName": "捷安特昆明一二一专卖店"
+        },
+        {
+          "dictCode": "2087",
+          "dictName": "捷安特昆明北京路专卖店"
+        },
+        {
+          "dictCode": "2088",
+          "dictName": "捷安特昌宁专卖店"
+        },
+        {
+          "dictCode": "2089",
+          "dictName": "捷安特六库专卖店"
+        },
+        {
+          "dictCode": "2110",
+          "dictName": "捷安特昆明环城东路专卖店"
+        },
+        {
+          "dictCode": "2111",
+          "dictName": "腾冲专卖店"
+        },
+        {
+          "dictCode": "2115",
+          "dictName": "佴季路店"
+        },
+        {
+          "dictCode": "2131",
+          "dictName": "捷安特昆明滇池路专卖店"
+        },
+        {
+          "dictCode": "2132",
+          "dictName": "捷安特昆明环城南路专卖店"
+        },
+        {
+          "dictCode": "2133",
+          "dictName": "捷安特昆明民航路专卖店"
+        },
+        {
+          "dictCode": "2135",
+          "dictName": "捷安特昌宁"
+        },
+        {
+          "dictCode": "2141",
+          "dictName": "捷安特安宁昆钢专卖店"
+        },
+        {
+          "dictCode": "2142",
+          "dictName": "捷安特昆明兴苑路店"
+        },
+        {
+          "dictCode": "2176",
+          "dictName": "捷安特昆明白龙路专卖店"
+        },
+        {
+          "dictCode": "2177",
+          "dictName": "捷安特昆明龙泉路专卖店"
+        },
+        {
+          "dictCode": "2178",
+          "dictName": "东风西路店"
+        },
+        {
+          "dictCode": "2179",
+          "dictName": "捷安特昆明星耀路专卖店"
+        },
+        {
+          "dictCode": "2181",
+          "dictName": "捷安特盈江专卖店"
+        },
+        {
+          "dictCode": "2182",
+          "dictName": "捷安特开远专卖店"
+        },
+        {
+          "dictCode": "2183",
+          "dictName": "捷安特昆明科业路专卖店"
+        },
+        {
+          "dictCode": "2184",
+          "dictName": "捷安特祥云专卖店"
+        },
+        {
+          "dictCode": "2601",
+          "dictName": "捷安特昆明环城西路专卖店"
+        },
+        {
+          "dictCode": "2602",
+          "dictName": "捷安特昆明环城西路485号专卖店"
+        },
+        {
+          "dictCode": "2603",
+          "dictName": "捷安特昆明市人民东路专卖店"
+        },
+        {
+          "dictCode": "2604",
+          "dictName": "捷安特昭通昭阳大道专卖店"
+        },
+        {
+          "dictCode": "2605",
+          "dictName": "捷安特芒市团结大街专卖店"
+        },
+        {
+          "dictCode": "2606",
+          "dictName": "捷安特宁洱专卖店"
+        },
+        {
+          "dictCode": "2607",
+          "dictName": "捷安特建水专卖店"
+        },
+        {
+          "dictCode": "2608",
+          "dictName": "捷安特昆明环城南路3号专卖店"
+        },
+        {
+          "dictCode": "2609",
+          "dictName": "捷安特会泽专卖店"
+        },
+        {
+          "dictCode": "2611",
+          "dictName": "捷安特寻甸专卖店"
+        },
+        {
+          "dictCode": "2612",
+          "dictName": "捷安特宣威向阳东街专卖店"
+        },
+        {
+          "dictCode": "2614",
+          "dictName": "捷安特屏边专卖店"
+        },
+        {
+          "dictCode": "2615",
+          "dictName": "捷安特腾冲专卖一店"
+        },
+        {
+          "dictCode": "2616",
+          "dictName": "捷安特楚雄紫溪大道专卖店"
+        },
+        {
+          "dictCode": "2617",
+          "dictName": "捷安特楚雄专卖店"
+        },
+        {
+          "dictCode": "2618",
+          "dictName": "捷安特永平专卖店"
+        },
+        {
+          "dictCode": "2619",
+          "dictName": "捷安特宾川专卖店"
+        },
+        {
+          "dictCode": "2620",
+          "dictName": "捷安特弥渡专卖店"
+        },
+        {
+          "dictCode": "2621",
+          "dictName": "捷安特南涧专卖店"
+        },
+        {
+          "dictCode": "2622",
+          "dictName": "捷安特昆明小西门专卖店"
+        },
+        {
+          "dictCode": "2623",
+          "dictName": "捷安特建设路专卖店"
+        },
+        {
+          "dictCode": "2624",
+          "dictName": "捷安特昆明西昌路388号专卖店"
+        },
+        {
+          "dictCode": "2625",
+          "dictName": "捷安特宜良专卖店"
+        },
+        {
+          "dictCode": "2626",
+          "dictName": "捷安特嵩明专卖店"
+        },
+        {
+          "dictCode": "2627",
+          "dictName": "捷安特东川专卖店"
+        },
+        {
+          "dictCode": "2628",
+          "dictName": "捷安特石林专卖店"
+        },
+        {
+          "dictCode": "2629",
+          "dictName": "捷安特禄劝专卖店"
+        },
+        {
+          "dictCode": "2630",
+          "dictName": "捷安特倘甸专卖店"
+        },
+        {
+          "dictCode": "2631",
+          "dictName": "捷安特蒙自专卖店"
+        },
+        {
+          "dictCode": "2632",
+          "dictName": "捷安特蒙自二专卖店"
+        },
+        {
+          "dictCode": "2634",
+          "dictName": "捷安特弥勒专卖店"
+        },
+        {
+          "dictCode": "2635",
+          "dictName": "捷安特个旧专卖店"
+        },
+        {
+          "dictCode": "2636",
+          "dictName": "捷安特沙甸专卖店"
+        },
+        {
+          "dictCode": "2637",
+          "dictName": "捷安特陆良专卖店"
+        },
+        {
+          "dictCode": "2638",
+          "dictName": "捷安特易门专卖店"
+        },
+        {
+          "dictCode": "2639",
+          "dictName": "捷安特通海专卖店"
+        },
+        {
+          "dictCode": "2640",
+          "dictName": "捷安特华宁专卖店"
+        },
+        {
+          "dictCode": "2641",
+          "dictName": "捷安特元江专卖店"
+        },
+        {
+          "dictCode": "2642",
+          "dictName": "捷安特龙陵专卖店"
+        },
+        {
+          "dictCode": "2643",
+          "dictName": "捷安特施甸专卖店"
+        },
+        {
+          "dictCode": "2644",
+          "dictName": "捷安特腾冲一中店"
+        },
+        {
+          "dictCode": "2645",
+          "dictName": "捷安特临沧专卖店"
+        },
+        {
+          "dictCode": "2646",
+          "dictName": "捷安特临沧旗山路专卖"
+        },
+        {
+          "dictCode": "2647",
+          "dictName": "捷安特凤庆专卖店"
+        },
+        {
+          "dictCode": "2648",
+          "dictName": "捷安特云县专卖店"
+        },
+        {
+          "dictCode": "2649",
+          "dictName": "捷安特广南专卖店"
+        },
+        {
+          "dictCode": "2650",
+          "dictName": "捷安特丘北专卖店"
+        },
+        {
+          "dictCode": "2651",
+          "dictName": "捷安特南华专卖店"
+        },
+        {
+          "dictCode": "2652",
+          "dictName": "捷安特禄丰专卖店"
+        },
+        {
+          "dictCode": "2653",
+          "dictName": "捷安特大姚专卖店"
+        },
+        {
+          "dictCode": "2654",
+          "dictName": "捷安特巍山专卖店"
+        },
+        {
+          "dictCode": "2655",
+          "dictName": "捷安特祥云专卖店"
+        },
+        {
+          "dictCode": "2656",
+          "dictName": "捷安特澜沧专卖店"
+        },
+        {
+          "dictCode": "2657",
+          "dictName": "捷安特安宁源川北路专卖店"
+        },
+        {
+          "dictCode": "2658",
+          "dictName": "捷安特昆明昌源路专卖店"
+        },
+        {
+          "dictCode": "2659",
+          "dictName": "捷安特昆明长青路专卖店"
+        },
+        {
+          "dictCode": "2660",
+          "dictName": "捷安特昆明官培路专卖店"
+        },
+        {
+          "dictCode": "2661",
+          "dictName": "捷安特白云路专卖店"
+        },
+        {
+          "dictCode": "2662",
+          "dictName": "捷安特市体育馆专卖店"
+        },
+        {
+          "dictCode": "2663",
+          "dictName": "捷安特昆明马街专卖店"
+        },
+        {
+          "dictCode": "2664",
+          "dictName": "捷安特富民专卖店"
+        },
+        {
+          "dictCode": "2665",
+          "dictName": "捷安特呈贡专卖店"
+        },
+        {
+          "dictCode": "2667",
+          "dictName": "捷安特泸西专卖店"
+        },
+        {
+          "dictCode": "2668",
+          "dictName": "捷安特沧源专卖店"
+        },
+        {
+          "dictCode": "2669",
+          "dictName": "捷安特罗平专卖店"
+        },
+        {
+          "dictCode": "2670",
+          "dictName": "捷安特陇川专卖店"
+        },
+        {
+          "dictCode": "2671",
+          "dictName": "捷安特景谷专卖店"
+        },
+        {
+          "dictCode": "2672",
+          "dictName": "捷安特景东专卖店"
+        },
+        {
+          "dictCode": "2673",
+          "dictName": "捷安特沾益专卖店"
+        },
+        {
+          "dictCode": "2674",
+          "dictName": "捷安特富源专卖店"
+        },
+        {
+          "dictCode": "3101",
+          "dictName": "捷安特昆明佴季路专卖店"
+        },
+        {
+          "dictCode": "3127",
+          "dictName": "捷安特昆明佴季路专卖店"
+        },
+        {
+          "dictCode": "3339",
+          "dictName": "捷安特澜沧专卖店"
+        },
+        {
+          "dictCode": "3524",
+          "dictName": "文山开化"
+        },
+        {
+          "dictCode": "3526",
+          "dictName": "景德东路店"
+        },
+        {
+          "dictCode": "3527",
+          "dictName": "景洪东风店"
+        },
+        {
+          "dictCode": "3528",
+          "dictName": "捷安特景洪勐腊专卖店"
+        },
+        {
+          "dictCode": "3533",
+          "dictName": "马龙店"
+        },
+        {
+          "dictCode": "3534",
+          "dictName": "宣威店"
+        },
+        {
+          "dictCode": "3535",
+          "dictName": "江川店"
+        },
+        {
+          "dictCode": "3537",
+          "dictName": "保山易乐"
+        },
+        {
+          "dictCode": "3538",
+          "dictName": "捷安特保山玉泉路专卖店"
+        },
+        {
+          "dictCode": "3539",
+          "dictName": "捷安特绥江专卖店"
+        },
+        {
+          "dictCode": "3540",
+          "dictName": "华坪店"
+        },
+        {
+          "dictCode": "3541",
+          "dictName": "墨江店"
+        },
+        {
+          "dictCode": "3543",
+          "dictName": "镇康店"
+        },
+        {
+          "dictCode": "3544",
+          "dictName": "鹿城东路店"
+        },
+        {
+          "dictCode": "3545",
+          "dictName": "绿春店"
+        },
+        {
+          "dictCode": "3546",
+          "dictName": "丘北店"
+        },
+        {
+          "dictCode": "3548",
+          "dictName": "目脑纵歌路"
+        },
+        {
+          "dictCode": "3606",
+          "dictName": "捷安特双柏店"
+        },
+        {
+          "dictCode": "3607",
+          "dictName": "孟连"
+        },
+        {
+          "dictCode": "3608",
+          "dictName": "捷安特大屯专卖店"
+        }
+      ]
+    },
+    {
+      "code": null,
+      "dictCode": "LJ",
+      "dictName": "成都丽江销售部",
+      "remarks": null,
+      "list": [
+        {
+          "dictCode": "2180",
+          "dictName": "捷安特丽江古城区专门店"
+        },
+        {
+          "dictCode": "2854",
+          "dictName": "捷安特鹤庆专卖店"
+        },
+        {
+          "dictCode": "2855",
+          "dictName": "捷安特剑川专卖店"
+        },
+        {
+          "dictCode": "2856",
+          "dictName": "捷安特洱源店中店"
+        },
+        {
+          "dictCode": "3021",
+          "dictName": "捷安特丽江古城区中泰苑专卖店"
+        }
+      ]
+    },
+    {
+      "code": null,
+      "dictCode": "LZ",
+      "dictName": "兰州鑫捷",
+      "remarks": null,
+      "list": [
+        {
+          "dictCode": "2099",
+          "dictName": "捷安特张掖CYCLING WORLD"
+        },
+        {
+          "dictCode": "2105",
+          "dictName": "捷安特环县专卖店"
+        },
+        {
+          "dictCode": "2156",
+          "dictName": "捷安特玉门专卖店"
+        },
+        {
+          "dictCode": "2159",
+          "dictName": "捷安特兰新专卖店"
+        },
+        {
+          "dictCode": "2160",
+          "dictName": "捷安特西固专卖店"
+        },
+        {
+          "dictCode": "2161",
+          "dictName": "捷安特兰州生活馆"
+        },
+        {
+          "dictCode": "2162",
+          "dictName": "捷安特（大润发）量贩专业店"
+        },
+        {
+          "dictCode": "2163",
+          "dictName": "捷安特西口专卖店"
+        },
+        {
+          "dictCode": "2185",
+          "dictName": "捷安特临洮专卖店"
+        },
+        {
+          "dictCode": "2186",
+          "dictName": "捷安特临夏专卖店"
+        },
+        {
+          "dictCode": "2514",
+          "dictName": "捷安特敦煌专卖店"
+        },
+        {
+          "dictCode": "3102",
+          "dictName": "捷安特安宁东路专卖店"
+        },
+        {
+          "dictCode": "3103",
+          "dictName": "捷安特建宁东路专卖店"
+        },
+        {
+          "dictCode": "3104",
+          "dictName": "莫曼顿武威专卖店"
+        },
+        {
+          "dictCode": "3110",
+          "dictName": "捷安特海石湾专卖店"
+        },
+        {
+          "dictCode": "3204",
+          "dictName": "捷安特渭源专卖店"
+        },
+        {
+          "dictCode": "3300",
+          "dictName": "捷安特酒泉专卖店"
+        },
+        {
+          "dictCode": "3301",
+          "dictName": "捷安特金昌专卖店"
+        },
+        {
+          "dictCode": "3302",
+          "dictName": "捷安特天水专卖店"
+        },
+        {
+          "dictCode": "3303",
+          "dictName": "捷安特天水北道专卖店"
+        },
+        {
+          "dictCode": "3304",
+          "dictName": "捷安特平川专卖店"
+        },
+        {
+          "dictCode": "3305",
+          "dictName": "捷安特庆阳专卖店"
+        },
+        {
+          "dictCode": "3306",
+          "dictName": "捷安特平凉店中店"
+        },
+        {
+          "dictCode": "3307",
+          "dictName": "捷安特首阳店中店"
+        },
+        {
+          "dictCode": "3308",
+          "dictName": "捷安特景泰店中店"
+        },
+        {
+          "dictCode": "3309",
+          "dictName": "捷安特瓜州店中店"
+        },
+        {
+          "dictCode": "3310",
+          "dictName": "捷安特高台专卖店"
+        },
+        {
+          "dictCode": "3311",
+          "dictName": "捷安特漳县店中店"
+        },
+        {
+          "dictCode": "3312",
+          "dictName": "捷安特人民公园专卖店"
+        },
+        {
+          "dictCode": "3313",
+          "dictName": "捷安特民乐专卖店"
+        },
+        {
+          "dictCode": "3315",
+          "dictName": "捷安特（靖远）专卖店"
+        },
+        {
+          "dictCode": "3316",
+          "dictName": "捷安特徽县专卖店"
+        },
+        {
+          "dictCode": "3317",
+          "dictName": "捷安特山丹专卖店"
+        },
+        {
+          "dictCode": "3318",
+          "dictName": "捷安特（陇西）专卖店"
+        },
+        {
+          "dictCode": "3319",
+          "dictName": "捷安特（武威）专卖店"
+        },
+        {
+          "dictCode": "3320",
+          "dictName": "捷安特（定西）专卖店"
+        },
+        {
+          "dictCode": "3321",
+          "dictName": "捷安特（甘谷）专卖店"
+        },
+        {
+          "dictCode": "3322",
+          "dictName": "捷安特（静宁）专卖店"
+        },
+        {
+          "dictCode": "3323",
+          "dictName": "捷安特金昌专卖店"
+        },
+        {
+          "dictCode": "3324",
+          "dictName": "捷安特（秦安）店中店"
+        },
+        {
+          "dictCode": "3325",
+          "dictName": "捷安特（成县）专卖店"
+        },
+        {
+          "dictCode": "3327",
+          "dictName": "捷安特武都专卖店"
+        },
+        {
+          "dictCode": "3328",
+          "dictName": "捷安特五一路专卖店"
+        },
+        {
+          "dictCode": "3329",
+          "dictName": "捷安特岷县店中店"
+        },
+        {
+          "dictCode": "3330",
+          "dictName": "捷安特兰州榆中店中店"
+        },
+        {
+          "dictCode": "3331",
+          "dictName": "捷安特白银专卖店"
+        },
+        {
+          "dictCode": "3332",
+          "dictName": "捷安特兰州榆中店中店"
+        },
+        {
+          "dictCode": "3333",
+          "dictName": "捷安特永登店中店"
+        },
+        {
+          "dictCode": "3334",
+          "dictName": "捷安特武威CYCLING WORLD"
+        },
+        {
+          "dictCode": "3335",
+          "dictName": "捷安特泾川专卖店"
+        },
+        {
+          "dictCode": "3336",
+          "dictName": "捷安特渭源专卖店"
+        },
+        {
+          "dictCode": "3337",
+          "dictName": "捷安特盐官专卖店"
+        },
+        {
+          "dictCode": "3338",
+          "dictName": "捷安特华亭专卖店"
+        },
+        {
+          "dictCode": "3358",
+          "dictName": "捷安特张掖专卖店"
+        },
+        {
+          "dictCode": "3378",
+          "dictName": "捷安特（庆阳）百佳商量贩专业店"
+        },
+        {
+          "dictCode": "3392",
+          "dictName": "张家川店中"
+        },
+        {
+          "dictCode": "3393",
+          "dictName": "捷安特滨河北路专卖店"
+        },
+        {
+          "dictCode": "3394",
+          "dictName": "捷安特七里镇专卖店"
+        },
+        {
+          "dictCode": "3395",
+          "dictName": "新堡子店中"
+        },
+        {
+          "dictCode": "3396",
+          "dictName": "定西店中店"
+        },
+        {
+          "dictCode": "3397",
+          "dictName": "临夏店中店"
+        },
+        {
+          "dictCode": "3398",
+          "dictName": "广河店中店"
+        },
+        {
+          "dictCode": "3399",
+          "dictName": "捷安特庄浪专卖店"
+        },
+        {
+          "dictCode": "3400",
+          "dictName": "合水店中店"
+        },
+        {
+          "dictCode": "3401",
+          "dictName": "文县店中店"
+        },
+        {
+          "dictCode": "3402",
+          "dictName": "西河店中店"
+        },
+        {
+          "dictCode": "3403",
+          "dictName": "礼县店中店"
+        },
+        {
+          "dictCode": "3404",
+          "dictName": "两当店中店"
+        },
+        {
+          "dictCode": "3573",
+          "dictName": "捷安特武山"
+        },
+        {
+          "dictCode": "3574",
+          "dictName": "莫曼顿永昌专卖店"
+        },
+        {
+          "dictCode": "3582",
+          "dictName": "捷安特清水专卖店"
+        },
+        {
+          "dictCode": "3585",
+          "dictName": "捷安特三甲集专卖店"
+        },
+        {
+          "dictCode": "3592",
+          "dictName": "莫曼顿两当专卖店"
+        },
+        {
+          "dictCode": "3593",
+          "dictName": "捷安特白银专卖店"
+        },
+        {
+          "dictCode": "3594",
+          "dictName": "莫曼顿礼县专卖店"
+        },
+        {
+          "dictCode": "3626",
+          "dictName": "捷安特白银长安路专卖店"
+        },
+        {
+          "dictCode": "3637",
+          "dictName": "捷安特酒泉肃园街专卖店"
+        },
+        {
+          "dictCode": "3654",
+          "dictName": "捷安特庄浪锦盛花苑专卖店"
+        },
+        {
+          "dictCode": "3662",
+          "dictName": "捷安特庆城专卖店"
+        },
+        {
+          "dictCode": "3671",
+          "dictName": "捷安特张掖新世纪专卖店"
+        },
+        {
+          "dictCode": "3326",
+          "dictName": "捷安特嘉峪关CYCLING WORLD"
+        },
+        {
+          "dictCode": "3681",
+          "dictName": "捷安特庆阳圣鼎国际专卖店"
+        },
+        {
+          "dictCode": "3682",
+          "dictName": "捷安特西和专卖店"
+        },
+        {
+          "dictCode": "3693",
+          "dictName": "捷安特甘谷专卖店"
+        },
+        {
+          "dictCode": "3695",
+          "dictName": "捷安特五泉广场专卖店"
+        },
+        {
+          "dictCode": "3699",
+          "dictName": "捷安特永靖专卖店"
+        }
+      ]
+    },
+    {
+      "code": null,
+      "dictCode": "XA",
+      "dictName": "西安捷翔",
+      "remarks": null,
+      "list": [
+        {
+          "dictCode": "2127",
+          "dictName": "捷安特吉祥路CYCLING WORLD"
+        },
+        {
+          "dictCode": "2431",
+          "dictName": "捷安特王益区红星专卖店"
+        },
+        {
+          "dictCode": "2437",
+          "dictName": "捷安特铜川新区专卖店"
+        },
+        {
+          "dictCode": "2439",
+          "dictName": "捷安特渭南专卖店"
+        },
+        {
+          "dictCode": "2440",
+          "dictName": "捷安特华县专卖店"
+        },
+        {
+          "dictCode": "2441",
+          "dictName": "捷安特临潼专卖店"
+        },
+        {
+          "dictCode": "2443",
+          "dictName": "捷安特澄城专卖店"
+        },
+        {
+          "dictCode": "2446",
+          "dictName": "捷安特韩城专卖店"
+        },
+        {
+          "dictCode": "2448",
+          "dictName": "捷安特合阳专卖店"
+        },
+        {
+          "dictCode": "2449",
+          "dictName": "捷安特华阴专卖店"
+        },
+        {
+          "dictCode": "2450",
+          "dictName": "捷安特商洛专卖店"
+        },
+        {
+          "dictCode": "2451",
+          "dictName": "捷安特大荔专卖店"
+        },
+        {
+          "dictCode": "2452",
+          "dictName": "捷安特白水专卖店"
+        },
+        {
+          "dictCode": "2453",
+          "dictName": "捷安特富平专卖店"
+        },
+        {
+          "dictCode": "2454",
+          "dictName": "捷安特蓝田专卖店"
+        },
+        {
+          "dictCode": "2455",
+          "dictName": "捷安特潼关专卖店"
+        },
+        {
+          "dictCode": "2457",
+          "dictName": "捷安特汉中CYCLING WORLD"
+        },
+        {
+          "dictCode": "2459",
+          "dictName": "捷安特安康专卖店"
+        },
+        {
+          "dictCode": "2460",
+          "dictName": "捷安特城固专卖店"
+        },
+        {
+          "dictCode": "2461",
+          "dictName": "捷安特旬阳专卖店"
+        },
+        {
+          "dictCode": "2462",
+          "dictName": "捷安特洋县专卖店"
+        },
+        {
+          "dictCode": "2463",
+          "dictName": "捷安特西乡专卖店"
+        },
+        {
+          "dictCode": "2464",
+          "dictName": "捷安特勉县专卖店"
+        },
+        {
+          "dictCode": "2465",
+          "dictName": "捷安特宁强专卖店"
+        },
+        {
+          "dictCode": "2466",
+          "dictName": "捷安特略阳专卖店"
+        },
+        {
+          "dictCode": "2474",
+          "dictName": "捷安特绥德专卖店"
+        },
+        {
+          "dictCode": "2475",
+          "dictName": "捷安特延安市专卖店"
+        },
+        {
+          "dictCode": "2479",
+          "dictName": "捷安特伞塔路专卖店"
+        },
+        {
+          "dictCode": "2480",
+          "dictName": "捷安特北关专卖店"
+        },
+        {
+          "dictCode": "2483",
+          "dictName": "捷安特科技路华润万家量贩专业店"
+        },
+        {
+          "dictCode": "2484",
+          "dictName": "捷安特宝鸡市大润发量贩专业店"
+        },
+        {
+          "dictCode": "2488",
+          "dictName": "莫曼顿西大街专卖店"
+        },
+        {
+          "dictCode": "2489",
+          "dictName": "捷安特金泰假日花城专卖店"
+        },
+        {
+          "dictCode": "2952",
+          "dictName": "捷安特阎良区关山镇自行车专卖店"
+        },
+        {
+          "dictCode": "2953",
+          "dictName": "捷安特洛南自行车专卖店"
+        },
+        {
+          "dictCode": "3020",
+          "dictName": "捷安特蒲城二专卖店"
+        },
+        {
+          "dictCode": "3362",
+          "dictName": "捷安特阎良文化东路专卖店"
+        },
+        {
+          "dictCode": "3518",
+          "dictName": "华润超市"
+        },
+        {
+          "dictCode": "3569",
+          "dictName": "捷安特南郑专卖店"
+        },
+        {
+          "dictCode": "3575",
+          "dictName": "捷安特渭南华润超市店"
+        },
+        {
+          "dictCode": "3603",
+          "dictName": "捷安特白水专卖店"
+        },
+        {
+          "dictCode": "3609",
+          "dictName": "捷安特大润发专卖店"
+        },
+        {
+          "dictCode": "3610",
+          "dictName": "捷安特龙卷风CYCLING WORLD"
+        },
+        {
+          "dictCode": "3670",
+          "dictName": "捷安特华县专卖店"
+        },
+        {
+          "dictCode": "3689",
+          "dictName": "捷安特电子城店中店"
+        },
+        {
+          "dictCode": "3690",
+          "dictName": "捷安特商南店中店"
+        }
+      ]
+    },
+    {
+      "code": null,
+      "dictCode": "XB",
+      "dictName": "腾捷",
+      "remarks": null,
+      "list": [
+        {
+          "dictCode": "2403",
+          "dictName": "捷安特阎良人民东专卖店"
+        },
+        {
+          "dictCode": "2432",
+          "dictName": "捷安特王益区车站店"
+        },
+        {
+          "dictCode": "2442",
+          "dictName": "捷安特蒲城尧山路专卖店"
+        },
+        {
+          "dictCode": "2444",
+          "dictName": "捷安特蒲城一专卖店"
+        },
+        {
+          "dictCode": "2445",
+          "dictName": "莫曼顿蒲城专卖店"
+        },
+        {
+          "dictCode": "2447",
+          "dictName": "莫曼顿韩城专卖店"
+        },
+        {
+          "dictCode": "2456",
+          "dictName": "捷安特潼关专卖店"
+        },
+        {
+          "dictCode": "2458",
+          "dictName": "捷安特汉中电动车专卖店"
+        },
+        {
+          "dictCode": "2468",
+          "dictName": "捷安特榆林北大街专卖店"
+        },
+        {
+          "dictCode": "2471",
+          "dictName": "莫曼顿定边专卖店"
+        },
+        {
+          "dictCode": "2487",
+          "dictName": "莫曼顿阎良专卖店"
+        },
+        {
+          "dictCode": "2491",
+          "dictName": "捷安特咸阳思源北路专卖店"
+        },
+        {
+          "dictCode": "2493",
+          "dictName": "莫曼顿金花专卖店"
+        },
+        {
+          "dictCode": "2495",
+          "dictName": "捷安特含元路专卖店"
+        },
+        {
+          "dictCode": "3130",
+          "dictName": "捷安特高新华润量贩专业店"
+        },
+        {
+          "dictCode": "3367",
+          "dictName": "捷安特定边专卖店"
+        },
+        {
+          "dictCode": "3368",
+          "dictName": "捷安特靖边专卖店"
+        },
+        {
+          "dictCode": "3384",
+          "dictName": "捷安特体育场专卖店"
+        },
+        {
+          "dictCode": "3632",
+          "dictName": "捷安特延安专卖店"
+        }
+      ]
+    },
+    {
+      "code": null,
+      "dictCode": "XC",
+      "dictName": "宝鸡",
+      "remarks": null,
+      "list": [
+        {
+          "dictCode": "2402",
+          "dictName": "捷安特马家湾专卖店"
+        },
+        {
+          "dictCode": "2404",
+          "dictName": "捷安特泾阳专卖店"
+        },
+        {
+          "dictCode": "2405",
+          "dictName": "捷安特泾阳龙泉路专卖店"
+        },
+        {
+          "dictCode": "2419",
+          "dictName": "捷安特户县专卖店"
+        },
+        {
+          "dictCode": "2420",
+          "dictName": "捷安特杨凌专卖店"
+        },
+        {
+          "dictCode": "2421",
+          "dictName": "捷安特武功专卖店"
+        },
+        {
+          "dictCode": "2422",
+          "dictName": "捷安特咸阳专卖店"
+        },
+        {
+          "dictCode": "2423",
+          "dictName": "捷安特兴平专卖店"
+        },
+        {
+          "dictCode": "2424",
+          "dictName": "捷安特高陵专卖店"
+        },
+        {
+          "dictCode": "2425",
+          "dictName": "捷安特宝鸡专卖店"
+        },
+        {
+          "dictCode": "2426",
+          "dictName": "捷安特虢镇专卖店"
+        },
+        {
+          "dictCode": "2427",
+          "dictName": "捷安特礼泉专卖店"
+        },
+        {
+          "dictCode": "2428",
+          "dictName": "捷安特扶风专卖店"
+        },
+        {
+          "dictCode": "2429",
+          "dictName": "捷安特周至专卖店"
+        },
+        {
+          "dictCode": "2430",
+          "dictName": "捷安特凤翔专卖店"
+        },
+        {
+          "dictCode": "2433",
+          "dictName": "捷安特人民西路专卖店"
+        },
+        {
+          "dictCode": "2434",
+          "dictName": "捷安特长武专卖店"
+        },
+        {
+          "dictCode": "2435",
+          "dictName": "捷安特乾县专卖店"
+        },
+        {
+          "dictCode": "2436",
+          "dictName": "捷安特三原专卖店"
+        },
+        {
+          "dictCode": "2438",
+          "dictName": "捷安特乐育北路专卖店"
+        },
+        {
+          "dictCode": "2477",
+          "dictName": "捷安特终南镇专卖店"
+        },
+        {
+          "dictCode": "2486",
+          "dictName": "捷安特蔡家坡专卖店"
+        },
+        {
+          "dictCode": "2961",
+          "dictName": "捷安特宝鸡专卖店"
+        },
+        {
+          "dictCode": "3201",
+          "dictName": "捷安特眉县群众路专卖店"
+        },
+        {
+          "dictCode": "3657",
+          "dictName": "捷安特宝鸡华润万家量贩店"
+        }
+      ]
+    },
+    {
+      "code": null,
+      "dictCode": "XE",
+      "dictName": "合盛捷",
+      "remarks": null,
+      "list": [
+        {
+          "dictCode": "2406",
+          "dictName": "捷安特土门专卖店"
+        },
+        {
+          "dictCode": "2407",
+          "dictName": "捷安特红庙坡专卖店"
+        },
+        {
+          "dictCode": "2408",
+          "dictName": "捷安特柏安专卖店"
+        },
+        {
+          "dictCode": "2409",
+          "dictName": "捷安特凤城三路专卖店"
+        },
+        {
+          "dictCode": "2411",
+          "dictName": "捷安特太乙路专卖店"
+        },
+        {
+          "dictCode": "2412",
+          "dictName": "捷安特樱花路专卖店"
+        },
+        {
+          "dictCode": "2413",
+          "dictName": "捷安特天坛西路专卖店"
+        },
+        {
+          "dictCode": "2414",
+          "dictName": "捷安特长乐专卖店"
+        },
+        {
+          "dictCode": "2415",
+          "dictName": "捷安特城市运动公园专卖店"
+        },
+        {
+          "dictCode": "2416",
+          "dictName": "捷安特田洪专卖店"
+        },
+        {
+          "dictCode": "2418",
+          "dictName": "捷安特公园北路专卖店"
+        },
+        {
+          "dictCode": "2467",
+          "dictName": "捷安特榆林肤施路专卖店"
+        },
+        {
+          "dictCode": "2469",
+          "dictName": "捷安特神木专卖店"
+        },
+        {
+          "dictCode": "2470",
+          "dictName": "莫曼顿绥德专卖店"
+        },
+        {
+          "dictCode": "2472",
+          "dictName": "捷安特靖边专卖店"
+        },
+        {
+          "dictCode": "2473",
+          "dictName": "捷安特米脂专卖店"
+        },
+        {
+          "dictCode": "2476",
+          "dictName": "捷安特延安专卖店"
+        },
+        {
+          "dictCode": "2481",
+          "dictName": "捷安特龙卷风CYCLING WORLD"
+        },
+        {
+          "dictCode": "2485",
+          "dictName": "捷安特王寺专卖店"
+        },
+        {
+          "dictCode": "2492",
+          "dictName": "捷安特金花CYCLING WORLD"
+        },
+        {
+          "dictCode": "2971",
+          "dictName": "捷安特雁塔西路专卖店"
+        },
+        {
+          "dictCode": "3200",
+          "dictName": "捷安特含元路专卖店"
+        },
+        {
+          "dictCode": "3656",
+          "dictName": "捷安特定边专卖店"
+        }
+      ]
+    },
+    {
+      "code": null,
+      "dictCode": "YC",
+      "dictName": "宁捷",
+      "remarks": null,
+      "list": [
+        {
+          "dictCode": "2118",
+          "dictName": "捷安特新华清真寺店"
+        },
+        {
+          "dictCode": "2300",
+          "dictName": "捷安特中卫东大街专卖店"
+        },
+        {
+          "dictCode": "2301",
+          "dictName": "莫曼顿中卫专卖店"
+        },
+        {
+          "dictCode": "2302",
+          "dictName": "捷安特银川中山北街专卖店"
+        },
+        {
+          "dictCode": "2304",
+          "dictName": "捷安特吴忠专卖店"
+        },
+        {
+          "dictCode": "2305",
+          "dictName": "捷安特银川西夏区专卖店"
+        },
+        {
+          "dictCode": "2306",
+          "dictName": "捷安特吴忠专卖店"
+        },
+        {
+          "dictCode": "2307",
+          "dictName": "捷安特利民南街专卖店"
+        },
+        {
+          "dictCode": "2308",
+          "dictName": "捷安特银川西门CYCLING WORLD"
+        },
+        {
+          "dictCode": "2309",
+          "dictName": "捷安特正源南街专卖店"
+        },
+        {
+          "dictCode": "2310",
+          "dictName": "捷安特银川新城专卖店"
+        },
+        {
+          "dictCode": "2311",
+          "dictName": "捷安特灵武专卖店"
+        },
+        {
+          "dictCode": "2312",
+          "dictName": "捷安特青铜峡专卖店"
+        },
+        {
+          "dictCode": "2313",
+          "dictName": "捷安特固原专卖店"
+        },
+        {
+          "dictCode": "2314",
+          "dictName": "捷安特石嘴山专卖店"
+        },
+        {
+          "dictCode": "2315",
+          "dictName": "捷安特大武口CYCLING WORLD"
+        },
+        {
+          "dictCode": "2316",
+          "dictName": "捷安特石嘴山专卖店"
+        },
+        {
+          "dictCode": "2317",
+          "dictName": "捷安特平罗专卖店"
+        },
+        {
+          "dictCode": "2318",
+          "dictName": "捷安特满城专卖店"
+        },
+        {
+          "dictCode": "2319",
+          "dictName": "捷安特捷安特二中专卖店"
+        },
+        {
+          "dictCode": "2320",
+          "dictName": "捷安特宝湖CYCLING WORLD"
+        },
+        {
+          "dictCode": "2321",
+          "dictName": "莫曼顿满城专卖店"
+        },
+        {
+          "dictCode": "2324",
+          "dictName": "捷安特湖滨街店中店"
+        },
+        {
+          "dictCode": "2325",
+          "dictName": "捷安特中心巷店"
+        },
+        {
+          "dictCode": "2326",
+          "dictName": "捷安特西吉店"
+        },
+        {
+          "dictCode": "2327",
+          "dictName": "捷安特贺兰专卖店"
+        },
+        {
+          "dictCode": "2328",
+          "dictName": "捷安特银川蓝山名邸专卖店"
+        },
+        {
+          "dictCode": "2329",
+          "dictName": "捷安特银川正源街专卖店"
+        },
+        {
+          "dictCode": "3066",
+          "dictName": "捷安特惠农专卖店"
+        },
+        {
+          "dictCode": "3374",
+          "dictName": "捷安特利民南街专卖店"
+        },
+        {
+          "dictCode": "3375",
+          "dictName": "捷安特康平路专卖店"
+        },
+        {
+          "dictCode": "3376",
+          "dictName": "捷安特宁夏（新昌路）量贩专业店"
+        },
+        {
+          "dictCode": "3387",
+          "dictName": "捷安特大团结专卖店"
+        },
+        {
+          "dictCode": "3496",
+          "dictName": "捷安特大武口八中专卖店"
+        },
+        {
+          "dictCode": "3497",
+          "dictName": "捷安特蓝山名邸专卖店"
+        },
+        {
+          "dictCode": "3498",
+          "dictName": "捷安特平罗专卖店"
+        },
+        {
+          "dictCode": "3499",
+          "dictName": "中心巷店"
+        },
+        {
+          "dictCode": "3500",
+          "dictName": "捷安特西吉专卖店"
+        },
+        {
+          "dictCode": "3501",
+          "dictName": "捷安特盐池店"
+        },
+        {
+          "dictCode": "3502",
+          "dictName": "捷安特中宁店"
+        },
+        {
+          "dictCode": "3597",
+          "dictName": "捷安特中山公园北门店专卖店"
+        },
+        {
+          "dictCode": "3598",
+          "dictName": "捷安特永宁专卖店专卖店"
+        },
+        {
+          "dictCode": "3599",
+          "dictName": "捷安特中宁专卖店专卖店"
+        },
+        {
+          "dictCode": "3600",
+          "dictName": "捷安特银川同心专卖店"
+        },
+        {
+          "dictCode": "3601",
+          "dictName": "捷安特红寺堡专卖店"
+        },
+        {
+          "dictCode": "3613",
+          "dictName": "捷安特捷安特西吉专卖店"
+        },
+        {
+          "dictCode": "3617",
+          "dictName": "捷安特固原专卖店"
+        },
+        {
+          "dictCode": "3619",
+          "dictName": "捷安特瑞信温泉小镇专卖店"
+        },
+        {
+          "dictCode": "3641",
+          "dictName": "捷安特永安巷专卖店"
+        },
+        {
+          "dictCode": "3650",
+          "dictName": "捷安特海源专卖店"
+        },
+        {
+          "dictCode": "3651",
+          "dictName": "莫曼顿青铜峡专卖店"
+        },
+        {
+          "dictCode": "3659",
+          "dictName": "莫曼顿平罗鼓楼南街专卖店"
+        },
+        {
+          "dictCode": "3660",
+          "dictName": "捷安特平罗鼓楼南街专卖店"
+        },
+        {
+          "dictCode": "3664",
+          "dictName": "捷安特银川正源北街专卖店"
+        },
+        {
+          "dictCode": "3665",
+          "dictName": "莫曼顿银川正源北街专卖店"
+        }
+      ]
+    },
+    {
+      "code": null,
+      "dictCode": "CQ",
+      "dictName": "重庆",
+      "remarks": null,
+      "list": [
+        {
+          "dictCode": "2030",
+          "dictName": "捷安特永川专卖店"
+        },
+        {
+          "dictCode": "2037",
+          "dictName": "捷安特江津专卖店"
+        },
+        {
+          "dictCode": "2048",
+          "dictName": "开县骑乐自行车行骑乐自行"
+        },
+        {
+          "dictCode": "2119",
+          "dictName": "彭水滨江"
+        },
+        {
+          "dictCode": "2138",
+          "dictName": "重庆大学城专卖店"
+        },
+        {
+          "dictCode": "2189",
+          "dictName": "捷安特北碚专卖店"
+        },
+        {
+          "dictCode": "2736",
+          "dictName": "捷安特重庆硬石头CYCLING WORLD"
+        },
+        {
+          "dictCode": "2869",
+          "dictName": "捷安特沙坪坝店专卖店"
+        },
+        {
+          "dictCode": "2874",
+          "dictName": "捷安特合川专卖店"
+        },
+        {
+          "dictCode": "2875",
+          "dictName": "捷安特南川专卖店"
+        },
+        {
+          "dictCode": "2876",
+          "dictName": "捷安特长寿专卖店"
+        },
+        {
+          "dictCode": "2877",
+          "dictName": "捷安特大足专卖店"
+        },
+        {
+          "dictCode": "2878",
+          "dictName": "捷安特垫江专卖店"
+        },
+        {
+          "dictCode": "2881",
+          "dictName": "捷安特石柱专卖店"
+        },
+        {
+          "dictCode": "2885",
+          "dictName": "捷安特綦江专卖店"
+        },
+        {
+          "dictCode": "2886",
+          "dictName": "捷安特铜梁专卖店"
+        },
+        {
+          "dictCode": "2887",
+          "dictName": "捷安特潼南县店中店"
+        },
+        {
+          "dictCode": "2888",
+          "dictName": "捷安特酉阳县专卖店"
+        },
+        {
+          "dictCode": "2891",
+          "dictName": "捷安特涪陵专卖店"
+        },
+        {
+          "dictCode": "2892",
+          "dictName": "捷安特黔江专卖店"
+        },
+        {
+          "dictCode": "3357",
+          "dictName": "捷安特万州电报路CYCLING WORLD"
+        },
+        {
+          "dictCode": "3655",
+          "dictName": "捷安特秀山县自行车专卖店"
+        },
+        {
+          "dictCode": "2033",
+          "dictName": "捷安特璧山专卖店"
+        }
+      ]
+    }
+  ]
+}

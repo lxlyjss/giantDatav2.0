@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>giant数据|总览</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="css/lxl.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/moment.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/daterangepicker.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        $(function () {
+            //判断当前设备屏幕宽度
+            var deviceWidth = $(document).width();
+            if (deviceWidth > 1000) {
+                $("body").addClass("nav-md");
+            } else {
+                $("body").addClass("nav-sm");
+            }
+            //当前文档的高度
+            $("#content").css("height", $(window).height());
+            //时间选择
+            $('#dateInput').daterangepicker({
+                //最大时间
+                maxDate: moment().subtract(1, 'days'),
+                startDate: moment().subtract(90, 'days'),
+                endDate: moment().subtract(1, 'days'),
+                locale: {
+                    format: 'YYYY/MM/DD'
+                },
+                ranges: {
+                    "最近3日": [moment().subtract(3, 'days'), moment()],
+                    '最近7日': [moment().subtract(7, 'days'), moment()],
+                    '最近30日': [moment().subtract(30, 'days'), moment()]
+                }
+            }, function (start, end, label) {
+                //格式化日期显示框
+                $('#dateInput').val(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+            });
+        })
+    </script>
+    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body class="vip-change">
+<div class="loading-wrapper" style="display: block;">
+    <div class="spinner"></div>
+</div>
+<!--头部 开始-->
+<div class="header">
+    <div class="menu-btn">
+        <i class="iconfont icon-caidan caidan-btn"></i>
+    </div>
+    <div class="header-title">
+        <p>捷安特大数据中心</p>
+    </div>
+    <div class="user-manage">
+        <div class="user-content">
+            <div class="imgBox"></div>
+        </div>
+        <ul class="drop-down">
+            <li><a href="http://www.giant.com.cn/front/loginout">退出</a></li>
+        </ul>
+    </div>
+</div>
+<!--头部 结束-->
+<div id="page">
+    <div id="aside">
+        <div class="navbar">
+            <div class="return-giant">
+                <a href="http://www.giant.com.cn">
+                    <i class="iconfont icon-fangxiangzuo"></i>
+                    <span>返回捷安特官网</span></a>
+            </div>
+            <div class="user-info">
+                <div class="user-img">
+                    <div class="user-img-circle">
+                        <div class="img-outside"></div>
+                    </div>
+                </div>
+                <div class="user-welcome">
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="close-btn">
+                <i class="iconfont icon-guanbi"></i>
+            </div>
+            <ul class="nav-slide-menu">
+                <li class="nav-list home-page active">
+                    <a href="index.html">
+                        <i class="iconfont icon-home"></i>
+                        首页
+                    </a>
+                </li>
+                <li class="nav-list">
+                    <a>
+                        <i class="iconfont icon-shuju"></i>
+                        会员
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu" style="display: block;">
+                        <li>
+                            <a href="vipData.html">会员数据</a>
+                        </li>
+                        <li>
+                            <a href="vipDrawing.html">数据画像</a>
+                        </li>
+                        <li>
+                            <a href="vipBuy.html">消费能力</a>
+                        </li>
+                        <li>
+                            <a href="vipList.html">会员列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-list home-page">
+                    <a>
+                        <i class="iconfont icon-xiaoxi"></i>
+                        产品
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu">
+                        <li>
+                            <a href="product.html">产品数据</a>
+                        </li>
+                        <li>
+                            <a href="productData.html">QRcode</a>
+                        </li>
+                        <li>
+                            <a href="productSell.html">产品销量</a>
+                        </li>
+                        <li>
+                            <a href="productPing.html">产品评价</a>
+                        </li>
+                        <li>
+                            <a href="productList.html">产品评价列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-list">
+                    <a>
+                        <i class="iconfont icon-shuju"></i>
+                        门店
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu">
+                        <li>
+                            <a href="store.html">门店数据</a>
+                        </li>
+                        <li>
+                            <a href="storeData.html">QRcode</a>
+                        </li>
+                        <li>
+                            <a href="storeSell.html">门店销量</a>
+                        </li>
+
+                        <li>
+                            <a href="storePing.html">门店服务评价</a>
+                        </li>
+                        <li>
+                            <a href="storeList.html">服务评价列表</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--左侧边栏结束-->
+    <!--右侧内容开始-->
+    <div id="content">
+        <!--中间内容开始-->
+        <div class="content">
+            <p>本页面根据昨日24点数据来计算</p>
+            <div class="row block">
+                <div class="block-title">
+                    <p>会员数据昨日关键指标</p>
+                </div>
+                <div class="row block-content" id="vipData">
+                    <div class="col-md-6 col-sm-6 block-one vip-box">
+                        <div class="box-left">
+                            <p class="header-title">新增会员数</p>
+                            <p class="header-title big-number"></p>
+                        </div>
+                        <div class="box-right">
+                            <p>QRcode车主会员数量: <span></span></p>
+                            <p>App会员数量: <span></span></p>
+                            <p>俱乐部会员数量: <span></span></p>
+                            <p>官网会员数量: <span></span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 block-one vip-box">
+                        <div class="box-left">
+                            <p class="header-title">总会员数量</p>
+                            <p class="header-title big-number"></p>
+                        </div>
+                        <div class="box-right">
+                            <p>QRcode车主会员数量: <span></span></p>
+                            <p>App会员数量: <span></span></p>
+                            <p>俱乐部会员数量: <span></span></p>
+                            <p>官网会员数量: <span></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row block">
+                <div class="block-title">
+                    <p>QRcode数据昨日关键指标</p>
+                </div>
+                <div class="row block-content" id="QrcodeData">
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">Qrcode激活数量</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">历史累积激活数量</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">QRcode绑定数量</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">历史累积绑定量</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row block">
+                <div class="block-title">
+                    <p>产品昨日关键指标</p>
+                </div>
+                <div class="row block-content" id="ProductData">
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">销售总金额</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">销售产品总数</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">整车销售</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">商品销售</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row block">
+                <div class="block-title">
+                    <p>门店昨日关键指标</p>
+                </div>
+                <div class="row block-content" id="StoreData">
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">门店总评价</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">评价次数</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">服务态度评价</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">技师水平评价</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--中间内容结束-->
+    </div>
+    <!--右侧内容结束-->
+</div>
+<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

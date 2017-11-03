@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Keywords" content=""/>
+    <meta name="Description" content=""/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <title>Title</title>
+    <script src="js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<script>
+    //设置筛选条件
+    var filter = {
+        role:"dealer",
+        roleCode:"GCC",
+        beginDate:"2017-09-30",
+        endDate:"2017-10-19"
+    };
+    var roleInfo = {
+        url2:"http://192.168.9.11:8080/"
+    };
+    //请求性别数据
+    function getSexData(sendData){
+        var dfd = $.Deferred();
+        $.ajax({
+            url:window.roleInfo.url2+"giantService/report/dataDraw/sex",
+            data: sendData
+        }).done(function (res){
+            if(res.result == 1){
+                dfd.resolve(res);
+            }else{
+                alert("获取性别接口失败!"+res.msg);
+            }
+        });
+        return dfd.promise();
+    }
+    //请求来源数据
+    function getFromData(sendData){
+        var dfd = $.Deferred();
+        $.ajax({
+            url:window.roleInfo.url2+"giantService/report/dataDraw/from",
+            data: sendData
+        }).done(function (res){
+            if(res.result == 1){
+                dfd.resolve(res);
+            }else{
+                alert("获取性别接口失败!"+res.msg);
+            }
+        });
+        return dfd.promise();
+    }
+    //请求年龄数据
+    function getAgeData(sendData){
+        var dfd = $.Deferred();
+        $.ajax({
+            url:window.roleInfo.url2+"giantService/report/dataDraw/age",
+            data: sendData
+        }).done(function (res){
+            if(res.result == 1){
+                dfd.resolve(res);
+            }else{
+                alert("获取性别接口失败!"+res.msg);
+            }
+        });
+        return dfd.promise();
+    }
+    //请求车主比例数据
+    function getCarData(sendData){
+        var dfd = $.Deferred();
+        $.ajax({
+            url:window.roleInfo.url2+"giantService/report/dataDraw/carMember",
+            data: sendData
+        }).done(function (res){
+            if(res.result == 1){
+                dfd.resolve(res);
+            }else{
+                alert("获取性别接口失败!"+res.msg);
+            }
+        });
+        return dfd.promise();
+    }
+    //请求标签数据
+    function getTagData(sendData){
+        var dfd = $.Deferred();
+        $.ajax({
+            url:window.roleInfo.url2+"giantService/report/dataDraw/labels",
+            data: sendData
+        }).done(function (res){
+            if(res.result == 1){
+                dfd.resolve(res);
+            }else{
+                alert("获取性别接口失败!"+res.msg);
+            }
+        });
+        return dfd.promise();
+    }
+    $.when(getSexData(filter)).done(function (res1){
+        console.log(res1)
+        alert(3)
+    }).fail(function (res){
+        alert(res)
+    });
+</script>
+</body>
+</html>

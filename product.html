@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>giant数据|会员变化趋势</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="css/lxl.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script>
+        $(function () {
+            //判断当前设备屏幕宽度
+            var deviceWidth = $(document).width();
+            if (deviceWidth > 1000) {
+                $("body").addClass("nav-md");
+            } else {
+                $("body").addClass("nav-sm");
+            }
+            //当前文档的高度
+            $("#content").css("height", $(window).height());
+        });
+    </script>
+    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body class="vip-change">
+<div class="loading-wrapper" style="display: none;">
+    <div class="spinner"></div>
+</div>
+<!--头部 开始-->
+<div class="header">
+    <div class="menu-btn">
+        <i class="iconfont icon-caidan caidan-btn"></i>
+    </div>
+    <div class="header-title">
+        <p>捷安特大数据中心</p>
+    </div>
+    <div class="user-manage">
+        <div class="user-content">
+            <div class="imgBox"></div>
+        </div>
+        <ul class="drop-down">
+            <li><a href="http://www.giant.com.cn/front/loginout">退出</a></li>
+        </ul>
+    </div>
+</div>
+<!--头部 结束-->
+<div id="page">
+    <div id="aside">
+        <div class="navbar">
+            <div class="return-giant">
+                <a href="http://www.giant.com.cn">
+                    <i class="iconfont icon-fangxiangzuo"></i>
+                    <span>返回捷安特官网</span></a>
+            </div>
+            <div class="user-info">
+                <div class="user-img">
+                    <div class="user-img-circle">
+                        <div class="img-outside"></div>
+                    </div>
+                </div>
+                <div class="user-welcome">
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="close-btn">
+                <i class="iconfont icon-guanbi"></i>
+            </div>
+            <ul class="nav-slide-menu">
+                <li class="nav-list home-page">
+                    <a href="index.html">
+                        <i class="iconfont icon-home"></i>
+                        首页
+                    </a>
+                </li>
+                <li class="nav-list">
+                    <a>
+                        <i class="iconfont icon-shuju"></i>
+                        会员
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu">
+                        <li>
+                            <a href="vipData.html">会员数据</a>
+                        </li>
+                        <li>
+                            <a href="vipDrawing.html">数据画像</a>
+                        </li>
+                        <li>
+                            <a href="vipBuy.html">消费能力</a>
+                        </li>
+                        <li>
+                            <a href="vipList.html">会员列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-list home-page active">
+                    <a>
+                        <i class="iconfont icon-xiaoxi"></i>
+                        产品
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu" style="display: block;">
+                        <li>
+                            <a href="product.html">产品数据</a>
+                        </li>
+                        <li>
+                            <a href="productData.html">QRcode</a>
+                        </li>
+                        <li>
+                            <a href="productSell.html">产品销量</a>
+                        </li>
+                        <li>
+                            <a href="productPing.html">产品评价</a>
+                        </li>
+                        <li>
+                            <a href="productList.html">产品评价列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-list">
+                    <a>
+                        <i class="iconfont icon-shuju"></i>
+                        门店
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu">
+                        <li>
+                            <a href="store.html">门店数据</a>
+                        </li>
+                        <li>
+                            <a href="storeSell.html">门店销量</a>
+                        </li>
+                        <li>
+                            <a href="storeData.html">QRcode</a>
+                        </li>
+                        <li>
+                            <a href="storePing.html">门店服务评价</a>
+                        </li>
+                        <li>
+                            <a href="storeList.html">服务评价列表</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--左侧边栏结束-->
+    <!--右侧内容开始-->
+    <div id="content">
+        <!--中间内容开始-->
+        <div class="content">
+            <div class="row block">
+                <div class="block-title">
+                    <p>昨日关键指标</p>
+                </div>
+                <div class="row block-content" id="vipData">
+                    <div class="col-md-4 col-sm-4 col-xs-4 block-one">
+                        <p class="header-title">QRcode激活数</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 block-one">
+                        <p class="header-title">总交易量</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 block-one">
+                        <p class="header-title">产品评价均分</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                </div>
+            </div>
+            <!--中间内容结束-->
+        </div>
+        <!--右侧内容结束-->
+    </div>
+</div>
+<script>
+    $(function () {
+        //$.fn.isSign();
+        var quotaData;//指标数据
+        quotaData = {
+            QRcodeCount: {//QRcode激活数
+                count: 8714,
+                day: 0.32,
+                week: -0.23,
+                month: 0.63
+            },
+            ProductCount: {//总交易量
+                count: 8284,
+                day: 0.32,
+                week: -0.23,
+                month: 0.63
+            },
+            EvaluateCount: {//产品评价均分
+                count: 8384,
+                day: 0.32,
+                week: -0.23,
+                month: 0.63
+            }
+        };
+        //获取数据
+        var filter = {
+            role:window.roleInfo.role,
+            roleCode:window.roleInfo.roleCode
+        };
+        //请求指标数据
+        function getQuotaData(){
+            $(".loading-wrapper").show();
+            $.ajax({
+                url: window.roleInfo.url1+"giantService/report/product/productIndex",
+                data: filter
+            }).done(function (res){
+                $(".loading-wrapper").hide();
+                if(res.result == 1){
+                    quotaData = res;
+                    setQuotaData();
+                }else{
+                    alert("获取接口失败!");
+                }
+
+            }).fail(function (){
+                $(".loading-wrapper").hide();
+                alert("失败!")
+            });
+        }
+        //设置关键指标
+        function setQuotaData() {
+            var vipBoxChild = $("#vipData").children("div");
+            function arrow(count) {
+                if (count > 0) {
+                    return "<img src=\"img/arrow-up.png\" class=\"arrow-change\">"
+                } else if (count < 0) {
+                    return "<img src=\"img/arrow-down.png\" class=\"arrow-change\">"
+                } else if (count == 0) {
+                    return "";
+                }
+            }
+            function setData(ele, data) {
+                if (data != 0) {
+                    ele.text(data + "%");
+                } else {
+                    ele.text("0%");
+                }
+            }
+
+            function setArrow(ele, data) {
+                ele.html(data)
+            }
+            //qr激活总数
+            vipBoxChild.eq(0).children("p").eq(1).text(quotaData.QRcodeCount.count);
+            setData(vipBoxChild.eq(0).children("p").eq(2).children(".count"), quotaData.QRcodeCount.day);
+            setData(vipBoxChild.eq(0).children("p").eq(3).children(".count"), quotaData.QRcodeCount.week);
+            setData(vipBoxChild.eq(0).children("p").eq(4).children(".count"), quotaData.QRcodeCount.month);
+
+            setArrow(vipBoxChild.eq(0).children("p").eq(2).children(".arrow"), arrow(quotaData.QRcodeCount.day));
+            setArrow(vipBoxChild.eq(0).children("p").eq(3).children(".arrow"), arrow(quotaData.QRcodeCount.week));
+            setArrow(vipBoxChild.eq(0).children("p").eq(4).children(".arrow"), arrow(quotaData.QRcodeCount.month));
+            //总交易量
+            vipBoxChild.eq(1).children("p").eq(1).text(quotaData.ProductCount.count);
+            setData(vipBoxChild.eq(1).children("p").eq(2).children(".count"), quotaData.ProductCount.day);
+            setData(vipBoxChild.eq(1).children("p").eq(3).children(".count"), quotaData.ProductCount.week);
+            setData(vipBoxChild.eq(1).children("p").eq(4).children(".count"), quotaData.ProductCount.month);
+
+            setArrow(vipBoxChild.eq(1).children("p").eq(2).children(".arrow"), arrow(quotaData.ProductCount.day));
+            setArrow(vipBoxChild.eq(1).children("p").eq(3).children(".arrow"), arrow(quotaData.ProductCount.week));
+            setArrow(vipBoxChild.eq(1).children("p").eq(4).children(".arrow"), arrow(quotaData.ProductCount.month));
+            //评价均分
+            vipBoxChild.eq(2).children("p").eq(1).text(quotaData.EvaluateCount.count/100);
+            setData(vipBoxChild.eq(2).children("p").eq(2).children(".count"), quotaData.EvaluateCount.day);
+            setData(vipBoxChild.eq(2).children("p").eq(3).children(".count"), quotaData.EvaluateCount.week);
+            setData(vipBoxChild.eq(2).children("p").eq(4).children(".count"), quotaData.EvaluateCount.month);
+
+            setArrow(vipBoxChild.eq(2).children("p").eq(2).children(".arrow"), arrow(quotaData.EvaluateCount.day));
+            setArrow(vipBoxChild.eq(2).children("p").eq(3).children(".arrow"), arrow(quotaData.EvaluateCount.week));
+            setArrow(vipBoxChild.eq(2).children("p").eq(4).children(".arrow"), arrow(quotaData.EvaluateCount.month));
+        }
+        getQuotaData();
+    })
+</script>
+</body>
+</html>
