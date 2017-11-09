@@ -28,11 +28,8 @@
             var dateOption = {
                 //最大时间
                 maxDate: moment().subtract(1, 'days'),
-                startDate: moment().subtract(90, 'days'),
+                startDate: moment().subtract(30, 'days'),
                 endDate: moment().subtract(1, 'days'),
-                dateLimit:{
-                    month:"3"
-                },
                 locale: {
                     format: 'YYYY/MM/DD'
                 },
@@ -43,14 +40,17 @@
                 }
             };
             //时间选择
-            $('#dateInput1').daterangepicker(dateOption);
+            $('#dateInput1').daterangepicker($.extend({},dateOption,{dateLimit:{month:"3"}}));
             $('#dateInput2').daterangepicker(dateOption);
         })
     </script>
     <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body class="vip-change">
-<div class="loading-wrapper" style="display: block;">
+<div class="loading-wrapper" id="loading1" style="display: block;">
+    <div class="spinner"></div>
+</div>
+<div class="loading-wrapper" id="loading2" style="display: block;">
     <div class="spinner"></div>
 </div>
 <!--头部 开始-->

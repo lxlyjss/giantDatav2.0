@@ -1,441 +1,446 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>giant数据|会员列表</title>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
-		<link rel="stylesheet" type="text/css" href="css/lxl.css"/>
-		<script src="js/jquery-2.0.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script>
-            $(function (){
-                //判断当前设备屏幕宽度
-                var deviceWidth = $(document).width();
-                if(deviceWidth > 1000){
-                    $("body").addClass("nav-md");
-                }else{
-                    $("body").addClass("nav-sm");
-                }
-                //当前文档的高度
-                $("#aside").css("height",$(window).height());
-                $("#content").css("height",$(window).height());
-            })
-        </script>
-        <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-    </head>
-    <body class="vip-change">
-    <div class="loading-wrapper" style="display: block;">
-        <div class="spinner"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>giant数据|会员列表</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="css/lxl.css"/>
+    <script src="js/jquery-2.0.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            //判断当前设备屏幕宽度
+            var deviceWidth = $(document).width();
+            if (deviceWidth > 1000) {
+                $("body").addClass("nav-md");
+            } else {
+                $("body").addClass("nav-sm");
+            }
+            //当前文档的高度
+            $("#aside").css("height", $(window).height());
+            $("#content").css("height", $(window).height());
+        })
+    </script>
+    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body class="vip-change">
+<div class="loading-wrapper" id="loading1" style="display: block;">
+    <div class="spinner"></div>
+</div>
+<div class="loading-wrapper" id="loading2" style="display: block;">
+    <div class="spinner"></div>
+</div>
+<!--头部 开始-->
+<div class="header">
+    <div class="menu-btn">
+        <i class="iconfont icon-caidan caidan-btn"></i>
     </div>
-    <!--头部 开始-->
-    <div class="header">
-        <div class="menu-btn">
-            <i class="iconfont icon-caidan caidan-btn"></i>
+    <div class="header-title">
+        <p>捷安特大数据中心</p>
+    </div>
+    <div class="user-manage">
+        <div class="user-content">
+            <div class="imgBox"></div>
         </div>
-        <div class="header-title">
-            <p>捷安特大数据中心</p>
-        </div>
-        <div class="user-manage">
-            <div class="user-content">
-                <div class="imgBox"></div>
+        <ul class="drop-down">
+            <li><a href="http://www.giant.com.cn/front/loginout">退出</a></li>
+        </ul>
+    </div>
+</div>
+<!--头部 结束-->
+<div id="page">
+    <div id="aside">
+        <div class="navbar">
+            <div class="return-giant">
+                <a href="http://www.giant.com.cn">
+                    <i class="iconfont icon-fangxiangzuo"></i>
+                    <span>返回捷安特官网</span></a>
             </div>
-            <ul class="drop-down">
-                <li><a href="http://www.giant.com.cn/front/loginout">退出</a></li>
+            <div class="user-info">
+                <div class="user-img">
+                    <div class="user-img-circle">
+                        <div class="img-outside"></div>
+                    </div>
+                </div>
+                <div class="user-welcome">
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="close-btn">
+                <i class="iconfont icon-guanbi"></i>
+            </div>
+            <ul class="nav-slide-menu">
+                <li class="nav-list home-page active">
+                    <a href="index.html">
+                        <i class="iconfont icon-home"></i>
+                        首页
+                    </a>
+                </li>
+                <li class="nav-list">
+                    <a>
+                        <i class="iconfont icon-shuju"></i>
+                        会员
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu" style="display: block;">
+                        <li>
+                            <a href="vipData.html">会员数据</a>
+                        </li>
+                        <li>
+                            <a href="vipDrawing.html">数据画像</a>
+                        </li>
+                        <li>
+                            <a href="vipBuy.html">消费能力</a>
+                        </li>
+                        <li>
+                            <a href="vipList.html">会员列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-list home-page">
+                    <a>
+                        <i class="iconfont icon-xiaoxi"></i>
+                        产品
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu">
+                        <li>
+                            <a href="product.html">产品数据</a>
+                        </li>
+                        <li>
+                            <a href="productData.html">QRcode</a>
+                        </li>
+                        <li>
+                            <a href="productSell.html">产品销量</a>
+                        </li>
+                        <li>
+                            <a href="productPing.html">产品评价</a>
+                        </li>
+                        <li>
+                            <a href="productList.html">产品评价列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-list">
+                    <a>
+                        <i class="iconfont icon-shuju"></i>
+                        门店
+                        <i class="iconfont icon-fangxiangyou"></i>
+                    </a>
+                    <ul class="child-slide-menu">
+                        <li>
+                            <a href="store.html">门店数据</a>
+                        </li>
+                        <li>
+                            <a href="storeData.html">QRcode</a>
+                        </li>
+                        <li>
+                            <a href="storeSell.html">门店销量</a>
+                        </li>
+                        <li>
+                            <a href="storePing.html">门店服务评价</a>
+                        </li>
+                        <li>
+                            <a href="storeList.html">服务评价列表</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
-    <!--头部 结束-->
-    <div id="page">
-        <div id="aside">
-            <div class="navbar">
-                <div class="return-giant">
-                    <a href="http://www.giant.com.cn">
-                        <i class="iconfont icon-fangxiangzuo"></i>
-                        <span>返回捷安特官网</span></a>
-                </div>
-                <div class="user-info">
-                    <div class="user-img">
-                        <div class="user-img-circle">
-                            <div class="img-outside"></div>
-                        </div>
-                    </div>
-                    <div class="user-welcome">
-                        <p></p>
-                        <p></p>
-                    </div>
-                </div>
-                <div class="close-btn">
-                    <i class="iconfont icon-guanbi"></i>
-                </div>
-                <ul class="nav-slide-menu">
-                    <li class="nav-list home-page active">
-                        <a href="index.html">
-                            <i class="iconfont icon-home"></i>
-                            首页
-                        </a>
-                    </li>
-                    <li class="nav-list">
-                        <a>
-                            <i class="iconfont icon-shuju"></i>
-                            会员
-                            <i class="iconfont icon-fangxiangyou"></i>
-                        </a>
-                        <ul class="child-slide-menu" style="display: block;">
-                            <li>
-                                <a href="vipData.html">会员数据</a>
-                            </li>
-                            <li>
-                                <a href="vipDrawing.html">数据画像</a>
-                            </li>
-                            <li>
-                                <a href="vipBuy.html">消费能力</a>
-                            </li>
-                            <li>
-                                <a href="vipList.html">会员列表</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-list home-page">
-                        <a>
-                            <i class="iconfont icon-xiaoxi"></i>
-                            产品
-                            <i class="iconfont icon-fangxiangyou"></i>
-                        </a>
-                        <ul class="child-slide-menu">
-                            <li>
-                                <a href="product.html">产品数据</a>
-                            </li>
-                            <li>
-                                <a href="productData.html">QRcode</a>
-                            </li>
-                            <li>
-                                <a href="productSell.html">产品销量</a>
-                            </li>
-                            <li>
-                                <a href="productPing.html">产品评价</a>
-                            </li>
-                            <li>
-                                <a href="productList.html">产品评价列表</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-list">
-                        <a>
-                            <i class="iconfont icon-shuju"></i>
-                            门店
-                            <i class="iconfont icon-fangxiangyou"></i>
-                        </a>
-                        <ul class="child-slide-menu">
-                            <li>
-                                <a href="store.html">门店数据</a>
-                            </li>
-                            <li>
-                                <a href="storeData.html">QRcode</a>
-                            </li>
-                            <li>
-                                <a href="storeSell.html">门店销量</a>
-                            </li>
-                            <li>
-                                <a href="storePing.html">门店服务评价</a>
-                            </li>
-                            <li>
-                                <a href="storeList.html">服务评价列表</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+    <!--左侧边栏结束-->
+    <!--右侧内容开始-->
+    <div id="content">
+        <!--中间内容开始-->
+        <div class="content">
+            <!--title start -->
+            <div class="row page-title">
             </div>
-        </div>
-        <!--左侧边栏结束-->
-			<!--右侧内容开始-->
-			<div id="content">
-				<!--中间内容开始-->
-				<div class="content">
-					<!--title start -->
-					<div class="row page-title">
-					</div>
-					<!--title end -->
-					<!--查询条件-->
-					<div class="row search-content" style="padding-bottom: 10px;margin-bottom: 10px;">
-						<div class="col-md-4">
-							<div class="input-group date-select" style="margin-top: 10px;">
-								<input type="text" placeholder="用户名/手机/昵称/邮箱搜索" class="form-control" id="searchInput">
-                                <span class="input-group-btn">
+            <!--title end -->
+            <!--查询条件-->
+            <div class="row search-content" style="padding-bottom: 10px;margin-bottom: 10px;">
+                <div class="col-md-4">
+                    <div class="input-group date-select" style="margin-top: 10px;">
+                        <input type="text" placeholder="用户名/手机/昵称/邮箱搜索" class="form-control" id="searchInput">
+                        <span class="input-group-btn">
                                     <button class="btn btn-primary" id="searchName" type="button">查询</button>
                                 </span>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="btn btn-primary" id="tagBtn" style="margin-top: 10px;">条件筛选</div>
-						</div>
-					</div>
-					<!--查询条件-->
-					<!--会员数据-->
-					<div class="row vip-wrapper" style="background: #fff;">
-                        <div class="result-title">
-                            <p style="line-height: 40px;color: #fff;padding-left: 20px;">会员列表数据</p>
-                        </div>
-						<div class="col-md-12 col-sm-12" style="z-index: 9;">
-							<div class="vip-container">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
-                                        <thead style="font-weight: 900;text-align:center;">
-                                            <tr>
-                                                <td>用户名</td>
-                                                <td>昵称</td>
-                                                <td>性别</td>
-                                                <td>电话号码</td>
-                                                <td>邮箱</td>
-                                                <td>用户状态</td>
-                                                <td>注册时间</td>
-                                                <td>来源</td>
-                                                <td>操作</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="btn btn-primary" id="tagBtn" style="margin-top: 10px;">条件筛选</div>
+                </div>
+            </div>
+            <!--查询条件-->
+            <!--会员数据-->
+            <div class="row vip-wrapper" style="background: #fff;">
+                <div class="result-title">
+                    <p style="line-height: 40px;color: #fff;padding-left: 20px;">会员列表数据</p>
+                </div>
+                <div class="col-md-12 col-sm-12" style="z-index: 9;">
+                    <div class="vip-container">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead style="font-weight: 900;text-align:center;">
+                                <tr>
+                                    <td>用户名</td>
+                                    <td>昵称</td>
+                                    <td>性别</td>
+                                    <td>电话号码</td>
+                                    <td>邮箱</td>
+                                    <td>用户状态</td>
+                                    <td>注册时间</td>
+                                    <td>来源</td>
+                                    <td>操作</td>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-							</div>
-						</div>
-						<div class="col-md-8 page-container page-selection" style="display: none">
-							<nav aria-label="Page navigation" style="text-align: center;">
-								<ul class="pagination"></ul>
-							</nav>
-						</div>
-						<div class="col-md-4 page-selection" style="display: none">
-							<div class="input-group page-select">
-								<span class="input-group-addon">跳转页</span>
-								<input type="number" class="form-control" />
-								<span class="input-group-btn">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 page-container page-selection" style="display: none">
+                    <nav aria-label="Page navigation" style="text-align: center;">
+                        <ul class="pagination"></ul>
+                    </nav>
+                </div>
+                <div class="col-md-4 page-selection" style="display: none">
+                    <div class="input-group page-select">
+                        <span class="input-group-addon">跳转页</span>
+                        <input type="number" class="form-control"/>
+                        <span class="input-group-btn">
 							        <button class="btn btn-primary" type="button">查询</button>
 							    </span>
-							</div>
-						</div>
-					</div>
-					<!--会员数据-->
-				</div>
-				<!--中间内容结束-->
-                <!--平台来源框-->
-                <div class="row search-box">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">条件筛选 <span class="pull-right" id="closeBox">X</span></div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p class="fontW" style="text-align:center;">平台来源</p>
-                                    <div class="from-box">
+                    </div>
+                </div>
+            </div>
+            <!--会员数据-->
+        </div>
+        <!--中间内容结束-->
+        <!--平台来源框-->
+        <div class="row search-box" id="filterBox">
+            <div class="panel panel-primary">
+                <div class="panel-heading">条件筛选 <span class="pull-right" id="closeBox">X</span></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="fontW" style="text-align:center;">平台来源</p>
+                            <div class="from-box">
 
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="fontW" style="text-align:center;">标签筛选</p>
-                                    <div class="tag-box">
-
-                                    </div>
-                                    <div class="input-group" style="margin-top: 10px;">
-                                        <input type="text" placeholder="输入标签名搜索" class="form-control input-sm">
-                                        <span class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary" type="button">查找</button>
-                                    </span>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="block" style="text-align:center;">
-                                <div class="btn btn-primary" id="filterSearch">确定</div>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="fontW" style="text-align:center;">标签筛选</p>
+                            <div class="tag-box">
+
+                            </div>
+                            <div class="" id="findTag" style="margin-top: 10px;">
+                                <input type="text" placeholder="输入标签名搜索" class="form-control input-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block" style="text-align:center;">
+                        <div class="btn btn-primary" id="filterSearch">确定</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--平台来源框-->
+    </div>
+    <!--右侧内容结束-->
+</div>
+<!--详细信息弹窗-->
+<div class="moreInfo-wrapper" style="display: none">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">会员资料 <span class="pull-right"
+                                                  onclick="$('.moreInfo-wrapper').removeClass('more-open').fadeOut(500)">X</span>
+            </div>
+            <div class="panel-body">
+                <div class="row lx-container">
+                    <div class="col-md-5 col-sm-5">
+                        <div class="block-title">
+                            <p>个人信息</p>
+                        </div>
+                        <div style="border: 1px solid #ddd;border-bottom: none;margin-bottom: -10px;padding: 10px 0;">
+                            <div class="vip-img">
+                                <div class="vip-img-box"
+                                     style="background: url(img/touxiangbg.jpg);-webkit-background-size: 100%;background-size: 100%;"></div>
+                            </div>
+                            <div class="vip-info">
+                                <p><span id="nick"></span></p>
+                                <p>手机: <span id="tel"></span></p>
+                                <p>邮箱: <span id="email"></span></p>
+                                <p>来源: <span id="from"></span></p>
+                                <p style="height: 18px;"></p>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="table infoTable">
+                                <tbody>
+                                <tr id="role">
+                                    <th width="120">用户角色</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="jigou">
+                                    <th>所属机构</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="userName">
+                                    <th>用户名</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="realName">
+                                    <th>姓名</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="nickName">
+                                    <th>昵称</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="userSex">
+                                    <th>性别</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="userTel">
+                                    <th>电话号码</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="userEmail">
+                                    <th>邮箱</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="userCity">
+                                    <th>省市区</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="userAddress">
+                                    <th>详细地址</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="userStatus">
+                                    <th>用户状态</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="registerDate">
+                                    <th>注册日期</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="userFrom">
+                                    <th>用户来源</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="userBirthday">
+                                    <th>生日</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="historyPhone">
+                                    <th>历史手机号</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="AppRegisterDate">
+                                    <th>App注册日期</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="point">
+                                    <th>总积分</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="something">
+                                    <th>备注</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="lastTimeLogin">
+                                    <th>上次登录时间</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="tagList">
+                                    <th>用户标签</th>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="input-group" style="margin: 10px;">
+                                <input type="text" placeholder="标签名称" class="form-control" id="tagInput">
+                                <span class="input-group-btn">
+                                            <button class="btn btn-primary" id="addTag" type="button">添加标签</button>
+                                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="block-title">
+                            <p>消费能力</p>
+                        </div>
+                        <div class="row border-box">
+                            <div class="col-md-4 col-xs-4">
+                                <p style="font-weight: 900;"><span id="allVote">0</span>/<span id="allPrice">0.00</span>
+                                </p>
+                                <p>总订单数/订单总数</p>
+                            </div>
+                            <div class="col-md-4 col-xs-4">
+                                <p style="font-weight: 900;" id="pingjun">0.00</p>
+                                <p>平均订单金额</p>
+                            </div>
+                            <div class="col-md-4 col-xs-4">
+                                <p style="font-weight: 900;"><span id="nearBuy">0</span>天</p>
+                                <p>距离最近一次购买</p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="block-title">
+                            <p>QRcode绑定</p>
+                        </div>
+                        <div class="row border-box">
+                            <div class="col-md-12" id="qrBind">
+                                <table class="table" style="text-align:center;">
+                                    <thead style="font-weight: 900;">
+                                    <tr>
+                                        <td>车架号</td>
+                                        <td>购买门店</td>
+                                        <td>购买时间</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="block-title">
+                            <p>俱乐部活动参与</p>
+                        </div>
+                        <div class="row border-box" style="text-align:left;">
+                            <div class="col-md-12" id="joinClub">
+                                <table class="table" style="text-align:center;">
+                                    <thead style="font-weight: 900;">
+                                    <tr>
+                                        <td>活动名称</td>
+                                        <td>参与时间</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--平台来源框-->
-			</div>
-			<!--右侧内容结束-->
-		</div>
-        <!--详细信息弹窗-->
-		<div class="moreInfo-wrapper" style="display: none">
-			<div class="row">
-				<div class="panel panel-primary">
-					<div class="panel-heading">会员资料 <span class="pull-right" onclick="$('.moreInfo-wrapper').removeClass('more-open').fadeOut(500)">X</span></div>
-					<div class="panel-body">
-                        <div class="row lx-container">
-                            <div class="col-md-5 col-sm-5">
-                                <div class="block-title">
-                                    <p>个人信息</p>
-                                </div>
-                                <div style="border: 1px solid #ddd;border-bottom: none;margin-bottom: -10px;padding: 10px 0;">
-                                    <div class="vip-img">
-                                        <div class="vip-img-box" style="background: url(img/touxiangbg.jpg);-webkit-background-size: 100%;background-size: 100%;"></div>
-                                    </div>
-                                    <div class="vip-info">
-                                        <p><span id="nick"></span></p>
-                                        <p>手机: <span id="tel"></span></p>
-                                        <p>邮箱: <span id="email"></span></p>
-                                        <p>来源: <span id="from"></span></p>
-                                        <p style="height: 18px;"></p>
-                                    </div>
-                                </div>
-                                 <div class="table-container">
-                                    <table class="table infoTable">
-                                        <tbody>
-                                        <tr id="role">
-                                            <th width="120">用户角色</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="jigou">
-                                            <th>所属机构</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="userName">
-                                            <th>用户名</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="realName">
-                                            <th>姓名</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="nickName">
-                                            <th>昵称</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="userSex">
-                                            <th>性别</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="userTel">
-                                            <th>电话号码</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="userEmail">
-                                            <th>邮箱</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="userCity">
-                                            <th>省市区</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="userAddress">
-                                            <th>详细地址</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="userStatus">
-                                            <th>用户状态</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="registerDate">
-                                            <th>注册日期</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="userFrom">
-                                            <th>用户来源</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="userBirthday">
-                                            <th>生日</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="historyPhone">
-                                            <th>历史手机号</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="AppRegisterDate">
-                                            <th>App注册日期</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="point">
-                                            <th>总积分</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="something">
-                                            <th>备注</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="lastTimeLogin">
-                                            <th>上次登录时间</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr id="tagList">
-                                            <th>用户标签</th>
-                                            <td></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="input-group" style="margin: 10px;">
-                                        <input type="text" placeholder="标签名称" class="form-control" id="tagInput">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary" id="addTag" type="button">添加标签</button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="block-title">
-                                    <p>消费能力</p>
-                                </div>
-                                <div class="row border-box">
-                                    <div class="col-md-4 col-xs-4">
-                                        <p style="font-weight: 900;"><span id="allVote">0</span>/<span id="allPrice">0.00</span></p>
-                                        <p>总订单数/订单总数</p>
-                                    </div>
-                                    <div class="col-md-4 col-xs-4">
-                                        <p style="font-weight: 900;" id="pingjun">0.00</p>
-                                        <p>平均订单金额</p>
-                                    </div>
-                                    <div class="col-md-4 col-xs-4">
-                                        <p style="font-weight: 900;"><span id="nearBuy">0</span>天</p>
-                                        <p>距离最近一次购买</p>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="block-title">
-                                    <p>QRcode绑定</p>
-                                </div>
-                                <div class="row border-box">
-                                    <div class="col-md-12" id="qrBind">
-                                        <table class="table" style="text-align:center;">
-                                            <thead style="font-weight: 900;">
-                                            <tr>
-                                                <td>车架号</td>
-                                                <td>购买门店</td>
-                                                <td>购买时间</td>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="block-title">
-                                    <p>俱乐部活动参与</p>
-                                </div>
-                                <div class="row border-box" style="text-align:left;">
-                                    <div class="col-md-12" id="joinClub">
-                                        <table class="table" style="text-align:center;">
-                                            <thead style="font-weight: 900;">
-                                            <tr>
-                                                <td>活动名称</td>
-                                                <td>参与时间</td>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-        <div class="search-wrapper" id="searchOne">
+            </div>
         </div>
-        <script src="js/vipList.js" type="text/javascript" charset="utf-8"></script>
-	</body>
+    </div>
+</div>
+<div class="search-wrapper" id="searchOne">
+</div>
+<script src="js/vipList.js" type="text/javascript" charset="utf-8"></script>
+</body>
 </html>

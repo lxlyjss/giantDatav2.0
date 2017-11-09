@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title>giant大数据|产品评价列表</title>
+    <title>giant大数据|门店评价列表</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
     <link rel="stylesheet" href="css/zTreeStyle.css">
@@ -30,7 +30,7 @@
             var dateOption = {
                 //最大时间
                 maxDate: moment().subtract(1, 'days'),
-                startDate: moment().subtract(90, 'days'),
+                startDate: moment().subtract(30, 'days'),
                 endDate: moment().subtract(1, 'days'),
                 locale: {
                     format: 'YYYY/MM/DD'
@@ -48,7 +48,10 @@
     <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body class="vip-change">
-<div class="loading-wrapper" style="display: none;">
+<div class="loading-wrapper" id="loading1" style="display: block;">
+    <div class="spinner"></div>
+</div>
+<div class="loading-wrapper" id="loading2" style="display: block;">
     <div class="spinner"></div>
 </div>
 <!--头部 开始-->
@@ -194,7 +197,7 @@
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 sm-marginTop">
-                    <div class="btn btn-success">下载表格</div>
+                    <div class="btn btn-success" id="download">下载表格</div>
                 </div>
             </div>
             <!--产品数据-->
@@ -260,94 +263,45 @@
         var tableData;//存储数据
         var filterData;//存储筛选条件
         var filter = {
-            page: 1,
-            pageNum: "30",
-            type: 2,//1电动车,2为自行车
-            brandCode: "",//品牌
-            bikelineId: "",//车系
-            bikeId: ""//车型
+            role:window.roleInfo.role,
+            roleCode:window.roleInfo.roleCode,
+            beginDate:getDateArea(1),
+            endDate: getDateArea(0),
+            areaList: window.roleInfo.roleCode,//区域列表
+            areaType:"",//类型1,sbu,2经销商,3门店
+            pageNo: 1,
+            pageSize: "30"
         };
-        tableData = {
-            result:"1",
-            count:"5487",
-            list:[
-                {
-                    id:"1",
-                    storeName:"捷安特古城公园专卖店",
-                    storeCode:"023",
-                    dealerName:"HT",
-                    sbuName:"GCC",
-                    bikeCode:"154545989",
-                    serviceScore:"4",
-                    peopleScore:"5",
-                    content:"挺不错的",
-                    EvaluationMen:"aa",
-                    userName:"18721478786",
-                    createDate:"2017-10-25 15:32:25"
-                },
-                {
-                    id:"1",
-                    storeName:"捷安特古城公园专卖店",
-                    storeCode:"023",
-                    dealerName:"HT",
-                    sbuName:"GCC",
-                    bikeCode:"154545989",
-                    serviceScore:"4",
-                    peopleScore:"5",
-                    content:"挺不错的",
-                    EvaluationMen:"aa",
-                    userName:"18721478786",
-                    createDate:"2017-10-25 15:32:25"
-                },
-                {
-                    id:"1",
-                    storeName:"捷安特古城公园专卖店",
-                    storeCode:"023",
-                    dealerName:"HT",
-                    sbuName:"GCC",
-                    bikeCode:"154545989",
-                    serviceScore:"4",
-                    peopleScore:"5",
-                    content:"挺不错的",
-                    EvaluationMen:"aa",
-                    userName:"18721478786",
-                    createDate:"2017-10-25 15:32:25"
-                },
-                {
-                    id:"1",
-                    storeName:"捷安特古城公园专卖店",
-                    storeCode:"023",
-                    dealerName:"HT",
-                    sbuName:"GCC",
-                    bikeCode:"154545989",
-                    serviceScore:"4",
-                    peopleScore:"5",
-                    content:"挺不错的",
-                    EvaluationMen:"aa",
-                    userName:"18721478786",
-                    createDate:"2017-10-25 15:32:25"
-                },
-                {
-                    id:"1",
-                    storeName:"捷安特古城公园专卖店",
-                    storeCode:"023",
-                    dealerName:"HT",
-                    sbuName:"GCC",
-                    bikeCode:"154545989",
-                    serviceScore:"4",
-                    peopleScore:"5",
-                    content:"挺不错的",
-                    EvaluationMen:"aa",
-                    userName:"18721478786",
-                    createDate:"2017-10-25 15:32:25"
-                }
-            ]
-        };
+        setAreaType();
+        function setAreaType(){
+            if(filter.role == "admin"){
+                filter.areaType = 1;
+            }else if(filter.role == "sbu"){
+                filter.areaType = 1;
+            }else if(filter.role == "dealer"){
+                filter.areaType = 2;
+            }else if(filter.role == "storeManager"){
+                filter.areaType = 3;
+            }
+            if(filter.roleCode == ""){
+                filter.areaList = "GCK,GCC,GCT";
+            }
+        }
+        //获取默认时间
+        function getDateArea(type){
+            var beginDate = moment().subtract(30,'days').format("YYYY-MM-DD");
+            var endDate = moment().subtract(1,'days').format("YYYY-MM-DD");
+            if(type == 1){
+                return beginDate;
+            }else{
+                return endDate;
+            }
+        }
         //选页
         window.selectPage = function (n) {
             if (n > 0 && n <= tableData.count) {
-                filter.page = n;
-                $(".loading-wrapper").show();
+                filter.pageNo = n;
+                $("#loading2").show();
                 getTableData();
             } else {
                 alert("没有更多了^_^");
@@ -355,33 +309,58 @@
         };
         //获取后台数据,页面初始化
         function getTableData() {
+            $("#loading2").show();
             $.ajax({
-                url: "http://" + window.roleInfo.url1 + "/giantService/report/selectProductScore",
+                url: window.roleInfo.url2 + "giantService/report/storeServe/serveList",
                 data: filter
             }).done(function (res){
+                console.log(res)
+                console.log(filter)
                 if(res.result == 1){
+                    tableData = res;
                     setTableData();
+                }else{
+                    alert("result=0");
                 }
             }).fail(function (){
                 alert("获取数据失败")
+            }).complete(function (){
+                $("#loading2").hide();
             });
         }
         //获取筛选接口
         function getFilterData() {
+            $("#loading2").show();
             $.ajax({
-                url: "http://" + window.roleInfo.url1 + "/giantService/report/selectProductScore",
+                url: window.roleInfo.url1 + "giantService/report/storeEva/conditionEva",
                 data: filter
             }).done(function (res){
                 if(res.result == 1){
-                    setTableData();
+                    filterData = res;
+                    setFilterData(res);
+                }else{
+                    alert("result=0")
                 }
             }).fail(function (){
                 alert("获取数据失败")
+            }).complete(function (){
+                $("#loading2").hide();
             });
         }
+        //所有数据都成功之后的回调函数
+        function getData(){
+            $.when(
+                getTableData(filter),
+                getFilterData()
+            ).then(function (){
+                $("#loading1").hide();
+                $("#loading2").hide();
+            });
+        }
+        getData();
         //展示数据
         function setTableData() {
-            var pageData = tableData.list;
+            var pageData = tableData.data;
             var tempList = [];
             for (var i = 0; i < pageData.length; i++) {
                 var tableList = $("<tr style=\"text-align: center;\">" +
@@ -400,15 +379,22 @@
                 tempList.push(tableList);
             }
             $(".vip-container table tbody").empty().append(tempList);
-            $.fn.cutPage(Math.ceil(tableData.count/30),filter.page);
-            $(".page-selection").show()
+            $.fn.cutPage(Math.ceil(tableData.count/30),filter.pageNo);
+            $(".page-selection").show();
         }
-        setTableData();
         //查看详细评价内容
         window.showMoreContent = function (t, index) {
-            $(t).parent().text(tableData.list[index].content);
+            $(t).parent().text(tableData.data[index].content);
         };
-
+        //根据时间段查询
+        function selectDate(){
+            $(".date-select .btn").click(function (){
+                filter.beginDate = $.fn.getUserDateArea($("#dateInput"),1);
+                filter.endDate = $.fn.getUserDateArea($("#dateInput"),0);
+                filter.pageNo = 1;
+                getTableData(filter);
+            });
+        }
         //当评价内容字数超过10个字
         function isMore(str, index) {
             var temp = "";
@@ -422,51 +408,79 @@
         //跳转页
         $(".page-select .btn").click(function () {
             var page = parseInt($(".page-select input[type=number]").val());
-            var reg = /([1-9]\d+)|[2-9]/;
+            var reg = /([1-9]\d+)|[1-9]/;
             if (reg.test(page) && page > 0) {
-                if (page > tableData.count) {
+                if (page > Math.ceil(tableData.count/30)) {
                     alert("输入的页数超过了最大页数!请重新输入!");
                 } else {
-                    $(".loading-wrapper").show();
-                    filter.page = page;
+                    $("#loading2").show();
+                    filter.pageNo = page;
                     getTableData(filter);
                 }
             } else {
                 alert("请输入大于0的正整数!")
             }
         });
-        $.getJSON("http://localhost:4396/giantData-v2/data.min.json",function (res){
-            var newBrand = new setBrandData("#treeBox",res);
+        //设置筛选数据
+        function setFilterData(res){
+            var newBrand = new setAreaData("#treeBox",$.fn.getRoleData(res,window.roleInfo.roleCode,window.roleInfo.role));
             $("#search-btn1").click(function (){
-                newBrand.showMenu(this);
+                newBrand.showMenu(this,1);
+                filter.areaType = 1;
             });
-        });
-        //查询条件搜索
+            $("#search-btn2").click(function (){
+                newBrand.showMenu(this,2);
+                filter.areaType = 2;
+            });
+            $("#search-btn3").click(function (){
+                newBrand.showMenu(this,3);
+                filter.areaType = 3;
+            });
+            selectFilter();
+        }
+        //筛选品牌之后
         function selectFilter(){
-            $("#filterBtn").click(function (){
+            $("#filterBtn").click(function () {
                 var zTree = $.fn.zTree.getZTreeObj("treeBox"),
-                    nodes = zTree.getCheckedNodes(true);
-                var tempArr = [];
-                for(var i = 0; i < nodes.length;i++){
-                    tempArr.push(nodes[i].dictCode);
+                    nodes = zTree.getCheckedNodes(true),
+                    filterList = [];
+                console.log(nodes)
+                for (var i = 0; i < nodes.length; i++) {
+                    filterList.push(nodes[i].code);
                 }
-                filter.brandCode = tempArr;
-                console.log(tempArr);
-                //getTableData(filter);
+                $("#menuContent").slideUp("fast");
+                filter.areaList = filterList.join();
+                filter.pageNo = 1;
+                getTableData(filter);
             });
         }
-        selectFilter();
+        //下载表格
+        function downloadTable(){
+            $("#download").click(function (){
+                console.log(filter)
+                var beginDate = $.fn.getUserDateArea($("#dateInput"),1);
+                var endDate = $.fn.getUserDateArea($("#dateInput"),0);
+                window.location.href = window.roleInfo.url2+
+                    "giantService/report/storeServe/exportServeList?"+
+                    "role="+window.roleInfo.role+
+                    "&roleCode="+window.roleInfo.roleCode+
+                    "&beginDate="+beginDate+
+                    "&endDate="+endDate+
+                    "&areaType="+filter.areaType+
+                    "&areaList="+filter.areaList
+            });
+        };
         //初始化页面
         function initFun() {
-
+            selectDate();
+            downloadTable()
         }
-        //initFun();
-        //选择品牌车系车型
-        function setBrandData(ele,data) {
+        initFun();
+        function setAreaData(ele,data) {
             this.setting = {
                 check: {
                     enable: true,
-                    chkboxType: {"Y": "", "N": "s"}
+                    chkboxType: {"Y": "", "N": ""}
                 },
                 view: {
                     dblClickExpand: false
@@ -481,41 +495,36 @@
                         var zTree = $.fn.zTree.getZTreeObj("treeBox");
                         zTree.checkNode(treeNode, !treeNode.checked, null, true);
                         return false;
-                    },
-                    onCheck: function (e, treeId, treeNode) {
-                        var zTree = $.fn.zTree.getZTreeObj("treeBox"),
-                            nodes = zTree.getCheckedNodes(true),
-                            noCheckNode = zTree.getCheckedNodes(false),
-                            disNode = zTree.getNodesByParam("chkDisabled", true);
                     }
                 }
             };
             this.select = [];
             this.zNodes = [];
             this.jsonData = data;
-            this.setJsonData = function () {
+            this.setJsonData = function (type) {
                 this.zNodes = [];
-                console.log(this.jsonData);
+                console.log(this.jsonData)
                 for (var i = 0; i < this.jsonData.list.length; i++) {
                     var temp1 = {
-                        id: (i + 1) * 2000, pId: 0, name: this.jsonData.list[i].dictName,
-                        dictCode: this.jsonData.list[i].dictCode,
-                        dictName: this.jsonData.list[i].dictName, nocheck: false
+                        id: (i + 1) * 2000, pId: 0,
+                        name: this.jsonData.list[i].name,
+                        code: this.jsonData.list[i].code,
+                        nocheck: type == 1 ? false : true
                     };
                     for (var j = 0; j < this.jsonData.list[i].list.length; j++) {
                         var temp2 = {
-                            id: (i + 1) * 1000 + (j + 1), pId: (i + 1) * 2000, name: this.jsonData.list[i].list[j].dictName,
-                            dictCode: this.jsonData.list[i].list[j].dictCode,
-                            dictName: this.jsonData.list[i].list[j].dictName, nocheck: false
+                            id: (i + 1) * 1000 + (j + 1), pId: (i + 1) * 2000,
+                            name: this.jsonData.list[i].list[j].name,
+                            code: this.jsonData.list[i].list[j].code,
+                            nocheck: type == 2 ? false : true
                         };
                         for (var k = 0; k < this.jsonData.list[i].list[j].list.length; k++) {
                             var temp3 = {
                                 id: (i + 1) * 10000 + (j + 1) * 1000 + (k + 1),
                                 pId: (i + 1) * 1000 + (j + 1),
-                                name: this.jsonData.list[i].list[j].list[k].dictName,
-                                dictCode: this.jsonData.list[i].list[j].list[k].dictCode,
-                                dictName: this.jsonData.list[i].list[j].list[k].dictName,
-                                nocheck: false
+                                name: this.jsonData.list[i].list[j].list[k].name,
+                                code: this.jsonData.list[i].list[j].list[k].code,
+                                nocheck: type == 3 ? false : true
                             };
                             this.zNodes.push(temp3);
                         }
@@ -531,7 +540,25 @@
                 zTree.checkNode(treeNode, !treeNode.checked, null, true);
                 return false;
             };
-            this.showMenu = function (This) {
+            this.onCheck = function (e, treeId, treeNode) {
+                var zTree = $.fn.zTree.getZTreeObj("treeBox"),
+                    nodes = zTree.getCheckedNodes(true),
+                    noCheckNode = zTree.getCheckedNodes(false),
+                    disNode = zTree.getNodesByParam("chkDisabled", true);
+                //判断超过10个不可选
+                if (nodes.length >= 10) {
+                    for (var i = 0; i < noCheckNode.length; i++) {
+                        zTree.setChkDisabled(noCheckNode[i], true)
+                    }
+                } else {
+                    for (var i = 0; i < disNode.length; i++) {
+                        zTree.setChkDisabled(disNode[i], false)
+                    }
+                }
+            };
+            this.type = "";
+            this.showMenu = function (This, type) {
+                this.type = type;
                 var cityObj = $(This);
                 var cityOffset = $(This).offset();
                 var scrollTop = $("#content").scrollTop();
@@ -541,7 +568,7 @@
                 }).slideDown("fast");
                 $("#menuContent").slideDown("fast");
                 $("body").bind("mousedown", this.onBodyDown.bind(this));
-                this.setJsonData();
+                this.setJsonData(type);
             };
             this.hideMenu = function () {
                 $("#menuContent").fadeOut("fast");

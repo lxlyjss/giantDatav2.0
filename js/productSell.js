@@ -238,7 +238,10 @@ $(function (){
     };
     //请求图表数据
     function getChartsData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
+        var sendData = $.extend(true,{},sendData);
+        sendData.dataList = JSON.stringify(sendData.dataList);
         $.ajax({
             url: window.roleInfo.url2+"giantService/report/userData/userLines",
             data: sendData
@@ -247,18 +250,20 @@ $(function (){
             if(res.result == 1){
                 dfd.resolve(res);
                 chartsData = res;
-                console.log(chartsData)
                 setChartsData();
             }else{
                 alert("获取性别接口失败!"+res.msg);
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //请求指标数据
     function getQuotaData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url1+"giantService/report/product/productSaleTarget",
@@ -274,30 +279,35 @@ $(function (){
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     getQuotaData(filter)
     //请求平台来源数据
     function getFilterData(){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url: window.roleInfo.url1+"giantService/report/userData/selectCondition",
         }).done(function (res){
             if(res.result == 1){
                 dfd.resolve(res);
-                filterData = res;
-                setFilterData();
+                setFilterData(res);
             }else{
                 alert("获取接口失败!"+res.msg);
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //请求表格数据
     function getTableData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url2+"giantService/report/dataDraw/sex",
@@ -305,12 +315,15 @@ $(function (){
         }).done(function (res){
             if(res.result == 1){
                 dfd.resolve(res);
+                tableData = res;
                 setTableData();
             }else{
                 alert("获取性别接口失败!"+res.msg);
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
@@ -321,75 +334,16 @@ $(function (){
             getChartsData(filter),
             getTableData(tableFilter),
             getFilterData()
-        ).done(function (
-            res1,
-            res2,
-            res3
-        ){
-            quotaData = res1;
-            setQuotaData();
-        }).fail(function (res){
-            alert("获取不成功");
+        ).then(function (){
+            $("#loading1").hide();
+            $("#loading2").hide();
         });
     }
-    //设置关键指标
-    function setQuotaData() {
-        var quotaBox = $("#quotaBox").children("div");
-        function arrow(count) {
-            if (count > 0) {
-                return "<img src=\"img/arrow-up.png\" class=\"arrow-change\">"
-            } else if (count < 0) {
-                return "<img src=\"img/arrow-down.png\" class=\"arrow-change\">"
-            } else if (count == 0) {
-                return "";
-            }
-        }
-        function setData(ele, data) {
-            if (data != 0) {
-                ele.text(data + "%");
-            } else {
-                ele.text("0%");
-            }
-        }
-        function setArrow(ele, data) {
-            ele.html(data)
-        }
-        //qrcode激活
-        quotaBox.eq(0).children("p").eq(1).text(quotaData.totalPrice.count/100);
-        setData(quotaBox.eq(0).children("p").eq(2).children(".count"), quotaData.totalPrice.day);
-        setData(quotaBox.eq(0).children("p").eq(3).children(".count"), quotaData.totalPrice.week);
-        setData(quotaBox.eq(0).children("p").eq(4).children(".count"), quotaData.totalPrice.month);
-
-        setArrow(quotaBox.eq(0).children("p").eq(2).children(".arrow"), arrow(quotaData.totalPrice.day));
-        setArrow(quotaBox.eq(0).children("p").eq(3).children(".arrow"), arrow(quotaData.totalPrice.week));
-        setArrow(quotaBox.eq(0).children("p").eq(4).children(".arrow"), arrow(quotaData.totalPrice.month));
-        //累计激活
-        quotaBox.eq(1).children("p").eq(1).text(quotaData.productCount.count);
-        setData(quotaBox.eq(1).children("p").eq(2).children(".count"), quotaData.productCount.day);
-        setData(quotaBox.eq(1).children("p").eq(3).children(".count"), quotaData.productCount.week);
-        setData(quotaBox.eq(1).children("p").eq(4).children(".count"), quotaData.productCount.month);
-
-        setArrow(quotaBox.eq(1).children("p").eq(2).children(".arrow"), arrow(quotaData.productCount.day));
-        setArrow(quotaBox.eq(1).children("p").eq(3).children(".arrow"), arrow(quotaData.productCount.week));
-        setArrow(quotaBox.eq(1).children("p").eq(4).children(".arrow"), arrow(quotaData.productCount.month));
-        //qrcode绑定
-        quotaBox.eq(2).children("p").eq(1).text(quotaData.bikeCount.count);
-        setData(quotaBox.eq(2).children("p").eq(2).children(".count"), quotaData.bikeCount.day);
-        setData(quotaBox.eq(2).children("p").eq(3).children(".count"), quotaData.bikeCount.week);
-        setData(quotaBox.eq(2).children("p").eq(4).children(".count"), quotaData.bikeCount.month);
-
-        setArrow(quotaBox.eq(2).children("p").eq(2).children(".arrow"), arrow(quotaData.bikeCount.day));
-        setArrow(quotaBox.eq(2).children("p").eq(3).children(".arrow"), arrow(quotaData.bikeCount.week));
-        setArrow(quotaBox.eq(2).children("p").eq(4).children(".arrow"), arrow(quotaData.bikeCount.month));
-        //累计绑定
-        quotaBox.eq(3).children("p").eq(1).text(quotaData.productCount.count);
-        setData(quotaBox.eq(3).children("p").eq(2).children(".count"), quotaData.productCount.day);
-        setData(quotaBox.eq(3).children("p").eq(3).children(".count"), quotaData.productCount.week);
-        setData(quotaBox.eq(3).children("p").eq(4).children(".count"), quotaData.productCount.month);
-
-        setArrow(quotaBox.eq(3).children("p").eq(2).children(".arrow"), arrow(quotaData.productCount.day));
-        setArrow(quotaBox.eq(3).children("p").eq(3).children(".arrow"), arrow(quotaData.productCount.week));
-        setArrow(quotaBox.eq(3).children("p").eq(4).children(".arrow"), arrow(quotaData.productCount.month));
+    //设置指标数据
+    function setQuotaData(){
+        quotaData.totalPrice.count*=100;
+        var dataArr = [quotaData.totalPrice,quotaData.totalCount,quotaData.bikeCount,quotaData.productCount];
+        $.fn.quotaData(dataArr);
     }
     //拆分数据
     function setChartsData(){
@@ -458,23 +412,21 @@ $(function (){
             });
         });
     }
-    function getFilterData(){
-        $.getJSON("http://localhost:4396/giantData-v2/data.min.json", function (res) {
-            var aa = new setBrandData("#treeBox",res);
-            $("#search-btn1").bind("click",function (){
-                aa.showMenu(this,1);
-                filter.brandType = 1;
-            });
-            $("#search-btn2").bind("click",function (){
-                aa.showMenu(this,2);
-                filter.brandType = 2;
-            });
-            $("#search-btn3").bind("click",function (){
-                aa.showMenu(this,3);
-                filter.brandType = 3;
-            });
-            selectFilter();
+    function setFilterData(res){
+        var newBrand = new setBrandData("#treeBox",res);
+        $("#search-btn1").bind("click",function (){
+            newBrand.showMenu(this,1);
+            filter.brandType = 1;
         });
+        $("#search-btn2").bind("click",function (){
+            newBrand.showMenu(this,2);
+            filter.brandType = 2;
+        });
+        $("#search-btn3").bind("click",function (){
+            newBrand.showMenu(this,3);
+            filter.brandType = 3;
+        });
+        selectFilter();
         //表格数据筛选
         $("#search-btn4").click(function (){
             tableFilter.brandType = 1;
@@ -495,7 +447,6 @@ $(function (){
             $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
         });
     }
-    getFilterData();
     //筛选品牌之后
     function selectFilter(){
         $("#filterBtn").click(function () {
@@ -507,10 +458,48 @@ $(function (){
             }
             $("#menuContent").slideUp("fast");
             filter.brandList = filterList;
-            console.log(filter);
-            //getChartsData(filter);
+            getChartsData(filter);
         });
     }
+    //选页
+    window.selectPage = function (n){
+        if(n > 0 && n <= Math.ceil(tableData.count/30)) {
+            $.fn.cutPage(Math.ceil(tableData.count/30), n);
+            tableFilter.pageNo = n;
+            getTableData(tableFilter);
+        }else{
+            alert("没有更多了^_^");
+        }
+    };
+    //跳转页
+    $(".page-select .btn").click(function (){
+        var page = parseInt($(".page-select input[type=number]").val());
+        var reg = /([1-9]\d+)|[1-9]/;
+        if(reg.test(page) && page > 0){
+            if(page > Math.ceil(tableData.count/30)){
+                alert("输入的页数超过了最大页数!请重新输入!");
+            }else{
+                tableFilter.pageNo = page;
+                getTableData(tableFilter);
+            }
+        }else{
+            alert("请输入大于0的正整数!");
+        }
+    });
+    //下载表格
+    function downloadTable(){
+        $("#download").click(function (){
+            var beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
+            var endDate = $.fn.getUserDateArea($("#dateInput2"),0);
+            window.location.href = window.roleInfo.url2+
+                "giantService/report/storeServe/exportStoreDatas?"+
+                "role="+window.roleInfo.role+
+                "&roleCode="+window.roleInfo.roleCode+
+                "&beginDate="+beginDate+
+                "&endDate="+endDate+
+                "&areaType="+tableFilter.areaType
+        });
+    };
     //初始化数据
     function defaultData(){
         tempCountData.xAxis.data = [];
@@ -531,7 +520,7 @@ $(function (){
     //初始化页面
     function initFun(){
         selectType();
+        downloadTable();
     }
     initFun();
-    $(".loading-wrapper").hide()
 });

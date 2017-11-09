@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title>giant数据|会员变化趋势</title>
+    <title>giant数据|产品数据</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
     <link rel="stylesheet" type="text/css" href="css/lxl.css"/>
@@ -234,56 +234,10 @@
                 alert("失败!")
             });
         }
-        //设置关键指标
-        function setQuotaData() {
-            var vipBoxChild = $("#vipData").children("div");
-            function arrow(count) {
-                if (count > 0) {
-                    return "<img src=\"img/arrow-up.png\" class=\"arrow-change\">"
-                } else if (count < 0) {
-                    return "<img src=\"img/arrow-down.png\" class=\"arrow-change\">"
-                } else if (count == 0) {
-                    return "";
-                }
-            }
-            function setData(ele, data) {
-                if (data != 0) {
-                    ele.text(data + "%");
-                } else {
-                    ele.text("0%");
-                }
-            }
-
-            function setArrow(ele, data) {
-                ele.html(data)
-            }
-            //qr激活总数
-            vipBoxChild.eq(0).children("p").eq(1).text(quotaData.QRcodeCount.count);
-            setData(vipBoxChild.eq(0).children("p").eq(2).children(".count"), quotaData.QRcodeCount.day);
-            setData(vipBoxChild.eq(0).children("p").eq(3).children(".count"), quotaData.QRcodeCount.week);
-            setData(vipBoxChild.eq(0).children("p").eq(4).children(".count"), quotaData.QRcodeCount.month);
-
-            setArrow(vipBoxChild.eq(0).children("p").eq(2).children(".arrow"), arrow(quotaData.QRcodeCount.day));
-            setArrow(vipBoxChild.eq(0).children("p").eq(3).children(".arrow"), arrow(quotaData.QRcodeCount.week));
-            setArrow(vipBoxChild.eq(0).children("p").eq(4).children(".arrow"), arrow(quotaData.QRcodeCount.month));
-            //总交易量
-            vipBoxChild.eq(1).children("p").eq(1).text(quotaData.ProductCount.count);
-            setData(vipBoxChild.eq(1).children("p").eq(2).children(".count"), quotaData.ProductCount.day);
-            setData(vipBoxChild.eq(1).children("p").eq(3).children(".count"), quotaData.ProductCount.week);
-            setData(vipBoxChild.eq(1).children("p").eq(4).children(".count"), quotaData.ProductCount.month);
-
-            setArrow(vipBoxChild.eq(1).children("p").eq(2).children(".arrow"), arrow(quotaData.ProductCount.day));
-            setArrow(vipBoxChild.eq(1).children("p").eq(3).children(".arrow"), arrow(quotaData.ProductCount.week));
-            setArrow(vipBoxChild.eq(1).children("p").eq(4).children(".arrow"), arrow(quotaData.ProductCount.month));
-            //评价均分
-            vipBoxChild.eq(2).children("p").eq(1).text(quotaData.EvaluateCount.count/100);
-            setData(vipBoxChild.eq(2).children("p").eq(2).children(".count"), quotaData.EvaluateCount.day);
-            setData(vipBoxChild.eq(2).children("p").eq(3).children(".count"), quotaData.EvaluateCount.week);
-            setData(vipBoxChild.eq(2).children("p").eq(4).children(".count"), quotaData.EvaluateCount.month);
-
-            setArrow(vipBoxChild.eq(2).children("p").eq(2).children(".arrow"), arrow(quotaData.EvaluateCount.day));
-            setArrow(vipBoxChild.eq(2).children("p").eq(3).children(".arrow"), arrow(quotaData.EvaluateCount.week));
-            setArrow(vipBoxChild.eq(2).children("p").eq(4).children(".arrow"), arrow(quotaData.EvaluateCount.month));
+        //设置指标数据
+        function setQuotaData(){
+            var dataArr = [quotaData.QRcodeCount,quotaData.ProductCount,quotaData.EvaluateCount];
+            $.fn.quotaData(dataArr);
         }
         getQuotaData();
     })

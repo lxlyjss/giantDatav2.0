@@ -25,7 +25,7 @@
     <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body class="vip-change">
-<div class="loading-wrapper" style="display: none;">
+<div class="loading-wrapper" id="loading1" style="display: block;">
     <div class="spinner"></div>
 </div>
 <!--头部 开始-->
@@ -157,7 +157,7 @@
                 <div class="block-title">
                     <p>昨日关键指标</p>
                 </div>
-                <div class="row block-content" id="vipData">
+                <div class="row block-content" id="quotaBox">
                     <div class="col-md-3 col-sm-3 col-xs-3 block-one">
                         <p class="header-title">新增会员数</p>
                         <p class="header-title big-number"></p>
@@ -197,124 +197,41 @@
     $(function () {
         //$.fn.isSign();
         var quotaData;//指标数据
-        quotaData = {
-            VipAddCount:{
-                count: 8714,
-                day: 0.32,
-                week: -0.23,
-                month: 0.63
-            },
-            QRactivation: {//QRcode激活数
-                count: 8714,
-                day: 0.32,
-                week: -0.23,
-                month: 0.63
-            },
-            sellCount: {//交易量
-                count: 8284,
-                day: 0.32,
-                week: -0.23,
-                month: 0.63
-            },
-            serviceScore: {//服务评价均分
-                count: 8384,
-                day: 0.32,
-                week: -0.23,
-                month: 0.63
-            }
-        };
         var filter = {
             role:window.roleInfo.role,
             roleCode:window.roleInfo.roleCode
         };
         function getQuotaData(sendData){
+            $("#loading1").show();
             $.ajax({
                 url: window.roleInfo.url2+"giantService/report/storeData/keyIndex",
                 data:sendData
             }).done(function (res){
+                console.log(res);
                 if(res.result == 1){
-                    console.log(res);
                     quotaData = res;
                     setQuotaData();
+                }else{
+                    alert("result=0");
                 }
             }).fail(function (){
                 aler("fail")
-            })
+            }).complete(function (){
+                $("#loading1").hide();
+            });
         }
         getQuotaData(filter);
         //设置关键指标
         function setQuotaData() {
-            var vipBoxChild = $("#vipData").children("div");
-            function arrow(count) {
-                if (count > 0) {
-                    return "<img src=\"img/arrow-up.png\" class=\"arrow-change\">"
-                } else if (count < 0) {
-                    return "<img src=\"img/arrow-down.png\" class=\"arrow-change\">"
-                } else if (count == 0) {
-                    return "";
-                }
-            }
-
-            function setData(ele, data) {
-                if (data != 0) {
-                    ele.text(data + "%");
-                } else {
-                    ele.text("0%");
-                }
-            }
-
-            function setArrow(ele, data) {
-                ele.html(data)
-            }
-            //新增会员
-            vipBoxChild.eq(0).children("p").eq(1).text(quotaData.VipAddCount.count);
-            setData(vipBoxChild.eq(0).children("p").eq(2).children(".count"), quotaData.VipAddCount.day);
-            setData(vipBoxChild.eq(0).children("p").eq(3).children(".count"), quotaData.VipAddCount.week);
-            setData(vipBoxChild.eq(0).children("p").eq(4).children(".count"), quotaData.VipAddCount.month);
-
-            setArrow(vipBoxChild.eq(0).children("p").eq(2).children(".arrow"), arrow(quotaData.VipAddCount.day));
-            setArrow(vipBoxChild.eq(0).children("p").eq(3).children(".arrow"), arrow(quotaData.VipAddCount.week));
-            setArrow(vipBoxChild.eq(0).children("p").eq(4).children(".arrow"), arrow(quotaData.VipAddCount.month));
-
-            //qrcode
-            vipBoxChild.eq(0).children("p").eq(1).text(quotaData.VipAddCount.count);
-            setData(vipBoxChild.eq(0).children("p").eq(2).children(".count"), quotaData.VipAddCount.day);
-            setData(vipBoxChild.eq(0).children("p").eq(3).children(".count"), quotaData.VipAddCount.week);
-            setData(vipBoxChild.eq(0).children("p").eq(4).children(".count"), quotaData.VipAddCount.month);
-
-            setArrow(vipBoxChild.eq(0).children("p").eq(2).children(".arrow"), arrow(quotaData.VipAddCount.day));
-            setArrow(vipBoxChild.eq(0).children("p").eq(3).children(".arrow"), arrow(quotaData.VipAddCount.week));
-            setArrow(vipBoxChild.eq(0).children("p").eq(4).children(".arrow"), arrow(quotaData.VipAddCount.month));
-            //流失会员
-            vipBoxChild.eq(1).children("p").eq(1).text(quotaData.QRactivation.count);
-            setData(vipBoxChild.eq(1).children("p").eq(2).children(".count"), quotaData.QRactivation.day);
-            setData(vipBoxChild.eq(1).children("p").eq(3).children(".count"), quotaData.QRactivation.week);
-            setData(vipBoxChild.eq(1).children("p").eq(4).children(".count"), quotaData.QRactivation.month);
-
-            setArrow(vipBoxChild.eq(1).children("p").eq(2).children(".arrow"), arrow(quotaData.QRactivation.day));
-            setArrow(vipBoxChild.eq(1).children("p").eq(3).children(".arrow"), arrow(quotaData.QRactivation.week));
-            setArrow(vipBoxChild.eq(1).children("p").eq(4).children(".arrow"), arrow(quotaData.QRactivation.month));
-            //累计会员
-            vipBoxChild.eq(2).children("p").eq(1).text(quotaData.sellCount.count);
-            setData(vipBoxChild.eq(2).children("p").eq(2).children(".count"), quotaData.sellCount.day);
-            setData(vipBoxChild.eq(2).children("p").eq(3).children(".count"), quotaData.sellCount.week);
-            setData(vipBoxChild.eq(2).children("p").eq(4).children(".count"), quotaData.sellCount.month);
-
-            setArrow(vipBoxChild.eq(2).children("p").eq(2).children(".arrow"), arrow(quotaData.sellCount.day));
-            setArrow(vipBoxChild.eq(2).children("p").eq(3).children(".arrow"), arrow(quotaData.sellCount.week));
-            setArrow(vipBoxChild.eq(2).children("p").eq(4).children(".arrow"), arrow(quotaData.sellCount.month));
-            //4
-            vipBoxChild.eq(3).children("p").eq(1).text(quotaData.serviceScore.count/100);
-            setData(vipBoxChild.eq(3).children("p").eq(2).children(".count"), quotaData.serviceScore.day);
-            setData(vipBoxChild.eq(3).children("p").eq(3).children(".count"), quotaData.serviceScore.week);
-            setData(vipBoxChild.eq(3).children("p").eq(4).children(".count"), quotaData.serviceScore.month);
-
-            setArrow(vipBoxChild.eq(3).children("p").eq(2).children(".arrow"), arrow(quotaData.serviceScore.day));
-            setArrow(vipBoxChild.eq(3).children("p").eq(3).children(".arrow"), arrow(quotaData.serviceScore.week));
-            setArrow(vipBoxChild.eq(3).children("p").eq(4).children(".arrow"), arrow(quotaData.serviceScore.month));
+            var dataArr = [
+                quotaData.VipAddCount,
+                quotaData.QRactivation,
+                quotaData.sellCount,
+                quotaData.serviceScore
+            ];
+            quotaData.serviceScore.count/=100;
+            $.fn.quotaData(dataArr);
         }
-
-        setQuotaData();
     })
 </script>
 </body>

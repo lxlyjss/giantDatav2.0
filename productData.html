@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title>giant数据|QRcode数据</title>
+    <title>giant数据|产品QRcode数据</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
     <link rel="stylesheet" href="css/zTreeStyle.css">
@@ -31,11 +31,8 @@
             var dateOption = {
                 //最大时间
                 maxDate: moment().subtract(1, 'days'),
-                startDate: moment().subtract(90, 'days'),
+                startDate: moment().subtract(30, 'days'),
                 endDate: moment().subtract(1, 'days'),
-                dateLimit: {
-                    month: "3"
-                },
                 locale: {
                     format: 'YYYY/MM/DD'
                 },
@@ -46,7 +43,7 @@
                 }
             };
             //时间选择
-            $('#dateInput1').daterangepicker(dateOption);
+            $('#dateInput1').daterangepicker($.extend({},dateOption,{dateLimit:{month:"3"}}));
             $('#dateInput2').daterangepicker(dateOption);
         })
     </script>
@@ -54,7 +51,10 @@
     <script src="js/ztreeOption.js"></script>
 </head>
 <body class="vip-change">
-<div class="loading-wrapper" style="display: block;">
+<div class="loading-wrapper" id="loading1" style="display: block;">
+    <div class="spinner"></div>
+</div>
+<div class="loading-wrapper" id="loading2" style="display: block;">
     <div class="spinner"></div>
 </div>
 <!--头部 开始-->
@@ -221,7 +221,7 @@
             <!--数据表-->
             <div class="row data-charts block">
                 <div class="block-title">
-                    <p>会员数据</p>
+                    <p>产品数据</p>
                 </div>
                 <div class="col-md-12">
                     <!--查询条件-->
@@ -312,12 +312,12 @@
                     </table>
                 </div>
                 <div class="row btn-block">
-                    <div class="col-md-8 page-container page-selection" style="display: none">
+                    <div class="col-md-8 col-sm-8 page-container page-selection" style="display: none">
                         <nav aria-label="Page navigation" style="text-align: center;">
                             <ul class="pagination"></ul>
                         </nav>
                     </div>
-                    <div class="col-md-4 page-selection" style="display: none">
+                    <div class="col-md-4 col-sm-4 page-selection" style="display: none">
                         <div class="input-group page-select">
                             <span class="input-group-addon">跳转页</span>
                             <input type="number" class="form-control" id="dateInput"/>

@@ -79,6 +79,9 @@ $(function (){
         series: []
     };
     var tempCountData = {
+        title:{
+            text:""
+        },
         legend: {
             data: []
         },
@@ -93,112 +96,12 @@ $(function (){
         }]
     };
     var quotaData,chartsData,tableData,filterData;//存储总数据
-    tableData = {
-        result:1,
-        count:"5454",
-        data:[
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            }
-        ]
-    };
-    quotaData = {
-        totalPrice: {//销售总金额
-            count: 8714,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        },
-        productCount: {//销售产品总数
-            count: 8284,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        },
-        bikeCount: {//整车销量
-            count: 8384,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        },
-        productCount:{//商品销量
-            count: 7484,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        }
-    };
-    chartsData = {
-        result: 1,
-        data:[
-            {
-                fromName:"giant",
-                data:[
-                    {date:"20171012",count:"525"},
-                    {date:"20171013",count:"155"},
-                    {date:"20171014",count:"553"},
-                    {date:"20171015",count:"55"}
-                ]
-            },
-            {
-                fromName:"momentum",
-                data:[
-                    {date:"20171012",count:"611"},
-                    {date:"20171013",count:"358"},
-                    {date:"20171014",count:"455"},
-                    {date:"20171015",count:"755"}
-                ]
-            },
-            {
-                fromName:"liv",
-                data:[
-                    {date:"20171012",count:"155"},
-                    {date:"20171013",count:"955"},
-                    {date:"20171014",count:"255"},
-                    {date:"20171015",count:"455"}
-                ]
-            }
-        ]
-    };
+    var titleArr = [
+        "捷安特销售总金额趋势图",
+        "捷安特销售产品总数趋势图",
+        "捷安特整车销量趋势图",
+        "捷安特商品销量趋势图"
+    ];
     //获取默认时间
     function getDateArea(type){
         var beginDate = moment().subtract(30,'days').format("YYYY-MM-DD");
@@ -215,49 +118,54 @@ $(function (){
         roleCode:window.roleInfo.roleCode,
         beginDate:getDateArea(1),
         endDate: getDateArea(0),
-        brandList:[],//型号列表
-        brandType:"1",//产品类型1,品牌,2车系,3车型
-        type:"1",//会员类型
-        dateType:"1"//时间类型
+        areaList: "GCC",//区域列表
+        areaType:"1",//类型1,sbu,2经销商,3门店
+        countType:"1",//类型
+        type:"1"//时间类型
     };
     var tableFilter = {
         role: window.roleInfo.role,
         roleCode: window.roleInfo.roleCode,
         beginDate: getDateArea(1),
         endDate: getDateArea(0),
-        brandType:"1",//产品类型1,品牌,2车系,3车型
+        areaType:"1",//产品类型1,sbu,2经销商,3门店
         pageNo:"1",
         pageSize:"30"
     };
     //请求图表数据
     function getChartsData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
-            url: window.roleInfo.url2+"giantService/report/userData/userLines",
+            url: window.roleInfo.url2+"giantService/report/storeSale/storeLines",
             data: sendData
         }).done(function (res){
-            console.log(filter)
+            console.log(filter);
+            console.log(res);
             if(res.result == 1){
                 dfd.resolve(res);
                 chartsData = res;
-                console.log(chartsData)
                 setChartsData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //请求指标数据
     function getQuotaData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url1+"giantService/report/product/productSaleTarget",
             data: sendData
         }).done(function (res){
-            console.log(res)
+            console.log(res);
+            console.log(filter);
             if(res.result == 1){
                 dfd.resolve(res);
                 quotaData = res;
@@ -267,43 +175,53 @@ $(function (){
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
-    getQuotaData(filter)
-    //请求平台来源数据
+    //请求筛选条件数据
     function getFilterData(){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
-            url: window.roleInfo.url1+"giantService/report/userData/selectCondition",
+            url: window.roleInfo.url1+"giantService/report/storeEva/conditionEva"
         }).done(function (res){
+            console.log(res)
             if(res.result == 1){
                 dfd.resolve(res);
                 filterData = res;
-                setFilterData();
+                setFilterData(res);
             }else{
                 alert("获取接口失败!"+res.msg);
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //请求表格数据
     function getTableData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
-            url:window.roleInfo.url2+"giantService/report/dataDraw/sex",
+            url:window.roleInfo.url2+"giantService/report/storeSale/storeDatas",
             data: sendData
         }).done(function (res){
+            console.log(res)
             if(res.result == 1){
                 dfd.resolve(res);
+                tableData = res;
                 setTableData();
             }else{
                 alert("获取性别接口失败!"+res.msg);
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
@@ -314,87 +232,67 @@ $(function (){
             getChartsData(filter),
             getTableData(tableFilter),
             getFilterData()
-        ).done(function (
-            res1,
-            res2,
-            res3
-        ){
-            quotaData = res1;
-            setQuotaData();
-        }).fail(function (res){
-            alert("获取不成功");
+        ).then(function (){
+            $("#loading1").hide();
+            $("#loading2").hide();
         });
     }
+    getData();
+    //选页
+    window.selectPage = function (n){
+        if(n > 0 && n <= Math.ceil(tableData.count/30)) {
+            $.fn.cutPage(Math.ceil(tableData.count/30), n);
+            tableFilter.pageNo = n;
+            getTableData(tableFilter);
+        }else{
+            alert("没有更多了^_^");
+        }
+    };
+    //跳转页
+    $(".page-select .btn").click(function (){
+        var page = parseInt($(".page-select input[type=number]").val());
+        var reg = /([1-9]\d+)|[2-9]/;
+        if(reg.test(page) && page > 0){
+            if(page > Math.ceil(tableData.count/30)){
+                alert("输入的页数超过了最大页数!请重新输入!");
+            }else{
+                tableFilter.pageNo = page;
+                getTableData(tableFilter);
+            }
+        }else{
+            alert("请输入大于0的正整数!");
+        }
+    });
     //设置关键指标
     function setQuotaData() {
-        var quotaBox = $("#quotaBox").children("div");
-        function arrow(count) {
-            if (count > 0) {
-                return "<img src=\"img/arrow-up.png\" class=\"arrow-change\">"
-            } else if (count < 0) {
-                return "<img src=\"img/arrow-down.png\" class=\"arrow-change\">"
-            } else if (count == 0) {
-                return "";
-            }
-        }
-        function setData(ele, data) {
-            if (data != 0) {
-                ele.text(data + "%");
-            } else {
-                ele.text("0%");
-            }
-        }
-        function setArrow(ele, data) {
-            ele.html(data)
-        }
-        //qrcode激活
-        quotaBox.eq(0).children("p").eq(1).text(quotaData.totalPrice.count/100);
-        setData(quotaBox.eq(0).children("p").eq(2).children(".count"), quotaData.totalPrice.day);
-        setData(quotaBox.eq(0).children("p").eq(3).children(".count"), quotaData.totalPrice.week);
-        setData(quotaBox.eq(0).children("p").eq(4).children(".count"), quotaData.totalPrice.month);
-
-        setArrow(quotaBox.eq(0).children("p").eq(2).children(".arrow"), arrow(quotaData.totalPrice.day));
-        setArrow(quotaBox.eq(0).children("p").eq(3).children(".arrow"), arrow(quotaData.totalPrice.week));
-        setArrow(quotaBox.eq(0).children("p").eq(4).children(".arrow"), arrow(quotaData.totalPrice.month));
-        //累计激活
-        quotaBox.eq(1).children("p").eq(1).text(quotaData.productCount.count);
-        setData(quotaBox.eq(1).children("p").eq(2).children(".count"), quotaData.productCount.day);
-        setData(quotaBox.eq(1).children("p").eq(3).children(".count"), quotaData.productCount.week);
-        setData(quotaBox.eq(1).children("p").eq(4).children(".count"), quotaData.productCount.month);
-
-        setArrow(quotaBox.eq(1).children("p").eq(2).children(".arrow"), arrow(quotaData.productCount.day));
-        setArrow(quotaBox.eq(1).children("p").eq(3).children(".arrow"), arrow(quotaData.productCount.week));
-        setArrow(quotaBox.eq(1).children("p").eq(4).children(".arrow"), arrow(quotaData.productCount.month));
-        //qrcode绑定
-        quotaBox.eq(2).children("p").eq(1).text(quotaData.bikeCount.count);
-        setData(quotaBox.eq(2).children("p").eq(2).children(".count"), quotaData.bikeCount.day);
-        setData(quotaBox.eq(2).children("p").eq(3).children(".count"), quotaData.bikeCount.week);
-        setData(quotaBox.eq(2).children("p").eq(4).children(".count"), quotaData.bikeCount.month);
-
-        setArrow(quotaBox.eq(2).children("p").eq(2).children(".arrow"), arrow(quotaData.bikeCount.day));
-        setArrow(quotaBox.eq(2).children("p").eq(3).children(".arrow"), arrow(quotaData.bikeCount.week));
-        setArrow(quotaBox.eq(2).children("p").eq(4).children(".arrow"), arrow(quotaData.bikeCount.month));
-        //累计绑定
-        quotaBox.eq(3).children("p").eq(1).text(quotaData.productCount.count);
-        setData(quotaBox.eq(3).children("p").eq(2).children(".count"), quotaData.productCount.day);
-        setData(quotaBox.eq(3).children("p").eq(3).children(".count"), quotaData.productCount.week);
-        setData(quotaBox.eq(3).children("p").eq(4).children(".count"), quotaData.productCount.month);
-
-        setArrow(quotaBox.eq(3).children("p").eq(2).children(".arrow"), arrow(quotaData.productCount.day));
-        setArrow(quotaBox.eq(3).children("p").eq(3).children(".arrow"), arrow(quotaData.productCount.week));
-        setArrow(quotaBox.eq(3).children("p").eq(4).children(".arrow"), arrow(quotaData.productCount.month));
+        var dataArr = [quotaData.totalPrice,quotaData.totalCount,quotaData.bikeCount,quotaData.productCount];
+        $.fn.quotaData(dataArr);
+    }
+    //根据时间段查询
+    function selectDate(){
+        $(".date-select").eq(0).children(".input-group-btn").children(".btn").click(function (){
+            filter.beginDate = $.fn.getUserDateArea($("#dateInput1"),1);
+            filter.endDate = $.fn.getUserDateArea($("#dateInput1"),0);
+            getChartsData(filter);
+        });
+        //时间2选择
+        $(".date-select").eq(1).children(".input-group-btn").children(".btn").click(function (){
+            tableFilter.beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
+            tableFilter.endDate = $.fn.getUserDateArea($("#dateInput2"),0);
+            tableFilter.pageNo = 1;
+            getTableData(tableFilter);
+        });
     }
     //拆分数据
     function setChartsData(){
-        console.log(chartsData);
         defaultData();
         var legend = [];
         var xData = [];
         var serData = [];
         for(var i = 0; i < chartsData.data.length;i++){
-            legend.push(chartsData.data[i].fromName);
+            legend.push(chartsData.data[i].codeName);
             var temp = {
-                name: chartsData.data[i].fromName,
+                name: chartsData.data[i].codeName,
                 type: "line",
                 smooth: true,
                 //stack: '总量',
@@ -413,17 +311,17 @@ $(function (){
         tempCountData.series = serData;
         showCharts();
     }
-    setChartsData();
+    // setChartsData();
     //设置表格数据
     function setTableData(){
         var tableList = [];
         for(var i = 0; i < tableData.data.length;i++){
             var temp = $("<tr>\n" +
-                "<td>"+tableData.data[i].brand+"</td>" +
-                "<td>"+tableData.data[i].addActivation+"</td>" +
-                "<td>"+tableData.data[i].totalActivation+"</td>" +
-                "<td>"+tableData.data[i].addBind+"</td>" +
-                "<td>"+tableData.data[i].totalBind+"</td>" +
+                "<td>"+tableData.data[i].codeName+"</td>" +
+                "<td>"+tableData.data[i].totalPrice+"</td>" +
+                "<td>"+tableData.data[i].totalCount+"</td>" +
+                "<td>"+tableData.data[i].bikeCount+"</td>" +
+                "<td>"+tableData.data[i].productCount+"</td>" +
                 "</tr>");
             tableList.push(temp);
         }
@@ -431,13 +329,14 @@ $(function (){
         $.fn.cutPage(Math.ceil(tableData.count/30),tableFilter.pageNo);
         $(".page-selection").show();
     }
-    setTableData();
+    //选择分类
     function selectType(){
         //选择数据分类
         $("#vipClass").children().each(function (index){
             $("#vipClass").children().eq(index).click(function (){
                 $(this).addClass("btn-primary").removeClass("btn-default").siblings().removeClass("btn-primary").addClass("btn-default");
-                filter.type = index+1;
+                filter.countType = index+1;
+                tempCountData.title.text = titleArr[index];
                 getChartsData(filter);
             });
         });
@@ -445,33 +344,26 @@ $(function (){
         $("#dateClass").children().each(function (index){
             $("#dateClass").children().eq(index).click(function (){
                 $(this).addClass("btn-primary").removeClass("btn-default").siblings().removeClass("btn-primary").addClass("btn-default");
-                filter.dateType = index+1;
+                filter.type = index+1;
                 getChartsData(filter);
             });
         });
     }
-    function getFilterData(){
-        $.getJSON("http://localhost:4396/giantData-v2/data.min.json", function (res) {
-            console.log(res)
-            var aa = new setBrandData("#treeBox",$.fn.getRoleData(res,window.roleInfo.roleCode,window.roleInfo.role));
-            $("#search-btn1").bind("click",function (){
-                aa.showMenu(this,1);
-                filter.brandType = 1;
-                sendType = 1;
-            });
-            $("#search-btn2").bind("click",function (){
-                aa.showMenu(this,2);
-                filter.brandType = 2;
-                sendType = 1;
-            });
-            $("#search-btn3").bind("click",function (){
-                aa.showMenu(this,3);
-                filter.brandType = 3;
-                sendType = 1;
-            });
+    function setFilterData(res){
+        var aa = new setAreaData("#treeBox",$.fn.getRoleData(res,window.roleInfo.roleCode,window.roleInfo.role));
+        $("#search-btn1").bind("click",function (){
+            aa.showMenu(this,1);
+            filter.areaType = 1;
+        });
+        $("#search-btn2").bind("click",function (){
+            aa.showMenu(this,2);
+            filter.areaType = 2;
+        });
+        $("#search-btn3").bind("click",function (){
+            aa.showMenu(this,3);
+            filter.areaType = 3;
         });
     }
-    getFilterData();
     //筛选品牌之后
     function selectFilter(){
         $("#filterBtn").click(function () {
@@ -482,18 +374,42 @@ $(function (){
                 filterList.push(nodes[i].dictCode);
             }
             $("#menuContent").slideUp("fast");
-            if(sendType == 1){
-                filter.brandList = filterList;
-                console.log(filter);
-                //getChartsData(filter);
-            }else{
-                tableFilter.brandList = filterList;
-                console.log(tableFilter);
-                //getChartsData(tableFilter);
-            }
+            filter.areaList = filterList.join();
+            getChartsData(filter);
         });
     }
-    selectFilter();
+    //下载表格
+    function downloadTable(){
+        $("#download").click(function (){
+            var beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
+            var endDate = $.fn.getUserDateArea($("#dateInput2"),0);
+            window.location.href = window.roleInfo.url2+
+                "giantService/report/storeSale/exportStoreDatas?"+
+                "role="+window.roleInfo.role+
+                "&roleCode="+window.roleInfo.roleCode+
+                "&beginDate="+beginDate+
+                "&endDate="+endDate+
+                "&areaType="+tableFilter.areaType
+        });
+    };
+    //获取表格筛选数据
+    function getTableFilterData(){
+        $("#search-btn4").click(function (){
+            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+            tableFilter.areaType = "1";
+            getTableData(tableFilter);
+        });
+        $("#search-btn5").click(function (){
+            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+            tableFilter.areaType = "2";
+            getTableData(tableFilter);
+        });
+        $("#search-btn6").click(function (){
+            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+            tableFilter.areaType = "3";
+            getTableData(tableFilter);
+        });
+    }
     //初始化数据
     function defaultData(){
         tempCountData.xAxis.data = [];
@@ -514,7 +430,10 @@ $(function (){
     //初始化页面
     function initFun(){
         selectType();
+        selectFilter();
+        getTableFilterData();
+        selectDate();
+        downloadTable();
     }
     initFun();
-    $(".loading-wrapper").hide()
 });

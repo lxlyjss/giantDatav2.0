@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title>giant数据|QRcode数据</title>
+    <title>giant数据|门店销量</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
     <link rel="stylesheet" href="css/zTreeStyle.css">
@@ -31,11 +31,8 @@
             var dateOption = {
                 //最大时间
                 maxDate: moment().subtract(1, 'days'),
-                startDate: moment().subtract(90, 'days'),
+                startDate: moment().subtract(30, 'days'),
                 endDate: moment().subtract(1, 'days'),
-                dateLimit:{
-                    month:"3"
-                },
                 locale: {
                     format: 'YYYY/MM/DD'
                 },
@@ -46,14 +43,17 @@
                 }
             };
             //时间选择
-            $('#dateInput1').daterangepicker(dateOption);
+            $('#dateInput1').daterangepicker($.extend({},dateOption,{dateLimit:{month:"3"}}));
             $('#dateInput2').daterangepicker(dateOption);
         })
     </script>
     <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body class="vip-change">
-<div class="loading-wrapper" style="display: block;">
+<div class="loading-wrapper" id="loading1" style="display: block;">
+    <div class="spinner"></div>
+</div>
+<div class="loading-wrapper" id="loading2" style="display: block;">
     <div class="spinner"></div>
 </div>
 <!--头部 开始-->
@@ -227,8 +227,10 @@
                     <div class="row search-content">
                         <div class="col-md-8 col-sm-8">
                             <div class="btn-group" id="vipClass">
-                                <div class="btn btn-primary">激活数量</div>
-                                <div class="btn btn-default">绑定数量</div>
+                                <div class="btn btn-primary">销售总金额</div>
+                                <div class="btn btn-default">销售产品总数</div>
+                                <div class="btn btn-default">整车销量</div>
+                                <div class="btn btn-default">商品销量</div>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
@@ -285,13 +287,13 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-8">
                         <div class="btn-group">
-                            <button class="btn btn-primary" id="search-btn4">SBU</button>
+                            <button class="btn btn-default btn-primary" id="search-btn4">SBU</button>
                             <button class="btn btn-default" id="search-btn5">经销商</button>
                             <button class="btn btn-default" id="search-btn6">门店</button>
                         </div>
                     </div>
                     <div class="col-md-1 col-sm-1 col-xs-4 sm-marginTop">
-                        <div class="btn btn-success">下载表格</div>
+                        <div class="btn btn-success" id="download">下载表格</div>
                     </div>
                 </div>
                 <div class="table-responsive lx-container">
@@ -300,20 +302,20 @@
                         <tr>
                             <td>SBU</td>
                             <td>销售总金额</td>
-                            <td>销售产品数量</td>
-                            <td>整车销售数量</td>
-                            <td>产品销售数量</td>
+                            <td>销售产品总数</td>
+                            <td>整车销量</td>
+                            <td>商品销量</td>
                         </tr>
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
-                    <div class="col-md-8 page-container page-selection" style="display: none">
+                    <div class="col-md-8 col-sm-8 page-container page-selection" style="display: none">
                         <nav aria-label="Page navigation" style="text-align: center;">
                             <ul class="pagination"></ul>
                         </nav>
                     </div>
-                    <div class="col-md-4 page-selection" style="display: none">
+                    <div class="col-md-4 col-sm-4 page-selection" style="display: none">
                         <div class="input-group page-select">
                             <span class="input-group-addon">跳转页</span>
                             <input type="number" class="form-control" id="dateInput"/>

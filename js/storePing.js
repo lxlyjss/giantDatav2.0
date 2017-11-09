@@ -16,7 +16,7 @@ $(function (){
             }
         },
         title:{
-            text:"捷安特会员数量变化趋势图",
+            text:"",
             left:"center"
         },
         //提示框 鼠标移入图表上面的提示信息框
@@ -79,6 +79,9 @@ $(function (){
         series: []
     };
     var tempCountData = {
+        title:{
+            text:"捷安特门店总评价趋势图"
+        },
         legend: {
             data: []
         },
@@ -93,112 +96,12 @@ $(function (){
         }]
     };
     var quotaData,chartsData,tableData,filterData;//存储总数据
-    tableData = {
-        result:1,
-        count:"5454",
-        data:[
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                totalActivation:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            }
-        ]
-    };
-    quotaData = {
-        Evaluation: {//门店总评价
-            count: 8384,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        },
-        EvaluationCount:{//评价次数
-            count: 8754,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        },
-        Service:{//服务态度评价
-            count: 8774,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        },
-        Mechanic:{//技师水平评价
-            count: 8384,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        }
-    };
-    chartsData = {
-        result: 1,
-        data:[
-            {
-                fromName:"app",
-                data:[
-                    {date:"20171012",count:"525"},
-                    {date:"20171013",count:"155"},
-                    {date:"20171014",count:"553"},
-                    {date:"20171015",count:"55"}
-                ]
-            },
-            {
-                fromName:"web",
-                data:[
-                    {date:"20171012",count:"611"},
-                    {date:"20171013",count:"358"},
-                    {date:"20171014",count:"455"},
-                    {date:"20171015",count:"755"}
-                ]
-            },
-            {
-                fromName:"club",
-                data:[
-                    {date:"20171012",count:"155"},
-                    {date:"20171013",count:"955"},
-                    {date:"20171014",count:"255"},
-                    {date:"20171015",count:"455"}
-                ]
-            }
-        ]
-    };
+    var titleArr = [
+        "捷安特门店总评价趋势图",
+        "捷安特评价次数趋势图",
+        "捷安特服务态度评价趋势图",
+        "捷安特技师水平评价趋势图"
+    ];
     //获取默认时间
     function getDateArea(type){
         var beginDate = moment().subtract(30,'days').format("YYYY-MM-DD");
@@ -209,100 +112,117 @@ $(function (){
             return endDate;
         }
     }
-    var sendType = 1;//1为获取图表数据,2为获取表格数据;
     var filter = {
         role:window.roleInfo.role,
         roleCode:window.roleInfo.roleCode,
         beginDate:getDateArea(1),
         endDate: getDateArea(0),
-        brandList:[],//型号列表
-        brandType:"1",//产品类型1,品牌,2车系,3车型
-        type:"1",//会员类型
-        dateType:"1"//时间类型
+        areaList: window.roleInfo.roleCode,//区域列表
+        areaType:"1",//类型1,sbu,2经销商,3门店
+        countType:"1",//类型
+        type:"1"//时间类型
     };
     var tableFilter = {
         role: window.roleInfo.role,
         roleCode: window.roleInfo.roleCode,
         beginDate: getDateArea(1),
         endDate: getDateArea(0),
-        brandType:"1",//产品类型1,品牌,2车系,3车型
+        areaType:"1",//类型1,sbu,2经销商,3门店
         pageNo:"1",
         pageSize:"30"
     };
     //请求图表数据
     function getChartsData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
-            url: window.roleInfo.url2+"giantService/report/userData/userLines",
+            url: window.roleInfo.url2+"giantService/report/storeServe/storeLines",
             data: sendData
         }).done(function (res){
+            console.log(res);
             console.log(filter)
             if(res.result == 1){
                 dfd.resolve(res);
                 chartsData = res;
-                console.log(chartsData)
                 setChartsData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //请求指标数据
     function getQuotaData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
-            url:window.roleInfo.url2+"giantService/report/userData/keyIndex",
+            url:window.roleInfo.url2+"giantService/report/storeServe/keyIndex",
             data: sendData
         }).done(function (res){
-            console.log(res)
+            console.log(res);
+            console.log(filter)
             if(res.result == 1){
                 dfd.resolve(res);
                 quotaData = res;
                 setQuotaData();
             }else{
-                alert("获取接口失败!");
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //请求平台来源数据
     function getFilterData(){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
-            url: window.roleInfo.url1+"giantService/report/userData/selectCondition",
+            url: window.roleInfo.url1+"giantService/report/storeEva/conditionEva"
         }).done(function (res){
+            console.log(res);
+            console.log(filter)
             if(res.result == 1){
                 dfd.resolve(res);
                 filterData = res;
-                setFilterData();
+                setFilterData(res);
             }else{
-                alert("获取接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //请求表格数据
     function getTableData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
-            url:window.roleInfo.url2+"giantService/report/dataDraw/sex",
+            url:window.roleInfo.url2+"giantService/report/storeServe/storeDatas",
             data: sendData
         }).done(function (res){
+            console.log(res);
+            console.log(tableFilter);
             if(res.result == 1){
                 dfd.resolve(res);
+                tableData = res;
                 setTableData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
@@ -313,88 +233,30 @@ $(function (){
             getChartsData(filter),
             getTableData(tableFilter),
             getFilterData()
-        ).done(function (
-            res1,
-            res2,
-            res3
-        ){
-            quotaData = res1;
-            setQuotaData();
-        }).fail(function (res){
-            alert("获取不成功");
+        ).then(function (){
+            $("#loading1").hide();
+            $("#loading2").hide();
         });
     }
+    getData();
     //设置关键指标
     function setQuotaData() {
-        var quotaBox = $("#quotaBox").children("div");
-        function arrow(count) {
-            if (count > 0) {
-                return "<img src=\"img/arrow-up.png\" class=\"arrow-change\">"
-            } else if (count < 0) {
-                return "<img src=\"img/arrow-down.png\" class=\"arrow-change\">"
-            } else if (count == 0) {
-                return "";
-            }
-        }
-        function setData(ele, data) {
-            if (data != 0) {
-                ele.text(data * 100 + "%");
-            } else {
-                ele.text("0%");
-            }
-        }
-        function setArrow(ele, data) {
-            ele.html(data)
-        }
-        //qrcode激活
-        quotaBox.eq(0).children("p").eq(1).text(quotaData.QRactivation.count);
-        setData(quotaBox.eq(0).children("p").eq(2).children(".count"), quotaData.QRactivation.day);
-        setData(quotaBox.eq(0).children("p").eq(3).children(".count"), quotaData.QRactivation.week);
-        setData(quotaBox.eq(0).children("p").eq(4).children(".count"), quotaData.QRactivation.month);
-
-        setArrow(quotaBox.eq(0).children("p").eq(2).children(".arrow"), arrow(quotaData.QRactivation.day));
-        setArrow(quotaBox.eq(0).children("p").eq(3).children(".arrow"), arrow(quotaData.QRactivation.week));
-        setArrow(quotaBox.eq(0).children("p").eq(4).children(".arrow"), arrow(quotaData.QRactivation.month));
-        //累计激活
-        quotaBox.eq(1).children("p").eq(1).text(quotaData.totalActivation.count);
-        setData(quotaBox.eq(1).children("p").eq(2).children(".count"), quotaData.totalActivation.day);
-        setData(quotaBox.eq(1).children("p").eq(3).children(".count"), quotaData.totalActivation.week);
-        setData(quotaBox.eq(1).children("p").eq(4).children(".count"), quotaData.totalActivation.month);
-
-        setArrow(quotaBox.eq(1).children("p").eq(2).children(".arrow"), arrow(quotaData.totalActivation.day));
-        setArrow(quotaBox.eq(1).children("p").eq(3).children(".arrow"), arrow(quotaData.totalActivation.week));
-        setArrow(quotaBox.eq(1).children("p").eq(4).children(".arrow"), arrow(quotaData.totalActivation.month));
-        //qrcode绑定
-        quotaBox.eq(2).children("p").eq(1).text(quotaData.QrBindCount.count);
-        setData(quotaBox.eq(2).children("p").eq(2).children(".count"), quotaData.QrBindCount.day);
-        setData(quotaBox.eq(2).children("p").eq(3).children(".count"), quotaData.QrBindCount.week);
-        setData(quotaBox.eq(2).children("p").eq(4).children(".count"), quotaData.QrBindCount.month);
-
-        setArrow(quotaBox.eq(2).children("p").eq(2).children(".arrow"), arrow(quotaData.QrBindCount.day));
-        setArrow(quotaBox.eq(2).children("p").eq(3).children(".arrow"), arrow(quotaData.QrBindCount.week));
-        setArrow(quotaBox.eq(2).children("p").eq(4).children(".arrow"), arrow(quotaData.QrBindCount.month));
-        //累计绑定
-        quotaBox.eq(3).children("p").eq(1).text(quotaData.totalCount.count);
-        setData(quotaBox.eq(3).children("p").eq(2).children(".count"), quotaData.totalCount.day);
-        setData(quotaBox.eq(3).children("p").eq(3).children(".count"), quotaData.totalCount.week);
-        setData(quotaBox.eq(3).children("p").eq(4).children(".count"), quotaData.totalCount.month);
-
-        setArrow(quotaBox.eq(3).children("p").eq(2).children(".arrow"), arrow(quotaData.totalCount.day));
-        setArrow(quotaBox.eq(3).children("p").eq(3).children(".arrow"), arrow(quotaData.totalCount.week));
-        setArrow(quotaBox.eq(3).children("p").eq(4).children(".arrow"), arrow(quotaData.totalCount.month));
+        quotaData.serviceScore.count/=100;
+        quotaData.attitudeCount.count/=100;
+        quotaData.levelCount.count/=100;
+        var dataArr = [quotaData.serviceScore,quotaData.commentCount,quotaData.attitudeCount,quotaData.levelCount];
+        $.fn.quotaData(dataArr);
     }
-    setQuotaData();
     //拆分数据
     function setChartsData(){
-        console.log(chartsData);
         defaultData();
         var legend = [];
         var xData = [];
         var serData = [];
         for(var i = 0; i < chartsData.data.length;i++){
-            legend.push(chartsData.data[i].fromName);
+            legend.push(chartsData.data[i].codeName);
             var temp = {
-                name: chartsData.data[i].fromName,
+                name: chartsData.data[i].codeName,
                 type: "line",
                 smooth: true,
                 //stack: '总量',
@@ -404,7 +266,7 @@ $(function (){
                 if(i == 0){
                     xData.push(chartsData.data[i].data[j].date);
                 }
-                temp.data.push(chartsData.data[i].data[j].count);
+                temp.data.push(chartsData.data[i].data[j].count/100);
             }
             serData.push(temp);
         }
@@ -413,17 +275,16 @@ $(function (){
         tempCountData.series = serData;
         showCharts();
     }
-    setChartsData();
     //设置表格数据
     function setTableData(){
         var tableList = [];
         for(var i = 0; i < tableData.data.length;i++){
-            var temp = $("<tr>\n" +
-                "<td>"+tableData.data[i].brand+"</td>" +
-                "<td>"+tableData.data[i].addActivation+"</td>" +
-                "<td>"+tableData.data[i].totalActivation+"</td>" +
-                "<td>"+tableData.data[i].addBind+"</td>" +
-                "<td>"+tableData.data[i].totalBind+"</td>" +
+            var temp = $("<tr>" +
+                "<td>"+tableData.data[i].codeName+"</td>" +
+                "<td>"+tableData.data[i].totalScore/100+"</td>" +
+                "<td>"+tableData.data[i].totalCount+"</td>" +
+                "<td>"+tableData.data[i].serve/100+"</td>" +
+                "<td>"+tableData.data[i].grade/100+"</td>" +
                 "</tr>");
             tableList.push(temp);
         }
@@ -431,13 +292,53 @@ $(function (){
         $.fn.cutPage(Math.ceil(tableData.count/30),tableFilter.pageNo);
         $(".page-selection").show();
     }
-    setTableData();
+    //选页
+    window.selectPage = function (n){
+        if(n > 0 && n <= Math.ceil(tableData.count/30)) {
+            $.fn.cutPage(Math.ceil(tableData.count/30), n);
+            tableFilter.pageNo = n;
+            getTableData(tableFilter);
+        }else{
+            alert("没有更多了^_^");
+        }
+    };
+    //跳转页
+    $(".page-select .btn").click(function (){
+        var page = parseInt($(".page-select input[type=number]").val());
+        var reg = /([1-9]\d+)|[1-9]/;
+        if(reg.test(page) && page > 0){
+            if(page > Math.ceil(tableData.count/30)){
+                alert("输入的页数超过了最大页数!请重新输入!");
+            }else{
+                tableFilter.pageNo = page;
+                getTableData(tableFilter);
+            }
+        }else{
+            alert("请输入大于0的正整数!");
+        }
+    });
+    //下载表格
+    function downloadTable(){
+        $("#download").click(function (){
+            var beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
+            var endDate = $.fn.getUserDateArea($("#dateInput2"),0);
+            window.location.href = window.roleInfo.url2+
+                "giantService/report/storeServe/exportStoreDatas?"+
+                "role="+window.roleInfo.role+
+                "&roleCode="+window.roleInfo.roleCode+
+                "&beginDate="+beginDate+
+                "&endDate="+endDate+
+                "&areaType="+tableFilter.areaType
+        });
+    };
+    //选择分类
     function selectType(){
         //选择数据分类
         $("#vipClass").children().each(function (index){
             $("#vipClass").children().eq(index).click(function (){
                 $(this).addClass("btn-primary").removeClass("btn-default").siblings().removeClass("btn-primary").addClass("btn-default");
                 filter.type = index+1;
+                tempCountData.title.text = titleArr[index];
                 getChartsData(filter);
             });
         });
@@ -445,33 +346,63 @@ $(function (){
         $("#dateClass").children().each(function (index){
             $("#dateClass").children().eq(index).click(function (){
                 $(this).addClass("btn-primary").removeClass("btn-default").siblings().removeClass("btn-primary").addClass("btn-default");
-                filter.dateType = index+1;
+                filter.type = index+1;
                 getChartsData(filter);
             });
         });
     }
-    function getFilterData(){
-        $.getJSON("http://localhost:4396/giantData-v2/data.min.json", function (res) {
-            console.log(res)
-            var aa = new setBrandData("#treeBox",$.fn.getRoleData(res,window.roleInfo.roleCode,window.roleInfo.role));
-            $("#search-btn1").bind("click",function (){
-                aa.showMenu(this,1);
-                filter.brandType = 1;
-                sendType = 1;
-            });
-            $("#search-btn2").bind("click",function (){
-                aa.showMenu(this,2);
-                filter.brandType = 2;
-                sendType = 1;
-            });
-            $("#search-btn3").bind("click",function (){
-                aa.showMenu(this,3);
-                filter.brandType = 3;
-                sendType = 1;
-            });
+    //根据时间段查询
+    function selectDate(){
+        $(".date-select").eq(0).children(".input-group-btn").children(".btn").click(function (){
+            filter.beginDate = $.fn.getUserDateArea($("#dateInput1"),1);
+            filter.endDate = $.fn.getUserDateArea($("#dateInput1"),0);
+            getChartsData(filter);
+        });
+        //时间2选择
+        $(".date-select").eq(1).children(".input-group-btn").children(".btn").click(function (){
+            tableFilter.beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
+            tableFilter.endDate = $.fn.getUserDateArea($("#dateInput2"),0);
+            tableFilter.pageNo = 1;
+            getTableData(tableFilter);
         });
     }
-    getFilterData();
+    //获取筛选条件
+    function setFilterData(res){
+        var aa = new setAreaData("#treeBox",$.fn.getRoleData(res,window.roleInfo.roleCode,window.roleInfo.role));
+        $("#search-btn1").bind("click",function (){
+            aa.showMenu(this,1);
+            filter.areaType = 1;
+        });
+        $("#search-btn2").bind("click",function (){
+            aa.showMenu(this,2);
+            filter.areaType = 2;
+        });
+        $("#search-btn3").bind("click",function (){
+            aa.showMenu(this,3);
+            filter.areaType = 3;
+        });
+    }
+    //获取表格筛选数据
+    function getTableFilterData(){
+        $("#search-btn4").click(function (){
+            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+            tableFilter.areaType = "1";
+            tableFilter.pageNo = 1;
+            getTableData(tableFilter);
+        });
+        $("#search-btn5").click(function (){
+            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+            tableFilter.areaType = "2";
+            tableFilter.pageNo = 1;
+            getTableData(tableFilter);
+        });
+        $("#search-btn6").click(function (){
+            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+            tableFilter.areaType = "3";
+            tableFilter.pageNo = 1;
+            getTableData(tableFilter);
+        });
+    }
     //筛选品牌之后
     function selectFilter(){
         $("#filterBtn").click(function () {
@@ -479,21 +410,13 @@ $(function (){
                 nodes = zTree.getCheckedNodes(true),
                 filterList = [];
             for (var i = 0; i < nodes.length; i++) {
-                filterList.push(nodes[i].dictCode);
+                filterList.push(nodes[i].code);
             }
             $("#menuContent").slideUp("fast");
-            if(sendType == 1){
-                filter.brandList = filterList;
-                console.log(filter);
-                //getChartsData(filter);
-            }else{
-                tableFilter.brandList = filterList;
-                console.log(tableFilter);
-                //getChartsData(tableFilter);
-            }
+            filter.areaList = filterList.join();
+            getChartsData(filter);
         });
     }
-    selectFilter();
     //初始化数据
     function defaultData(){
         tempCountData.xAxis.data = [];
@@ -514,7 +437,10 @@ $(function (){
     //初始化页面
     function initFun(){
         selectType();
+        selectDate();
+        selectFilter();
+        getTableFilterData();
+        downloadTable();
     }
     initFun();
-    $(".loading-wrapper").hide()
 });

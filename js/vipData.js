@@ -87,43 +87,6 @@ $(function (){
         series: []
     };
     var chartsData,quotaData,filterData,tableData;//存储总数据
-    quotaData = {
-        VipAddCount: {//新增会员
-            count: 8714,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        },
-        VipLostCount:{//流失会员
-            count: 8284,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        },
-        VipTotalCount:{//累计会员
-            count: 8384,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        }
-    };
-    filterData = {
-        // applicationMap:[
-        //     {id: 1, count: 12587, applicationName: "捷安特骑行app"},
-        //     {id: 2, count: 0, applicationName: "RxPOS"},
-        //     {id: 3, count: 0, applicationName: "俱乐部"},
-        //     {id: 4, count: 0, applicationName: "自主电商"},
-        //     {id: 5, count: 0, applicationName: "业余联赛"},
-        //     {id: 6, count: 0, applicationName: "嘉年华"},
-        //     {id: 7, count: 0, applicationName: "莫曼顿官网"},
-        //     {id: 8, count: 0, applicationName: "Liv官网"},
-        //     {id: 9, count: 0, applicationName: "莫曼顿APP"},
-        //     {id: 10, count: 0, applicationName: "微信"},
-        //     {id: 11, count: 9496, applicationName: "捷安特官网"},
-        //     {id: 12, count: 186927, applicationName: "QRcode"},
-        //     {id: 13, count: 10, applicationName: "捷安特旅行社"}
-        // ]
-    };
     //获取默认时间
     function getDateArea(type){
         var beginDate = moment().subtract(30,'days').format("YYYY-MM-DD");
@@ -153,32 +116,36 @@ $(function (){
     };
     //请求图表数据
     function getChartsData(sendData){
+        $("#loading2").hide();
         var dfd = $.Deferred();
         $.ajax({
             url: window.roleInfo.url2+"giantService/report/userData/userLines",
             data: sendData
         }).done(function (res){
-            console.log(filter)
+            console.log(res)
             if(res.result == 1){
                 dfd.resolve(res);
                 chartsData = res;
                 setChartsData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("获取数据失败!"+res.msg);
             }
         }).fail(function (){
-            alert("失败!")
+            dfd.reject();
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
-    getChartsData(filter);
     //请求指标数据
     function getQuotaData(sendData){
+        $("#loading2").hide();
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url2+"giantService/report/userData/keyIndex",
             data: sendData
         }).done(function (res){
+            console.log(res)
             if(res.result == 1){
                 dfd.resolve(res);
                 quotaData = res;
@@ -187,17 +154,20 @@ $(function (){
                 alert("获取接口失败!");
             }
         }).fail(function (){
-            alert("失败!")
+            dfd.reject();
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
-    getQuotaData(filter)
     //请求平台来源数据
     function getFilterData(){
+        $("#loading2").hide();
         var dfd = $.Deferred();
         $.ajax({
             url: window.roleInfo.url1+"giantService/report/userData/selectCondition",
         }).done(function (res){
+            console.log(res)
             if(res.result == 1){
                 dfd.resolve(res);
                 filterData = res;
@@ -206,13 +176,15 @@ $(function (){
                 alert("获取性别接口失败!"+res.msg);
             }
         }).fail(function (){
-            alert("失败!")
+            dfd.reject();
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
-    //getFilterData();
     //请求表格数据
     function getTableData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url2+"giantService/report/userData/userDatas",
@@ -224,30 +196,25 @@ $(function (){
                 tableData = res
                 setTableData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("获取接口失败!"+res.msg);
             }
         }).fail(function (){
-            alert("失败!")
+            dfd.reject();
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
-    getTableData(filter);
     //所有数据都成功之后的回调函数
     function getData(){
         $.when(
             getQuotaData(filter),
             getChartsData(filter),
-            getTableData(tableFilter),
-            getFilterData()
-        ).done(function (
-            res1,
-            res2,
-            res3
-        ){
-            quotaData = res1;
-            setQuotaData();
-        }).fail(function (res){
-            alert("获取不成功");
+            getTableData(tableFilter)
+            // getFilterData()
+        ).then(function (){
+            $("#loading1").hide();
+            $("#loading2").hide();
         });
     }
     //下载表格
@@ -264,66 +231,26 @@ $(function (){
         });
     };
     downloadTable();
-    //设置关键指标
+    //设置指标数据
     function setQuotaData(){
-        var vipBoxChild = $("#vipData").children("div");
-        function arrow(count){
-            if(count>0){
-                return "<img src=\"img/arrow-up.png\" class=\"arrow-change\">"
-            }else if(count < 0){
-                return "<img src=\"img/arrow-down.png\" class=\"arrow-change\">"
-            }else if(count == 0){
-                return "";
-            }
-        }
-        function setData(ele,data){
-            if(data != 0){
-                ele.text(data+"%");
-            }else{
-                ele.text("0%");
-            }
-        }
-        function setArrow(ele,data){
-            ele.html(data)
-        }
-        //新增会员
-        vipBoxChild.eq(0).children("p").eq(1).text(quotaData.VipAddCount.count);
-        setData(vipBoxChild.eq(0).children("p").eq(2).children(".count"),quotaData.VipAddCount.day);
-        setData(vipBoxChild.eq(0).children("p").eq(3).children(".count"),quotaData.VipAddCount.week);
-        setData(vipBoxChild.eq(0).children("p").eq(4).children(".count"),quotaData.VipAddCount.month);
-
-        setArrow(vipBoxChild.eq(0).children("p").eq(2).children(".arrow"),arrow(quotaData.VipAddCount.day));
-        setArrow(vipBoxChild.eq(0).children("p").eq(3).children(".arrow"),arrow(quotaData.VipAddCount.week));
-        setArrow(vipBoxChild.eq(0).children("p").eq(4).children(".arrow"),arrow(quotaData.VipAddCount.month));
-        //流失会员
-        vipBoxChild.eq(1).children("p").eq(1).text(quotaData.VipLostCount.count);
-        setData(vipBoxChild.eq(1).children("p").eq(2).children(".count"),quotaData.VipLostCount.day);
-        setData(vipBoxChild.eq(1).children("p").eq(3).children(".count"),quotaData.VipLostCount.week);
-        setData(vipBoxChild.eq(1).children("p").eq(4).children(".count"),quotaData.VipLostCount.month);
-
-        setArrow(vipBoxChild.eq(1).children("p").eq(2).children(".arrow"),arrow(quotaData.VipLostCount.day));
-        setArrow(vipBoxChild.eq(1).children("p").eq(3).children(".arrow"),arrow(quotaData.VipLostCount.week));
-        setArrow(vipBoxChild.eq(1).children("p").eq(4).children(".arrow"),arrow(quotaData.VipLostCount.month));
-        //累计会员
-        vipBoxChild.eq(2).children("p").eq(1).text(quotaData.VipTotalCount.count);
-        setData(vipBoxChild.eq(2).children("p").eq(2).children(".count"),quotaData.VipTotalCount.day);
-        setData(vipBoxChild.eq(2).children("p").eq(3).children(".count"),quotaData.VipTotalCount.week);
-        setData(vipBoxChild.eq(2).children("p").eq(4).children(".count"),quotaData.VipTotalCount.month);
-
-        setArrow(vipBoxChild.eq(2).children("p").eq(2).children(".arrow"),arrow(quotaData.VipTotalCount.day));
-        setArrow(vipBoxChild.eq(2).children("p").eq(3).children(".arrow"),arrow(quotaData.VipTotalCount.week));
-        setArrow(vipBoxChild.eq(2).children("p").eq(4).children(".arrow"),arrow(quotaData.VipTotalCount.month));
+        var dataArr = [quotaData.VipAddCount,quotaData.VipLostCount,quotaData.VipTotalCount];
+        $.fn.quotaData(dataArr);
     }
-    //选页
-    window.selectPage = function (n){
-        if(n > 0 && n <= Math.ceil(tableData.totalCount/30)) {
-            $.fn.cutPage(Math.ceil(tableData.totalCount/30), n);
-            tableFilter.pageNo = n;
-            getTableData(tableFilter);
+    //跳转页
+    $(".page-select .btn").click(function (){
+        var page = parseInt($(".page-select input[type=number]").val());
+        var reg = /([1-9]\d+)|[1-9]/;
+        if(reg.test(page) && page > 0){
+            if(page > Math.ceil(tableData.count/30)){
+                alert("输入的页数超过了最大页数!请重新输入!");
+            }else{
+                tableFilter.pageNo = page;
+                getTableData(tableFilter);
+            }
         }else{
-            alert("没有更多了^_^");
+            alert("请输入大于0的正整数!");
         }
-    };
+    });
     //设置表格数据
     function setTableData(){
         console.log(tableData)
@@ -338,10 +265,9 @@ $(function (){
             tableList.push(temp);
         }
         $(".lx-container table tbody").empty().append(tableList);
-        $.fn.cutPage(Math.ceil(tableData.count/10),1);
+        $.fn.cutPage(Math.ceil(tableData.count/30),tableFilter.pageNo);
         $(".page-selection").show();
     }
-    //setTableData();
     //打开关闭平台来源选择框
     function clickPingTai(){
         $("#vipFrom").click(function (e){
@@ -363,7 +289,6 @@ $(function (){
             $(".search-box1").hide();
         });
     }
-    clickPingTai();
     function selectType(){
         //选择会员分类
         $("#vipClass").children().each(function (index){
@@ -461,7 +386,6 @@ $(function (){
         $("#fromBtn").click(function (){
             filter.froms = fromFilter.join();
             $(".search-box1").fadeOut();
-            //alert(65)
             getChartsData(filter);
         });
     }
@@ -478,11 +402,10 @@ $(function (){
     });
     //初始化页面
     function initFun(){
-        //getData();
+        getData();
         clickPingTai();
         selectType();
         dateSelect();
     }
     initFun();
-    $(".loading-wrapper").hide();
 });

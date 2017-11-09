@@ -187,8 +187,8 @@ $(function (){
     var filter = {
         role:window.roleInfo.role,
         roleCode:window.roleInfo.roleCode,
-        beginDate:"2017-08-02",
-        endDate:"2017-10-19",
+        beginDate:getDateArea(1),
+        endDate:getDateArea(0),
         type:"1",//会员数据类型
         dateType:"1"//时间类型
     };
@@ -197,11 +197,12 @@ $(function (){
         roleCode:window.roleInfo.roleCode,
         pageNo:"1",
         pageSize:"30",
-        beginDate:"2017-08-02",
-        endDate:"2017-10-19"
+        beginDate:getDateArea(1),
+        endDate:getDateArea(0)
     };
     //请求指标数据
     function getQuotaData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url1+"giantService/report/consumptionTarget",
@@ -210,21 +211,25 @@ $(function (){
             console.log(res)
             if(res.result == 1){
                 dfd.resolve(res);
+                quotaData = res;
+                setQuotaData();
             }else{
                 alert("获取性别接口失败!"+res.msg);
             }
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //请求柱状图数据
     function getChartsData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url1+"giantService/report/consumption",
             data: sendData
         }).done(function (res){
             console.log(res)
-            console.log(filter)
             if(res.result == 1){
                 dfd.resolve(res);
                 chartsData = res;
@@ -233,11 +238,14 @@ $(function (){
             }else{
                 alert("获取接口失败!");
             }
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //请求表格数据
     function getTableData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url1+"giantService/report/consumptionList",
@@ -251,6 +259,8 @@ $(function (){
             }else{
                 alert("获取性别接口失败!"+res.msg);
             }
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
@@ -260,15 +270,9 @@ $(function (){
             getQuotaData(filter),
             getChartsData(filter),
             getTableData(tableFilter)
-        ).done(function (
-            res1,
-            res2,
-            res3
-        ){
-            quotaData = res1;
-            setQuotaData();
-        }).fail(function (res){
-            alert("获取不成功");
+        ).then(function (){
+            $("#loading1").hide();
+            $("#loading2").hide();
         });
     }
     //设置表格数据
@@ -494,5 +498,4 @@ $(function (){
         dateSelect();
     }
     initFun();
-    $(".loading-wrapper").hide();
 });

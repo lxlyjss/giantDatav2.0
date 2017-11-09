@@ -29,11 +29,8 @@
             var dateOption = {
                 //最大时间
                 maxDate: moment().subtract(1, 'days'),
-                startDate: moment().subtract(90, 'days'),
+                startDate: moment().subtract(30, 'days'),
                 endDate: moment().subtract(1, 'days'),
-                dateLimit:{
-                    month:"3"
-                },
                 locale: {
                     format: 'YYYY/MM/DD'
                 },
@@ -44,14 +41,17 @@
                 }
             };
             //时间选择
-            $('#dateInput1').daterangepicker(dateOption);
+            $('#dateInput1').daterangepicker($.extend({},dateOption,{dateLimit:{month:"3"}}));
             $('#dateInput2').daterangepicker(dateOption);
         })
     </script>
     <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body class="vip-change">
-<div class="loading-wrapper" style="display: block;">
+<div class="loading-wrapper" id="loading1" style="display: block;">
+    <div class="spinner"></div>
+</div>
+<div class="loading-wrapper" id="loading2" style="display: block;">
     <div class="spinner"></div>
 </div>
 <!--头部 开始-->
@@ -211,7 +211,7 @@
             <!--数据表-->
             <div class="row data-charts block">
                 <div class="block-title">
-                    <p>会员数据</p>
+                    <p>产品数据</p>
                 </div>
                 <div class="col-md-12">
                     <!--查询条件-->
@@ -226,8 +226,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="btn-group" id="dateClass">
                                 <div class="btn btn-primary">日</div>
+                                <div class="btn btn-default">周</div>
                                 <div class="btn btn-default">月</div>
-                                <div class="btn btn-default">年</div>
                             </div>
                         </div>
                     </div>
@@ -284,7 +284,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2 sm-marginTop">
-                        <div class="btn btn-success">下载表格</div>
+                        <div class="btn btn-success" id="download">下载表格</div>
                     </div>
                 </div>
                 <div class="table-responsive lx-container">
@@ -301,18 +301,18 @@
                         <tbody></tbody>
                     </table>
                 </div>
-                <div class="col-md-8 page-container page-selection" style="display: none">
+                <div class="col-md-8 col-sm-8 page-container page-selection" style="display: none">
                     <nav aria-label="Page navigation" style="text-align: center;">
                         <ul class="pagination"></ul>
                     </nav>
                 </div>
-                <div class="col-md-4 page-selection" style="display: none">
+                <div class="col-md-4 col-sm-4 page-selection" style="display: none">
                     <div class="input-group page-select">
                         <span class="input-group-addon">跳转页</span>
                         <input type="number" class="form-control" id="dateInput"/>
                         <span class="input-group-btn">
-							        <button class="btn btn-primary" type="button">查询</button>
-							    </span>
+                            <button class="btn btn-primary" type="button">查询</button>
+                        </span>
                     </div>
                 </div>
             </div>

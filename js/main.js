@@ -13,10 +13,10 @@ $(function (){
         userId:"",//用户id
         roleImg:"",//用户头像
         token:"",//用户登录的token
-        role:"admin",//用户角色
-        roleCode:"",//角色code
-        //url1:"http://service.giant.com.cn:8080",
-        //url2:"http://service.giant.com.cn:8080",
+        role:"sbu",//用户角色
+        roleCode:"GCC",//角色code
+        // url1:"http://service.giant.com.cn:8080/",
+        // url2:"http://service.giant.com.cn:8080/",
         url1:"http://192.168.9.13:8080/",
         url2:"http://192.168.9.21:8080/",
         showList:[]
@@ -34,44 +34,16 @@ $(function (){
                 async:false,
                 timeout:"20000",
                 success:function (data){
-                   /*  var data = {
-                        "_status":true,
-                        "_user":{
-                            "username":"本地测试号",
-                            "role":"admin",
-                            "role_code":"",
-                            "id":"721047",
-                            "userImg":"",
-                            "showList":[{
-                                "product":{
-                                    "productList": "1",
-                                    "productData": "1",
-                                    "areaData": "1"
-                                }
-                            },{
-                                "vip":{
-                                    "vipList": "1",
-                                    "vipFrom":"1",
-                                    "vipChange":"1"
-                                }
-                            },{
-                                "store":{
-                                    "serviceList": "1",
-                                    "tongluList":"1"
-                                }
-                            }]
-                        }
-                    }; */
                     if(data._status == true){//判断该用户已登录
-                       /*  window.roleInfo.role = data._user.role;//模拟数据
-                        window.roleInfo.roleCode = data._user.role_code;//模拟数据 */
+                        window.roleInfo.role = data._user.role;//模拟数据
+                        window.roleInfo.roleCode = data._user.role_code;//模拟数据
                         window.roleInfo.name = data._user.username;//用户名
                         window.roleInfo.userId = data._user.id;//用户id
                         window.roleInfo.roleImg = data._user.userImg;//用户头像
                         setRoleInfo(window.roleInfo.name,window.roleInfo.roleImg,window.roleInfo.role,window.roleInfo.showList);//设置用户显示
                     }else{//未登录则跳转捷安特官网
                         alert("请重新登录!");
-                        window.location.href = "http://www.giant.com.cn/front/loginout";
+                        //window.location.href = "http://www.giant.com.cn/front/loginout";
 					}
                 },
                 error:function (){
@@ -79,24 +51,24 @@ $(function (){
                 }
             });
         }else{
-            // setCookie("access_token","fa915d9d-dbdf-45cb-bd0a-bb74d7ba6ba1");
-         //   $.fn.setCookie("access_token","2553fbec-d7bf-45cd-ae93-533a9f4613db");//gck角色
+            $.fn.setCookie("access_token","2553fbec-d7bf-45cd-ae93-533a9f4613db");//gck角色
             //未获取到token
-            alert("请重新登录结案特官网!");
-            window.location.href = "http://www.giant.com.cn";
+            //alert("请重新登录结案特官网!");
+            //window.location.href = "http://www.giant.com.cn";
         }
         //设置用户显示
         function setRoleInfo(name,img,role,showList){
             if(img){
-                //右上角信息显示
-                $(".user-manage .user-content img").attr("src",img);
-                //左侧信息显示
-                $(".user-info .user-img-circle img").attr("src",img);
-            }else{
-                //右上角信息显示
-                $(".user-manage .user-content img").attr("src","img/touxiangbg.jpg");
-                //左侧信息显示
-                $(".user-info .user-img-circle img").attr("src","img/touxiangbg.jpg");
+                //右上角
+                $(".user-content .imgBox").css({
+                    "background":"url("+img+")",
+                    "backgroundSize":"100%"
+                });
+                //左上角信息显示
+                $(".user-img-circle .img-outside").css({
+                    "background":"url("+img+")",
+                    "backgroundSize":"100%"
+                });
             }
             //右上角名字
             name = name.length > 5 ? name.slice(0,5)+".." : name;
@@ -105,7 +77,7 @@ $(function (){
             switch (role){
                 case "admin":{
                     roleName = "总公司";
-                    setMenuList(showList);
+                    //setMenuList(showList);
                     break;
                 }
                 case "sbu":{
@@ -239,14 +211,6 @@ $(function (){
 	$(".close-btn").click(function (){
 		$("body").addClass("nav-sm").removeClass("nav-md");
 	});
-	//选页
-    $.fn.selectPage = function (p,n){
-        if(n > 0 && n <= allPage) {
-            cutPage(p, n);
-        }else{
-            alert("没有更多了^_^");
-        }
-    };
     //获取用户选择的时间
     $.fn.getUserDateArea = function (ele,type){
         var str = ele.val().split(" - ");
@@ -268,6 +232,34 @@ $(function (){
             $(".btn").eq(index).addClass("btn-sm");
         });
     }
+    //设置关键指标
+    $.fn.quotaData = function(dataArr) {
+        var quotaBox = $("#quotaBox").children("div");
+        function arrow(count) {
+            if (count > 0) {
+                return "<img src=\"img/arrow-up.png\" class=\"arrow-change\">"
+            } else if (count < 0) {
+                return "<img src=\"img/arrow-down.png\" class=\"arrow-change\">"
+            } else if (count == 0) {
+                return "";
+            }
+        }
+        function setData(ele, data) {
+            ele.text(data + "%");
+        }
+        function setArrow(ele, data) {
+            ele.html(data)
+        }
+        for(var i = 0; i < dataArr.length;i++){
+            quotaBox.eq(i).children("p").eq(1).text(dataArr[i].count);
+            setData(quotaBox.eq(i).children("p").eq(2).children(".count"), dataArr[i].day);
+            setData(quotaBox.eq(i).children("p").eq(3).children(".count"), dataArr[i].week);
+            setData(quotaBox.eq(i).children("p").eq(4).children(".count"), dataArr[i].month);
+            setArrow(quotaBox.eq(i).children("p").eq(2).children(".arrow"), arrow(dataArr[i].day));
+            setArrow(quotaBox.eq(i).children("p").eq(3).children(".arrow"), arrow(dataArr[i].week));
+            setArrow(quotaBox.eq(i).children("p").eq(4).children(".arrow"), arrow(dataArr[i].month));
+        }
+    };
     //分页
     $.fn.cutPage = function(p,n){
         //当页数小于5的时候
@@ -316,15 +308,16 @@ $(function (){
                 $(".page-up").eq(index).text("上一页");
             });
         }
-    }
+    };
     //根据角色拆分数据
     $.fn.getRoleData = function (data,code,role){
         var newData = null;
+        console.log(data);
         if(role == "admin"){
             newData = data;
         }else if(role == "sbu"){
             for(var i = 0; i < data.list.length;i++){
-                if(data.list[i].dictCode == code){
+                if(data.list[i].code == code){
                     newData = {
                         list:[]
                     };
@@ -334,12 +327,11 @@ $(function (){
         }else if(role == "dealer"){
             for(var i = 0; i < data.list.length;i++){
                 for(var j = 0;j < data.list[i].list.length;j++){
-                    if(data.list[i].list[j].dictCode == code){
-                        console.log(data)
+                    if(data.list[i].list[j].code == code){
                         newData = {
                             list:[{
-                                dictName:data.list[i].dictName,
-                                dictName:data.list[i].dictCode,
+                                name:data.list[i].name,
+                                code:data.list[i].code,
                                 list:[]
                             }]
                         };
@@ -352,6 +344,7 @@ $(function (){
         }else{
             alert("未知的角色!");
         }
+        console.log(newData);
         return newData;
     };
     //控制区域显示
@@ -373,5 +366,5 @@ $(function (){
             $("#search-btn3").remove();
             alert("未知的角色!")
         }
-    }
+    };
 });

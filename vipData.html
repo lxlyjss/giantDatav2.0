@@ -28,11 +28,8 @@
             var dateOption = {
                 //最大时间
                 maxDate: moment().subtract(1, 'days'),
-                startDate: moment().subtract(90, 'days'),
+                startDate: moment().subtract(30, 'days'),
                 endDate: moment().subtract(1, 'days'),
-                dateLimit:{
-                    month:"3"
-                },
                 locale: {
                     format: 'YYYY/MM/DD'
                 },
@@ -43,14 +40,17 @@
                 }
             };
             //时间选择
-            $('#dateInput1').daterangepicker(dateOption);
+            $('#dateInput1').daterangepicker($.extend({},dateOption,{dateLimit:{month:"3"}}));
             $('#dateInput2').daterangepicker(dateOption);
-        })
+        });
     </script>
     <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body class="vip-change">
-<div class="loading-wrapper" style="display: block;">
+<div class="loading-wrapper" id="loading1" style="display: block;">
+    <div class="spinner"></div>
+</div>
+<div class="loading-wrapper" id="loading2" style="display: block;">
     <div class="spinner"></div>
 </div>
 <!--头部 开始-->
@@ -181,7 +181,7 @@
             <div class="block-title">
                 <p>昨日关键指标</p>
             </div>
-            <div class="row block-content" id="vipData">
+            <div class="row block-content" id="quotaBox">
                 <div class="col-md-4 col-sm-4 col-xs-4 block-one">
                     <p class="header-title">新增会员</p>
                     <p class="header-title big-number"></p>
@@ -271,7 +271,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-4 sm-marginTop">
-                    <div class="btn btn-success">下载表格</div>
+                    <div class="btn btn-success" id="download">下载表格</div>
                 </div>
             </div>
             <div class="table-responsive lx-container">

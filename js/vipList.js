@@ -87,10 +87,10 @@ $(function (){
             }
             $("#qrBind table tbody").empty().append(qrBindList);
             var joinList = [];
-            for(var i = 0; i < data.joinClub.length;i++){
+            for(var i = 0; i < data.clubActivity.length;i++){
                 var temp = $("<tr>"+
-                    "<td>"+data.joinClub[i].clubName+"</td>"+
-                    "<td>"+data.joinClub[i].date+"</td>"+
+                    "<td>"+data.clubActivity[i].activity+"</td>"+
+                    "<td>"+data.clubActivity[i].time+"</td>"+
                     "</tr>");
                 joinList.push(temp);
             }
@@ -129,7 +129,7 @@ $(function (){
         role:window.roleInfo.role,
         roleCode:window.roleInfo.roleCode,
         page:"1",
-        pageNum: 10,
+        pageNum: 30,
         labelIds:"",//标签id
         applicationIds:"",//平台id
         searchName:""//搜索关键词
@@ -146,7 +146,7 @@ $(function (){
     };
     //请求筛选条件数据
     function getFilterData(){
-        $(".loading-wrapper").show();
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url1+"giantService/report/userData/selectCondition",
@@ -159,20 +159,23 @@ $(function (){
             }else{
                 alert("获取性别接口失败!"+res.msg);
             }
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //获取后台数据,页面初始化
     function getTableData(filter){
-        $(".loading-wrapper").show();
+        $("#loading2").show();
+        console.log(filter);
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url1+"giantService/report/userData/userList",
             data: filter
         }).done(function (res){
+            $("#filterBox").hide();
             console.log(res);
             console.log(filter);
-            $(".loading-wrapper").hide();
             if(res.result == 1){
                 dfd.resolve(res);
                 resultData = res;
@@ -180,24 +183,30 @@ $(function (){
             }else{
                 alert("获取性别接口失败!"+res.msg);
             }
+        }).complete(function (){
+            $("#loading2").hide();
+            //setDefaultFilter();
         });
         return dfd.promise();
+    }
+    //清空筛选条件
+    function setDefaultFilter(){
+        filter.searchName = "";
+        filter.applicationIds = [];
+        filter.labelIds = [];
     }
     //所有数据都成功之后的回调函数
     function getData(){
         $.when(
             getFilterData(),
             getTableData(filter)
-        ).done(function (){
-            $(".loading-wrapper").hide();
-            //alert("获取数据成功");
-        }).fail(function (res){
-            alert("获取不成功");
+        ).then(function (){
+            $("#loading1").hide();
+            $("#loading2").hide();
         });
     }
     //展示数据
     function setTableData() {
-        vipCount = resultData.vipCount;//获取总会员数
         $.fn.cutPage(Math.ceil(resultData.vipCount / 30),filter.page);
         $(".page-selection").show();
         var pageData = resultData.vipData;
@@ -216,15 +225,12 @@ $(function (){
                 "</tr>");
             tableList.push(tempTable);
         }
-        console.log(tableList)
         $(".vip-container table tbody").empty().append(tableList);
     }
     //设置条件筛选
     function setFilterData(){
         var fromList = filterData.applicationMap;
-        var tagList = filterData.labelData;
         var fromArr = [];
-        var tagArr = [];
         for(var i = 0; i < fromList.length;i++){
             var temp = $("<p><label for=\"from"+i+"\">" +
                 "<input type=\"checkbox\" data-code='"+fromList[i].id+"' id=\"from"+i+"\">" +
@@ -233,17 +239,22 @@ $(function (){
             fromArr.push(temp);
         }
         $(".from-box").empty().append(fromArr);
-        //设置标签列表
+        setTagFilter(filterData.labelData);
+        selectFilter();
+    };
+    //设置标签列表
+    function setTagFilter(data){
+        var tagList = data;
+        var tagArr = [];
         for(var i = 0; i < tagList.length;i++){
             var temp = $("<p><label for=\"tag"+i+"\">" +
                 "<input type=\"checkbox\" data-code='"+tagList[i].id+"' id=\"tag"+i+"\">" +
-                "<span>"+tagList[i].labelName+"</span>" +
+                "<span>"+tagList[i].labelName.substring(0,tagList[i].labelName.indexOf("["))+"</span>" +
                 "<span>("+tagList[i].count+")</span></label></p>");
             tagArr.push(temp);
         }
         $(".tag-box").empty().append(tagArr);
-        selectFilter()
-    };
+    }
     //选择条件筛之后
     function selectFilter(){
         var fromFilter = [];
@@ -253,7 +264,7 @@ $(function (){
                 var tempArr = [];
                 $(".from-box input[type=checkbox]").each(function (index){
                     if($(".from-box input[type=checkbox]").eq(index).is(":checked")){
-                        tempArr.push($(this).attr("data-code"))
+                        tempArr.push($(this).attr("data-code"));
                     }
                 });
                 fromFilter = tempArr;
@@ -265,7 +276,7 @@ $(function (){
                 var tempArr = [];
                 $(".tag-box input[type=checkbox]").each(function (index){
                     if($(".tag-box input[type=checkbox]").eq(index).is(":checked")){
-                        tempArr.push($(this).attr("data-code"))
+                        tempArr.push($(this).attr("data-code"));
                     }
                 });
                 tagFilter = tempArr;
@@ -274,26 +285,39 @@ $(function (){
         $("#filterSearch").click(function (){
             console.log(fromFilter);
             console.log(tagFilter);
-            filter.applicationIds = fromFilter;
-            filter.labelIds = tagFilter;
+            filter.applicationIds = fromFilter.join();
+            filter.labelIds = tagFilter.join();
             getTableData(filter);
         });
     }
-
+    //查找标签的方法
+    function findTag(){
+        $("#findTag input").on("input",function (){
+            console.log(0)
+            var findText = $(this).val();
+            var nowArr = [];
+            for(var i = 0; i < filterData.labelData.length;i++){
+                if(filterData.labelData[i].labelName.indexOf(findText) != -1){
+                    nowArr.push(filterData.labelData[i]);
+                }
+            }
+            setTagFilter(nowArr);
+        });
+    }
+    findTag();
     //跳转页
     $(".page-select .btn").click(function (){
         var page = parseInt($(".page-select input[type=number]").val());
         var reg = /([1-9]\d+)|[2-9]/;
         if(reg.test(page) && page > 0){
-            if(page > allPage){
+            if(page > Math.ceil(resultData.vipCount/30)){
                 alert("输入的页数超过了最大页数!请重新输入!");
             }else{
-                $(".loading-wrapper").show();
                 filter.page = page;
                 getTableData(filter);
             }
         }else{
-            alert("请输入大于0的正整数!")
+            alert("请输入大于0的正整数!");
         }
     });
     //搜索查询
@@ -304,6 +328,7 @@ $(function (){
                 return;
             }
             filter.searchName = $("#searchInput").val();
+            filter.page = 1;
             getTableData(filter);
         });
     }

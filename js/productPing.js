@@ -95,111 +95,12 @@ $(function (){
         }]
     };
     var quotaData,chartsData,tableData,filterData;//存储总数据
+    var tempChartsData;//存储临时图表数据
     var titleArr = [
         "捷安特产品外观评价均分趋势图",
         "捷安特产品性能评价均分趋势图",
         "捷安特产品价格评价均分趋势图"
     ];
-    tableData = {
-        result:1,
-        count:"5454",
-        data:[
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                priceCount:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                priceCount:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                priceCount:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                priceCount:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                priceCount:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            },
-            {
-                brand:"捷安特",
-                addActivation:"545",
-                priceCount:"54",
-                addBind:"225663",
-                totalBind:"855656"
-            }
-        ]
-    };
-    quotaData = {
-        appearanceCount: {//QRcode激活数
-            count: 8714,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        },
-        priceCount: {//历史累计激活数量
-            count: 8284,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        },
-        propertyCount: {//qrcode绑定数量
-            count: 8384,
-            day: 0.32,
-            week: -0.23,
-            month: 0.63
-        }
-    };
-    chartsData = {
-        result: 1,
-        data:[
-            {
-                fromName:"app",
-                data:[
-                    {date:"20171012",count:"525"},
-                    {date:"20171013",count:"155"},
-                    {date:"20171014",count:"553"},
-                    {date:"20171015",count:"55"}
-                ]
-            },
-            {
-                fromName:"web",
-                data:[
-                    {date:"20171012",count:"611"},
-                    {date:"20171013",count:"358"},
-                    {date:"20171014",count:"455"},
-                    {date:"20171015",count:"755"}
-                ]
-            },
-            {
-                fromName:"club",
-                data:[
-                    {date:"20171012",count:"155"},
-                    {date:"20171013",count:"955"},
-                    {date:"20171014",count:"255"},
-                    {date:"20171015",count:"455"}
-                ]
-            }
-        ]
-    };
     //获取默认时间
     function getDateArea(type){
         var beginDate = moment().subtract(30,'days').format("YYYY-MM-DD");
@@ -215,9 +116,14 @@ $(function (){
         roleCode:window.roleInfo.roleCode,
         beginDate:getDateArea(1),
         endDate: getDateArea(0),
-        brandList:[],//型号列表
-        brandType:"1",//产品类型1,品牌,2车系,3车型
-        type:"1",//会员类型
+        dataList:[
+            {
+                name:"捷安特",
+                code:"3",
+                type:"2"
+            }
+        ],//型号列表
+        dimension:"1",//产品类型1,品牌,2车系,3车型
         dateType:"1"//时间类型
     };
     var tableFilter = {
@@ -225,33 +131,42 @@ $(function (){
         roleCode: window.roleInfo.roleCode,
         beginDate: getDateArea(1),
         endDate: getDateArea(0),
-        brandType:"1",//产品类型1,品牌,2车系,3车型
-        pageNo:"1",
-        pageSize:"30"
+        dimension:"1"//产品类型1,品牌,2车系,3车型
     };
     //请求图表数据
     function getChartsData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
+        var sendData = $.extend(true,{},sendData);
+        sendData.dataList = JSON.stringify(sendData.dataList);
         $.ajax({
-            url: window.roleInfo.url2+"giantService/report/userData/userLines",
-            data: sendData
+            url: window.roleInfo.url1+"giantService/report/product/productTendency",
+            data: sendData,
+            dataType:"json",
+            type:"post"
         }).done(function (res){
+            console.log(res);
+            console.log(sendData);
             console.log(filter)
             if(res.result == 1){
                 dfd.resolve(res);
                 chartsData = res;
-                console.log(chartsData)
+                selectType();
                 setChartsData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
+                $("#loading2").hide();
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //请求指标数据
     function getQuotaData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url1+"giantService/report/product/productEvaluateTarget",
@@ -263,47 +178,57 @@ $(function (){
                 quotaData = res;
                 setQuotaData();
             }else{
-                alert("获取接口失败!");
+                alert("result=0");
+                $("#loading2").hide();
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
-    getQuotaData(filter)
     //请求平台来源数据
     function getFilterData(){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
-            url: window.roleInfo.url1+"giantService/report/userData/selectCondition",
+            url: window.roleInfo.url1+"giantService/report/userData/selectCondition"
         }).done(function (res){
             if(res.result == 1){
                 dfd.resolve(res);
-                filterData = res;
-                setFilterData();
+                setFilterData(res);
             }else{
-                alert("获取接口失败!"+res.msg);
+                alert("result=0");
+                $("#loading2").hide();
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
     //请求表格数据
     function getTableData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
-            url:window.roleInfo.url2+"giantService/report/dataDraw/sex",
+            url:window.roleInfo.url1+"giantService/report/product/productTendencyList",
             data: sendData
         }).done(function (res){
+            console.log(res)
             if(res.result == 1){
                 dfd.resolve(res);
+                tableData = res;
                 setTableData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
@@ -314,89 +239,37 @@ $(function (){
             getChartsData(filter),
             getTableData(tableFilter),
             getFilterData()
-        ).done(function (
-            res1,
-            res2,
-            res3
-        ){
-            quotaData = res1;
-            setQuotaData();
-        }).fail(function (res){
-            alert("获取不成功");
+        ).then(function (){
+            $("#loading1").hide();
+            $("#loading2").hide();
         });
     }
-    //设置关键指标
-    function setQuotaData() {
-        var quotaBox = $("#quotaBox").children("div");
-        function arrow(count) {
-            if (count > 0) {
-                return "<img src=\"img/arrow-up.png\" class=\"arrow-change\">"
-            } else if (count < 0) {
-                return "<img src=\"img/arrow-down.png\" class=\"arrow-change\">"
-            } else if (count == 0) {
-                return "";
-            }
-        }
-        function setData(ele, data) {
-            if (data != 0) {
-                ele.text(data + "%");
-            } else {
-                ele.text("0%");
-            }
-        }
-        function setArrow(ele, data) {
-            ele.html(data)
-        }
-        //qrcode激活
-        quotaBox.eq(0).children("p").eq(1).text(quotaData.appearanceCount.count/100);
-        setData(quotaBox.eq(0).children("p").eq(2).children(".count"), quotaData.appearanceCount.day);
-        setData(quotaBox.eq(0).children("p").eq(3).children(".count"), quotaData.appearanceCount.week);
-        setData(quotaBox.eq(0).children("p").eq(4).children(".count"), quotaData.appearanceCount.month);
-
-        setArrow(quotaBox.eq(0).children("p").eq(2).children(".arrow"), arrow(quotaData.appearanceCount.day));
-        setArrow(quotaBox.eq(0).children("p").eq(3).children(".arrow"), arrow(quotaData.appearanceCount.week));
-        setArrow(quotaBox.eq(0).children("p").eq(4).children(".arrow"), arrow(quotaData.appearanceCount.month));
-        //累计激活
-        quotaBox.eq(1).children("p").eq(1).text(quotaData.priceCount.count/100);
-        setData(quotaBox.eq(1).children("p").eq(2).children(".count"), quotaData.priceCount.day);
-        setData(quotaBox.eq(1).children("p").eq(3).children(".count"), quotaData.priceCount.week);
-        setData(quotaBox.eq(1).children("p").eq(4).children(".count"), quotaData.priceCount.month);
-
-        setArrow(quotaBox.eq(1).children("p").eq(2).children(".arrow"), arrow(quotaData.priceCount.day));
-        setArrow(quotaBox.eq(1).children("p").eq(3).children(".arrow"), arrow(quotaData.priceCount.week));
-        setArrow(quotaBox.eq(1).children("p").eq(4).children(".arrow"), arrow(quotaData.priceCount.month));
-        //qrcode绑定
-        quotaBox.eq(2).children("p").eq(1).text(quotaData.propertyCount.count/100);
-        setData(quotaBox.eq(2).children("p").eq(2).children(".count"), quotaData.propertyCount.day);
-        setData(quotaBox.eq(2).children("p").eq(3).children(".count"), quotaData.propertyCount.week);
-        setData(quotaBox.eq(2).children("p").eq(4).children(".count"), quotaData.propertyCount.month);
-
-        setArrow(quotaBox.eq(2).children("p").eq(2).children(".arrow"), arrow(quotaData.propertyCount.day));
-        setArrow(quotaBox.eq(2).children("p").eq(3).children(".arrow"), arrow(quotaData.propertyCount.week));
-        setArrow(quotaBox.eq(2).children("p").eq(4).children(".arrow"), arrow(quotaData.propertyCount.month));
+    getData();
+    //设置指标数据
+    function setQuotaData(){
+        var dataArr = [quotaData.appearanceCount,quotaData.propertyCount,quotaData.priceCount];
+        $.fn.quotaData(dataArr);
     }
-    setQuotaData();
     //拆分数据
     function setChartsData(){
-        console.log(chartsData);
         defaultData();
         var legend = [];
         var xData = [];
         var serData = [];
-        for(var i = 0; i < chartsData.data.length;i++){
-            legend.push(chartsData.data[i].fromName);
+        for(var i = 0; i < tempChartsData.data.length;i++){
+            legend.push(tempChartsData.data[i].codeName);
             var temp = {
-                name: chartsData.data[i].fromName,
+                name: tempChartsData.data[i].codeName,
                 type: "line",
                 smooth: true,
                 //stack: '总量',
                 data: []
             };
-            for(var j = 0; j < chartsData.data[i].data.length;j++){
+            for(var j = 0; j < tempChartsData.data[i].data.length;j++){
                 if(i == 0){
-                    xData.push(chartsData.data[i].data[j].date);
+                    xData.push(tempChartsData.data[i].data[j].date);
                 }
-                temp.data.push(chartsData.data[i].data[j].count);
+                temp.data.push(tempChartsData.data[i].data[j].count);
             }
             serData.push(temp);
         }
@@ -405,12 +278,11 @@ $(function (){
         tempCountData.series = serData;
         showCharts();
     }
-    setChartsData();
     //设置表格数据
     function setTableData(){
         var tableList = [];
         for(var i = 0; i < tableData.data.length;i++){
-            var temp = $("<tr>\n" +
+            var temp = $("<tr>" +
                 "<td>"+tableData.data[i].brand+"</td>" +
                 "<td>"+tableData.data[i].addActivation+"</td>" +
                 "<td>"+tableData.data[i].priceCount+"</td>" +
@@ -420,18 +292,19 @@ $(function (){
             tableList.push(temp);
         }
         $(".lx-container table tbody").empty().append(tableList);
-        $.fn.cutPage(Math.ceil(tableData.count/30),tableFilter.pageNo);
+        $.fn.cutPage(Math.ceil(tableData.totalCount/30),tableFilter.pageNo);
         $(".page-selection").show();
     }
-    setTableData();
+    //选择分类
     function selectType(){
+        var dataArr = [chartsData.appearanceData,chartsData.propertyData,chartsData.priceData];
         //选择数据分类
         $("#vipClass").children().each(function (index){
             $("#vipClass").children().eq(index).click(function (){
                 $(this).addClass("btn-primary").removeClass("btn-default").siblings().removeClass("btn-primary").addClass("btn-default");
-                filter.type = index+1;
                 tempCountData.title.text = titleArr[index];
-                getChartsData(filter);
+                tempChartsData = dataArr[i];
+                setChartsData();
             });
         });
         //选择日期分类
@@ -443,44 +316,70 @@ $(function (){
             });
         });
     }
-    function getFilterData(){
-        $.getJSON("http://localhost:4396/giantData-v2/data.min.json", function (res) {
-            var aa = new setBrandData("#treeBox",res);
-            $("#search-btn1").bind("click",function (){
-                aa.showMenu(this,1);
-                filter.brandType = 1;
-            });
-            $("#search-btn2").bind("click",function (){
-                aa.showMenu(this,2);
-                filter.brandType = 2;
-            });
-            $("#search-btn3").bind("click",function (){
-                aa.showMenu(this,3);
-                filter.brandType = 3;
-            });
-            selectFilter();
+    //设置筛选条件
+    function setFilterData(res){
+        var newBrand = new setBrandData("#treeBox",res);
+        $("#search-btn1").bind("click",function (){
+            newBrand.showMenu(this,1);
+            filter.dimension = 1;
         });
-        //表格数据筛选
-        $("#search-btn4").click(function (){
-            tableFilter.brandType = 1;
-            tableFilter.pageNo = 1;
-            getTableData(tableFilter);
-            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+        $("#search-btn2").bind("click",function (){
+            newBrand.showMenu(this,2);
+            filter.dimension = 2;
         });
-        $("#search-btn5").click(function (){
-            tableFilter.brandType = 2;
-            tableFilter.pageNo = 1;
-            getTableData(tableFilter);
-            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+        $("#search-btn3").bind("click",function (){
+            newBrand.showMenu(this,3);
+            filter.dimension = 3;
         });
-        $("#search-btn6").click(function (){
-            tableFilter.brandType = 3;
-            tableFilter.pageNo = 1;
-            getTableData(tableFilter);
-            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+        selectFilter();
+    }
+    //根据时间段查询
+    function selectDate(){
+        $(".date-select .btn").click(function (){
+            filter.beginDate = $.fn.getUserDateArea($("#dateInput1"),1);
+            filter.endDate = $.fn.getUserDateArea($("#dateInput1"),0);
+            getChartsData(filter);
         });
     }
-    getFilterData();
+    //选页
+    window.selectPage = function (n){
+        if(n > 0 && n <= Math.ceil(tableData.count/30)) {
+            $.fn.cutPage(Math.ceil(tableData.count/30), n);
+            tableFilter.pageNo = n;
+            getTableData(tableFilter);
+        }else{
+            alert("没有更多了^_^");
+        }
+    };
+    //跳转页
+    $(".page-select .btn").click(function (){
+        var page = parseInt($(".page-select input[type=number]").val());
+        var reg = /([1-9]\d+)|[1-9]/;
+        if(reg.test(page) && page > 0){
+            if(page > Math.ceil(tableData.count/30)){
+                alert("输入的页数超过了最大页数!请重新输入!");
+            }else{
+                tableFilter.pageNo = page;
+                getTableData(tableFilter);
+            }
+        }else{
+            alert("请输入大于0的正整数!");
+        }
+    });
+    //下载表格
+    function downloadTable(){
+        $("#download").click(function (){
+            var beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
+            var endDate = $.fn.getUserDateArea($("#dateInput2"),0);
+            window.location.href = window.roleInfo.url2+
+                "giantService/report/storeServe/exportStoreDatas?"+
+                "role="+window.roleInfo.role+
+                "&roleCode="+window.roleInfo.roleCode+
+                "&beginDate="+beginDate+
+                "&endDate="+endDate+
+                "&areaType="+tableFilter.areaType
+        });
+    };
     //筛选品牌之后
     function selectFilter(){
         $("#filterBtn").click(function () {
@@ -488,12 +387,31 @@ $(function (){
                 nodes = zTree.getCheckedNodes(true),
                 filterList = [];
             for (var i = 0; i < nodes.length; i++) {
-                filterList.push(nodes[i].dictCode);
+                filterList.push({
+                    code: nodes[i].brandCode,
+                    name: nodes[i].brandName,
+                    type: nodes[i].brandType
+                });
             }
             $("#menuContent").slideUp("fast");
-            filter.brandList = filterList;
-            console.log(filter);
-            //getChartsData(filter);
+            filter.dataList = filterList;
+            getChartsData(filter);
+        });
+        //表格数据筛选
+        $("#search-btn4").click(function (){
+            tableFilter.dimension = 1;
+            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+            getTableData(tableFilter);
+        });
+        $("#search-btn5").click(function (){
+            tableFilter.dimension = 2;
+            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+            getTableData(tableFilter);
+        });
+        $("#search-btn6").click(function (){
+            tableFilter.dimension = 3;
+            $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
+            getTableData(tableFilter);
         });
     }
     //初始化数据
@@ -515,8 +433,8 @@ $(function (){
     });
     //初始化页面
     function initFun(){
-        selectType();
+        selectDate();
+        downloadTable();
     }
     initFun();
-    $(".loading-wrapper").hide()
 });

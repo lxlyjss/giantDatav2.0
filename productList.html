@@ -30,7 +30,7 @@
             var dateOption = {
                 //最大时间
                 maxDate: moment().subtract(1, 'days'),
-                startDate: moment().subtract(90, 'days'),
+                startDate: moment().subtract(30, 'days'),
                 endDate: moment().subtract(1, 'days'),
                 locale: {
                     format: 'YYYY/MM/DD'
@@ -48,7 +48,10 @@
     <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body class="vip-change">
-<div class="loading-wrapper" style="display: none;">
+<div class="loading-wrapper" id="loading1" style="display: block;">
+    <div class="spinner"></div>
+</div>
+<div class="loading-wrapper" id="loading2" style="display: block;">
     <div class="spinner"></div>
 </div>
 <!--头部 开始-->
@@ -178,7 +181,7 @@
             <p>本页面根据昨日24点数据来计算</p>
             <div class="row search-content" style="padding: 10px 0;margin-bottom: 10px;">
                 <div class="col-md-5 col-sm-5">
-                    <div class="input-group date-select">
+                    <div class="input-group date-select input-group-sm">
                         <span class="input-group-addon">时间段</span>
                         <input type="text" class="form-control" id="dateInput"/>
                         <span class="input-group-btn">
@@ -186,13 +189,21 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3">
-                    <div class="btn-group">
-                        <button class="btn btn-primary" id="search-btn1">品牌车系车型筛选</button>
+                <div class="col-md-2 col-sm-2">
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-default btn-primary" id="brand1">自行车</button>
+                        <button class="btn btn-default" id="brand2">电动车</button>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 sm-marginTop">
-                    <div class="btn btn-success">下载表格</div>
+                <div class="col-md-3 col-sm-3">
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-default btn-primary" id="search-btn4">品牌</button>
+                        <button class="btn btn-default" id="search-btn5">车系</button>
+                        <button class="btn btn-default" id="search-btn6">车型</button>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 sm-marginTop">
+                    <div class="btn btn-success btn-sm" id="download">下载表格</div>
                 </div>
             </div>
             <!--产品数据-->
@@ -224,12 +235,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8 page-container page-selection" style="display: none">
+                <div class="col-md-8 col-sm-8 page-container page-selection" style="display: none">
                     <nav aria-label="Page navigation" style="text-align: center">
                         <ul class="pagination"></ul>
                     </nav>
                 </div>
-                <div class="col-md-4 page-selection" style="display: none">
+                <div class="col-md-4 col-sm-4 page-selection" style="display: none">
                     <div class="input-group page-select">
                         <span class="input-group-addon">跳转页</span>
                         <input type="number" class="form-control" id="pageInput"/>
@@ -257,107 +268,101 @@
         var tableData;//存储数据
         var filterData;//存储筛选条件
         var filter = {
+            role: window.roleInfo.role,
+            roleCode: window.roleInfo.roleCode,
             page: 1,
             pageNum: "30",
-            type: 2,//1电动车,2为自行车
-            brandCode: "",//品牌
-            bikelineId: "",//车系
-            bikeId: ""//车型
-        };
-        tableData = {
-            result:"1",
-            count:"5487",
-            list:[
+            dataList: [
                 {
-                    id:"1",
-                    brandName:"捷安特",
-                    bikelineName:"xtc",
-                    bikeName:"xtc 880",
-                    bikeCode:"142265658898",
-                    appearanceScore:"4",
-                    propertyScore:"5",
-                    priceScore:"4.6",
-                    content:"挺不错的",
-                    userName:"18721478786",
-                    createDate:"2017-10-25 15:32:25"
-                },
-                {
-                    id:"1",
-                    brandName:"捷安特",
-                    bikelineName:"xtc",
-                    bikeName:"xtc 880",
-                    bikeCode:"142265658898",
-                    appearanceScore:"4",
-                    propertyScore:"5",
-                    priceScore:"4.6",
-                    content:"挺不错的",
-                    userName:"18721478786",
-                    createDate:"2017-10-25 15:32:25"
-                },
-                {
-                    id:"1",
-                    brandName:"捷安特",
-                    bikelineName:"xtc",
-                    bikeName:"xtc 880",
-                    bikeCode:"142265658898",
-                    appearanceScore:"4",
-                    propertyScore:"5",
-                    priceScore:"4.6",
-                    content:"挺不错的",
-                    userName:"18721478786",
-                    createDate:"2017-10-25 15:32:25"
-                },
-                {
-                    id:"1",
-                    brandName:"捷安特",
-                    bikelineName:"xtc",
-                    bikeName:"xtc 880",
-                    bikeCode:"142265658898",
-                    appearanceScore:"4",
-                    propertyScore:"5",
-                    priceScore:"4.6",
-                    content:"挺不错的dddddddddfsadfsa",
-                    userName:"18721478786",
-                    createDate:"2017-10-25 15:32:25"
+                    name:"捷安特",
+                    code:"3",
+                    type:"2"
                 }
-            ]
+            ],
+            beginDate: getDateArea(1),//开始时间
+            endDate: getDateArea(0),//结束时间
+            dimension:"1"
         };
+        //获取默认时间
+        function getDateArea(type){
+            var beginDate = moment().subtract(30,'days').format("YYYY-MM-DD");
+            var endDate = moment().subtract(1,'days').format("YYYY-MM-DD");
+            if(type == 1){
+                return beginDate;
+            }else{
+                return endDate;
+            }
+        }
         //选页
         window.selectPage = function (n) {
-            if (n > 0 && n <= tableData.count) {
+            if (n > 0 && n <= Math.ceil(tableData.count/30)) {
                 filter.page = n;
-                $(".loading-wrapper").show();
-                getTableData();
+                getTableData(filter);
             } else {
                 alert("没有更多了^_^");
             }
         };
         //获取后台数据,页面初始化
-        function getTableData() {
+        function getTableData(sendData) {
+            $("#loading2").show();
+            $("#menuContent").hide();
+            var sendData = $.extend(true,{},filter);
+            sendData.dataList = JSON.stringify(sendData.dataList);
+            console.log(filter);
+            console.log(sendData);
             $.ajax({
-                url: "http://" + window.roleInfo.url1 + "/giantService/report/selectProductScore",
-                data: filter
+                url: window.roleInfo.url1 + "giantService/report/product/selectProductScore",
+                data: sendData,
+                dataType:"json",
+                type:"post"
             }).done(function (res){
+                console.log(res);
                 if(res.result == 1){
+                    tableData = res;
                     setTableData();
+                }else{
+                    alert("result=0")
                 }
             }).fail(function (){
                 alert("获取数据失败")
+            }).complete(function (){
+                $("#loading2").hide();
             });
         }
         //获取筛选接口
         function getFilterData() {
+            $("#loading2").show();
             $.ajax({
-                url: "http://" + window.roleInfo.url1 + "/giantService/report/selectProductScore",
-                data: filter
+                url: window.roleInfo.url1 + "giantService/report/selectBikeType",
+                data: filter,
+                type:"post",
+                dataType:"json",
+                contentType: "application/json; charset=utf-8"
             }).done(function (res){
+                console.log(res);
                 if(res.result == 1){
-                    setTableData();
+                    filterData = res;
+                    setFilterData(brandType(filterData,2));
+                }else{
+                    alert("result=0");
                 }
             }).fail(function (){
                 alert("获取数据失败")
+            }).complete(function (){
+                $("#loading2").hide();
             });
         }
+        //所有数据都成功之后的回调函数
+        function getData(){
+            $.when(
+                getTableData(filter),
+                getFilterData()
+            ).then(function (){
+                $("#loading1").hide();
+                $("#loading2").hide();
+            });
+        }
+        getData();
         //展示数据
         function setTableData() {
             var pageData = tableData.list;
@@ -367,7 +372,7 @@
                     "<td>" + (pageData[i].brandName == null ? "" : pageData[i].brandName) + "</td>" +
                     "<td>" + (pageData[i].bikelineName == null ? "" : pageData[i].bikelineName) + "</td>" +
                     "<td>" + (pageData[i].bikeName == null ? "" : pageData[i].bikeName) + "</td>" +
-                    "<td>" + (pageData[i].bikeCode == null ? "" : pageData[i].bikeCode) + "</td>" +
+                    "<td>" + (pageData[i].qrcode == null ? "" : pageData[i].qrcode) + "</td>" +
                     "<td>" + (pageData[i].appearanceScore == null ? "" : pageData[i].appearanceScore) + "</td>" +
                     "<td>" + (pageData[i].propertyScore == null ? "" : pageData[i].propertyScore) + "</td>" +
                     "<td>" + (pageData[i].priceScore == null ? "" : pageData[i].priceScore) + "</td>" +
@@ -381,7 +386,6 @@
             $.fn.cutPage(Math.ceil(tableData.count/30),filter.page);
             $(".page-selection").show()
         }
-        setTableData();
         //查看详细评价内容
         window.showMoreContent = function (t, index) {
             $(t).parent().text(tableData.list[index].content);
@@ -400,12 +404,11 @@
         //跳转页
         $(".page-select .btn").click(function () {
             var page = parseInt($(".page-select input[type=number]").val());
-            var reg = /([1-9]\d+)|[2-9]/;
+            var reg = /([1-9]\d+)|[1-9]/;
             if (reg.test(page) && page > 0) {
-                if (page > tableData.count) {
+                if (page > Math.ceil(tableData.count/30)) {
                     alert("输入的页数超过了最大页数!请重新输入!");
                 } else {
-                    $(".loading-wrapper").show();
                     filter.page = page;
                     getTableData(filter);
                 }
@@ -413,12 +416,15 @@
                 alert("请输入大于0的正整数!")
             }
         });
-        $.getJSON("http://localhost:4396/giantData-v2/data.min.json",function (res){
-            var newBrand = new setBrandData("#treeBox",res);
-            $("#search-btn1").click(function (){
-                newBrand.showMenu(this);
+
+        //根据时间段查询
+        function selectDate(){
+            $(".date-select .btn").click(function (){
+                filter.beginDate = $.fn.getUserDateArea($("#dateInput"),1);
+                filter.endDate = $.fn.getUserDateArea($("#dateInput"),0);
+                getTableData(filter);
             });
-        });
+        }
         //查询条件搜索
         function selectFilter(){
             $("#filterBtn").click(function (){
@@ -426,19 +432,77 @@
                     nodes = zTree.getCheckedNodes(true);
                 var tempArr = [];
                 for(var i = 0; i < nodes.length;i++){
-                    tempArr.push(nodes[i].dictCode);
+                    tempArr.push({
+                        code: nodes[i].brandCode,
+                        name: nodes[i].brandName,
+                        type: nodes[i].brandType
+                    });
                 }
-                filter.brandCode = tempArr;
-                console.log(tempArr);
-                //getTableData(filter);
+                filter.dataList = tempArr;
+                getTableData(filter);
             });
         }
-        selectFilter();
+        //下载表格
+        function downloadTable(){
+            $("#download").click(function (){
+                var beginDate = $.fn.getUserDateArea($("#dateInput"),1);
+                var endDate = $.fn.getUserDateArea($("#dateInput"),0);
+                var dataList = JSON.stringify(filter.dataList);
+                window.location.href = window.roleInfo.url1+
+                    "giantService/report/product/exportProductEvaluation?"+
+                    "role="+window.roleInfo.role+
+                    "&roleCode="+window.roleInfo.roleCode+
+                    "&beginDate="+beginDate+
+                    "&endDate="+endDate+
+                    "&dimension="+filter.dimension+
+                    "&dataList="+dataList;
+            });
+        };
         //初始化页面
         function initFun() {
-
+//            getData();
+            selectDate();
+            selectFilter();
+            selectBrand();
+            downloadTable()
         }
-        //initFun();
+        initFun();
+        function setFilterData(res){
+            var newBrand = new setBrandData("#treeBox",res);
+            $("#search-btn4").click(function (){
+                newBrand.showMenu(this,1);
+                filter.dimension = 1;
+            });
+            $("#search-btn5").click(function (){
+                newBrand.showMenu(this,2);
+                filter.dimension = 2;
+            });
+            $("#search-btn6").click(function (){
+                newBrand.showMenu(this,3);
+                filter.dimension = 3;
+            });
+        }
+        //切换选择自行车和电动车
+        function selectBrand(){
+            $("#brand1").click(function (){
+                setFilterData(brandType(filterData,2));
+            });
+            $("#brand2").click(function (){
+                setFilterData(brandType(filterData,1));
+            });
+        };
+        //返回自行车或者电动车;
+        function brandType(data,type){
+            var newData = {
+                list:[]
+            };
+            for(var i = 0 ;i < data.list.length;i++){
+                if(data.list[i].type == type){
+                    newData.list.push(data.list[i]);
+                }
+            }
+            return newData;
+        }
         //选择品牌车系车型
         function setBrandData(ele,data) {
             this.setting = {
@@ -471,29 +535,34 @@
             this.select = [];
             this.zNodes = [];
             this.jsonData = data;
-            this.setJsonData = function () {
+            this.setJsonData = function (type) {
                 this.zNodes = [];
                 console.log(this.jsonData);
                 for (var i = 0; i < this.jsonData.list.length; i++) {
                     var temp1 = {
-                        id: (i + 1) * 2000, pId: 0, name: this.jsonData.list[i].dictName,
-                        dictCode: this.jsonData.list[i].dictCode,
-                        dictName: this.jsonData.list[i].dictName, nocheck: false
+                        id: (i + 1) * 2000, pId: 0, name: this.jsonData.list[i].name,
+                        brandCode: this.jsonData.list[i].code,
+                        brandName: this.jsonData.list[i].name,
+                        brandType: this.jsonData.list[i].type,
+                        nocheck: type==1?false:true
                     };
                     for (var j = 0; j < this.jsonData.list[i].list.length; j++) {
                         var temp2 = {
-                            id: (i + 1) * 1000 + (j + 1), pId: (i + 1) * 2000, name: this.jsonData.list[i].list[j].dictName,
-                            dictCode: this.jsonData.list[i].list[j].dictCode,
-                            dictName: this.jsonData.list[i].list[j].dictName, nocheck: false
+                            id: (i + 1) * 1000 + (j + 1), pId: (i + 1) * 2000, name: this.jsonData.list[i].list[j].name,
+                            brandCode: this.jsonData.list[i].list[j].code,
+                            brandName: this.jsonData.list[i].list[j].name,
+                            brandType: this.jsonData.list[i].list[j].type,
+                            nocheck: type==2?false:true
                         };
                         for (var k = 0; k < this.jsonData.list[i].list[j].list.length; k++) {
                             var temp3 = {
                                 id: (i + 1) * 10000 + (j + 1) * 1000 + (k + 1),
                                 pId: (i + 1) * 1000 + (j + 1),
-                                name: this.jsonData.list[i].list[j].list[k].dictName,
-                                dictCode: this.jsonData.list[i].list[j].list[k].dictCode,
-                                dictName: this.jsonData.list[i].list[j].list[k].dictName,
-                                nocheck: false
+                                name: this.jsonData.list[i].list[j].list[k].name,
+                                brandCode: this.jsonData.list[i].list[j].list[k].code,
+                                brandName: this.jsonData.list[i].list[j].list[k].name,
+                                brandType: this.jsonData.list[i].list[j].list[k].type,
+                                nocheck: type==3?false:true
                             };
                             this.zNodes.push(temp3);
                         }
@@ -501,7 +570,6 @@
                     }
                     this.zNodes.push(temp1);
                 }
-                console.log(this.zNodes)
                 $.fn.zTree.init($(ele), this.setting, this.zNodes);
             };
             this.beforeClick = function (treeId, treeNode) {
@@ -509,7 +577,7 @@
                 zTree.checkNode(treeNode, !treeNode.checked, null, true);
                 return false;
             };
-            this.showMenu = function (This) {
+            this.showMenu = function (This,type) {
                 var cityObj = $(This);
                 var cityOffset = $(This).offset();
                 var scrollTop = $("#content").scrollTop();
@@ -519,7 +587,7 @@
                 }).slideDown("fast");
                 $("#menuContent").slideDown("fast");
                 $("body").bind("mousedown", this.onBodyDown.bind(this));
-                this.setJsonData();
+                this.setJsonData(type);
             };
             this.hideMenu = function () {
                 $("#menuContent").fadeOut("fast");

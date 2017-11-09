@@ -386,8 +386,8 @@ $(function (){
     var sexData,mapData,areaData,fromData,ageData,carData,tagData;
     //获取默认时间
     function getDateArea(type){
-        var beginDate = moment().subtract(30,'days').format("YYYYMMDD");
-        var endDate = moment().subtract(1,'days').format("YYYYMMDD");
+        var beginDate = moment().subtract(30,'days').format("YYYY-MM-DD");
+        var endDate = moment().subtract(1,'days').format("YYYY-MM-DD");
         if(type == 1){
             return beginDate;
         }else{
@@ -475,6 +475,7 @@ $(function (){
     }
     //请求地区数据
     function getAreaData(sendData){
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url:window.roleInfo.url2+"giantService/report/dataDraw/source",
@@ -482,11 +483,15 @@ $(function (){
         }).done(function (res){
             if(res.result == 1){
                 dfd.resolve(res);
+                areaData = res;
+                setAreaData();
             }else{
                 alert("获取性别接口失败!"+res.msg);
             }
         }).fail(function (){
             alert("失败!")
+        }).complete(function (){
+            $("#loading2").hide();
         });
         return dfd.promise();
     }
@@ -526,21 +531,20 @@ $(function (){
     }
     //所有数据都成功之后的回调函数
     function getData(){
-        console.log(filter)
         $.when(
-            //getSexData(filter),
-            //getFromData(filter),
-            //getAgeData(filter),
-            //getMapData(filter),//地图数据
-            //getAreaData(filter),//表格数据
+            // getSexData(filter),
+            // getFromData(filter),
+            // getAgeData(filter),
+            // getMapData(filter),//地图数据
+            // getAreaData(filter),//表格数据
             //getCarData(filter),//车主比例
             getTagData(filter)
         ).done(function (
-            //res1,
-            //res2,
-            //res3,
-            //res4,
-            //res5,
+            // res1,
+            // res2,
+            // res3,
+            // res4,
+            // res5,
             //res6,
             res7
         ){
@@ -550,16 +554,19 @@ $(function (){
             // setFromData();
             // ageData = res3;
             // setAgeData();
-            //mapData = res4;
-            //setMapData();
-            //areaData = res5;
-            //setAreaData();
-            //carData = res6;
-            //setCarData();
+            // mapData = res4;
+            // setMapData();
+            // areaData = res5;
+            // setAreaData();
+            // carData = res6;
+            // setCarData();
             tagData = res7;
             setTagData();
         }).fail(function (res){
-            alert("获取不成功");
+            //alert("获取不成功");
+        }).then(function (){
+            $("#loading1").hide();
+            $("#loading2").hide();
         });
     }
     //设置性别
@@ -620,19 +627,18 @@ $(function (){
     }
     //地区分布
     function setAreaData(){
-        console.log(areaData);
         var data = areaData.data;
         var tableList = [];
         for(var i = 0; i < data.length;i++){
             var temp = $("<tr>" +
-                "<td>"+data[i].NAME+"</td>" +
+                "<td>"+data[i].name+"</td>" +
                 "<td>"+data[i].count+"</td>" +
                 "<td>"+((data[i].proportion)*100).toFixed(2)+"%"+"</td>" +
                 "</tr>");
             tableList.push(temp);
         }
         $(".city-container table tbody").empty().append(tableList);
-        $.fn.cutPage(Math.ceil(areaData.count/10),1);
+        $.fn.cutPage(Math.ceil(areaData.count/10),filter.pageNo);
         $(".page-selection").show();
         showCharts();
     }
@@ -643,8 +649,14 @@ $(function (){
                 $(this).removeClass("btn-default").addClass("btn-primary").siblings().removeClass("btn-primary").addClass("btn-default");
                 if(index == 0){//省份
                     $("#city").text("省份");
+                    filter.type = 1;
+                    filter.pageNo = 1;
+                    getAreaData(filter);
                 }else{//城市
                     $("#city").text("城市");
+                    filter.type = 2;
+                    filter.pageNo = 1;
+                    getAreaData(filter);
                 }
             });
         });
@@ -688,14 +700,32 @@ $(function (){
         defaultData();
         getData();
     });
+
     //选页
     window.selectPage = function (n){
-        if(n > 0 && n <= Math.ceil(tableData.count/10)) {
-            $.fn.cutPage(Math.ceil(tableData.count/10), n);
+        if(n > 0 && n <= Math.ceil(areaData.count/10)) {
+            $.fn.cutPage(Math.ceil(areaData.count/10), n);
+            filter.pageNo = n;
+            getAreaData(filter);
         }else{
             alert("没有更多了^_^");
         }
     };
+    //跳转页
+    $(".page-select .btn").click(function (){
+        var page = parseInt($(".page-select input[type=number]").val());
+        var reg = /([1-9]\d+)|[1-9]/;
+        if(reg.test(page) && page > 0){
+            if(page > Math.ceil(areaData.count/10)){
+                alert("输入的页数超过了最大页数!请重新输入!");
+            }else{
+                filter.pageNo = page;
+                getAreaData(filter);
+            }
+        }else{
+            alert("请输入大于0的正整数!");
+        }
+    });
     //初始化数据
     function defaultData(){
         tempCountData1.xAxis.data = [];
@@ -736,7 +766,6 @@ $(function (){
         var newData5 = $.extend(true,{},optionMap,tempCountData5);
         var newData6 = $.extend(true,{},optionData,tempCountData6);
         var newData7 = $.extend(true,{},optionData,tempCountData7);
-        console.log(newData7)
         myEcharts1.setOption(newData1);
         myEcharts2.setOption(newData2);
         myEcharts3.setOption(newData3);
@@ -751,7 +780,7 @@ $(function (){
             myEcharts4.resize();
             myEcharts5.resize();
             myEcharts6.resize();
-            myEcharts7.resize();
+            //myEcharts7.resize();
         },200);
     }
     $(window).resize(function (){
@@ -768,5 +797,4 @@ $(function (){
         getData();
     }
     initFun();
-    $(".loading-wrapper").hide();
 });
