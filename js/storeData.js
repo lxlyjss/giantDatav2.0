@@ -1,5 +1,5 @@
 $(function (){
-    //$.fn.isSign();
+    // $.fn.isSign();
     $.fn.setAreaShow(window.roleInfo.role);
     //初始化折线图
     var myEcharts = echarts.init(document.getElementById("myEcharts"));
@@ -152,17 +152,21 @@ $(function (){
     }
     //请求图表数据
     function getChartsData(sendData){
-        $("#loading2").show();
+        if(sendData.areaList == "" || sendData.areaList == null){
+            alert("请选择一个sbu或经销商或门店");
+            return;
+        }
         var dfd = $.Deferred();
+        $("#loading2").show();
         $.ajax({
             url: window.roleInfo.url2+"giantService/report/storeQRcode/qrcodeLines",
             data: sendData
         }).done(function (res){
-            console.log(filter)
+            console.log(filter);
+            console.log(res);
             if(res.result == 1){
                 dfd.resolve(res);
                 chartsData = res;
-                console.log(chartsData)
                 setChartsData();
             }else{
                 alert("result=0");
@@ -179,7 +183,7 @@ $(function (){
         $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
-            url:window.roleInfo.url2+"giantService/report/userData/keyIndex",
+            url:window.roleInfo.url1+"giantService/report/product/productQRcodeTarget",
             data: sendData
         }).done(function (res){
             console.log(res)
@@ -245,7 +249,7 @@ $(function (){
     //所有数据都成功之后的回调函数
     function getData(){
         $.when(
-            // getQuotaData(filter),
+            getQuotaData(filter),
             getChartsData(filter),
             getTableData(tableFilter),
             getFilterData()
@@ -258,10 +262,10 @@ $(function (){
     //设置关键指标
     function setQuotaData() {
         var dataArr = [
-            quotaData.serviceScore,
-            quotaData.commentCount,
-            quotaData.attitudeCount,
-            quotaData.levelCount
+            quotaData.qrcodeCount,
+            quotaData.actTotalCount,
+            quotaData.bdCount,
+            quotaData.bdTotalCount
         ];
         $.fn.quotaData(dataArr);
     }
@@ -308,6 +312,10 @@ $(function (){
     //下载表格
     function downloadTable(){
         $("#download").click(function (){
+            if(sendData.areaList == "" || sendData.areaList == null){
+                alert("请选择一个sbu或经销商或门店");
+                return;
+            }
             var beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
             var endDate = $.fn.getUserDateArea($("#dateInput2"),0);
             window.location.href = window.roleInfo.url2+
@@ -388,14 +396,17 @@ $(function (){
         $("#search-btn1").bind("click",function (){
             aa.showMenu(this,1);
             filter.areaType = 1;
+            filter.areaList = "";
         });
         $("#search-btn2").bind("click",function (){
             aa.showMenu(this,2);
             filter.areaType = 2;
+            filter.areaList = "";
         });
         $("#search-btn3").bind("click",function (){
             aa.showMenu(this,3);
             filter.areaType = 3;
+            filter.areaList = "";
         });
         selectFilter();
     }

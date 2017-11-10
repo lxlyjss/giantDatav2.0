@@ -1,5 +1,5 @@
 $(function (){
-    //$.fn.isSign();
+    $.fn.isSign();
     $.fn.setAreaShow(window.roleInfo.role);
     //初始化折线图
     var myEcharts = echarts.init(document.getElementById("myEcharts"));
@@ -118,7 +118,7 @@ $(function (){
         beginDate:getDateArea(1),
         endDate: getDateArea(0),
         areaList: window.roleInfo.roleCode,//区域列表
-        areaType:"1",//类型1,sbu,2经销商,3门店
+        areaType:"",//类型1,sbu,2经销商,3门店
         countType:"1",//类型
         type:"1"//时间类型
     };
@@ -127,14 +127,37 @@ $(function (){
         roleCode: window.roleInfo.roleCode,
         beginDate: getDateArea(1),
         endDate: getDateArea(0),
-        areaType:"1",//类型1,sbu,2经销商,3门店
+        areaType:"",//类型1,sbu,2经销商,3门店
         pageNo:"1",
         pageSize:"30"
     };
+    setAreaType();
+    function setAreaType(){
+        if(filter.role == "admin"){
+            filter.areaType = 1;
+            tableFilter.areaType = 1;
+        }else if(filter.role == "sbu"){
+            filter.areaType = 1;
+            tableFilter.areaType = 1;
+        }else if(filter.role == "dealer"){
+            filter.areaType = 2;
+            tableFilter.areaType = 2;
+        }else if(filter.role == "storeManager"){
+            filter.areaType = 3;
+            tableFilter.areaType = 3;
+        }
+        if(filter.roleCode == ""){
+            filter.areaList = "GCK,GCC,GCT";
+        }
+    }
     //请求图表数据
     function getChartsData(sendData){
-        $("#loading2").show();
+        if(sendData.areaList == "" || sendData.areaList == null){
+            alert("请选择一个sbu或经销商或门店");
+            return;
+        }
         var dfd = $.Deferred();
+        $("#loading2").show();
         $.ajax({
             url: window.roleInfo.url2+"giantService/report/storeServe/storeLines",
             data: sendData
@@ -244,7 +267,12 @@ $(function (){
         quotaData.serviceScore.count/=100;
         quotaData.attitudeCount.count/=100;
         quotaData.levelCount.count/=100;
-        var dataArr = [quotaData.serviceScore,quotaData.commentCount,quotaData.attitudeCount,quotaData.levelCount];
+        var dataArr = [
+            quotaData.serviceScore,
+            quotaData.commentCount,
+            quotaData.attitudeCount,
+            quotaData.levelCount
+        ];
         $.fn.quotaData(dataArr);
     }
     //拆分数据
@@ -266,7 +294,7 @@ $(function (){
                 if(i == 0){
                     xData.push(chartsData.data[i].data[j].date);
                 }
-                temp.data.push(chartsData.data[i].data[j].count/100);
+                temp.data.push(filter.countType==2?chartsData.data[i].data[j].count:chartsData.data[i].data[j].count/100);
             }
             serData.push(temp);
         }
@@ -320,6 +348,10 @@ $(function (){
     //下载表格
     function downloadTable(){
         $("#download").click(function (){
+            if(sendData.areaList == "" || sendData.areaList == null){
+                alert("请选择一个sbu或经销商或门店");
+                return;
+            }
             var beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
             var endDate = $.fn.getUserDateArea($("#dateInput2"),0);
             window.location.href = window.roleInfo.url2+
@@ -337,7 +369,7 @@ $(function (){
         $("#vipClass").children().each(function (index){
             $("#vipClass").children().eq(index).click(function (){
                 $(this).addClass("btn-primary").removeClass("btn-default").siblings().removeClass("btn-primary").addClass("btn-default");
-                filter.type = index+1;
+                filter.countType = index+1;
                 tempCountData.title.text = titleArr[index];
                 getChartsData(filter);
             });
@@ -372,14 +404,17 @@ $(function (){
         $("#search-btn1").bind("click",function (){
             aa.showMenu(this,1);
             filter.areaType = 1;
+            filter.areaList = "";
         });
         $("#search-btn2").bind("click",function (){
             aa.showMenu(this,2);
             filter.areaType = 2;
+            filter.areaList = "";
         });
         $("#search-btn3").bind("click",function (){
             aa.showMenu(this,3);
             filter.areaType = 3;
+            filter.areaList = "";
         });
     }
     //获取表格筛选数据

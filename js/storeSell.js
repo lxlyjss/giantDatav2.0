@@ -1,5 +1,5 @@
 $(function (){
-    //$.fn.isSign();
+    $.fn.isSign();
     $.fn.setAreaShow(window.roleInfo.role);
     //初始化折线图
     var myEcharts = echarts.init(document.getElementById("myEcharts"));
@@ -118,8 +118,8 @@ $(function (){
         roleCode:window.roleInfo.roleCode,
         beginDate:getDateArea(1),
         endDate: getDateArea(0),
-        areaList: "GCC",//区域列表
-        areaType:"1",//类型1,sbu,2经销商,3门店
+        areaList: window.roleInfo.roleCode,//区域列表
+        areaType:"",//类型1,sbu,2经销商,3门店
         countType:"1",//类型
         type:"1"//时间类型
     };
@@ -128,14 +128,37 @@ $(function (){
         roleCode: window.roleInfo.roleCode,
         beginDate: getDateArea(1),
         endDate: getDateArea(0),
-        areaType:"1",//产品类型1,sbu,2经销商,3门店
+        areaType:"",//产品类型1,sbu,2经销商,3门店
         pageNo:"1",
         pageSize:"30"
     };
+    setAreaType();
+    function setAreaType(){
+        if(filter.role == "admin"){
+            filter.areaType = 1;
+            tableFilter.areaType = 1;
+        }else if(filter.role == "sbu"){
+            filter.areaType = 1;
+            tableFilter.areaType = 1;
+        }else if(filter.role == "dealer"){
+            filter.areaType = 2;
+            tableFilter.areaType = 2;
+        }else if(filter.role == "storeManager"){
+            filter.areaType = 3;
+            tableFilter.areaType = 3;
+        }
+        if(filter.roleCode == ""){
+            filter.areaList = "GCK,GCC,GCT";
+        }
+    }
     //请求图表数据
     function getChartsData(sendData){
-        $("#loading2").show();
+        if(sendData.areaList == "" || sendData.areaList == null){
+            alert("请选择一个sbu或经销商或门店");
+            return;
+        }
         var dfd = $.Deferred();
+        $("#loading2").show();
         $.ajax({
             url: window.roleInfo.url2+"giantService/report/storeSale/storeLines",
             data: sendData
@@ -210,6 +233,7 @@ $(function (){
             url:window.roleInfo.url2+"giantService/report/storeSale/storeDatas",
             data: sendData
         }).done(function (res){
+            console.log(tableFilter)
             console.log(res)
             if(res.result == 1){
                 dfd.resolve(res);
@@ -251,7 +275,7 @@ $(function (){
     //跳转页
     $(".page-select .btn").click(function (){
         var page = parseInt($(".page-select input[type=number]").val());
-        var reg = /([1-9]\d+)|[2-9]/;
+        var reg = /([1-9]\d+)|[1-9]/;
         if(reg.test(page) && page > 0){
             if(page > Math.ceil(tableData.count/30)){
                 alert("输入的页数超过了最大页数!请重新输入!");
@@ -265,7 +289,12 @@ $(function (){
     });
     //设置关键指标
     function setQuotaData() {
-        var dataArr = [quotaData.totalPrice,quotaData.totalCount,quotaData.bikeCount,quotaData.productCount];
+        var dataArr = [
+            quotaData.totalPrice,
+            quotaData.totalCount,
+            quotaData.bikeCount,
+            quotaData.productCount
+        ];
         $.fn.quotaData(dataArr);
     }
     //根据时间段查询
@@ -354,14 +383,17 @@ $(function (){
         $("#search-btn1").bind("click",function (){
             aa.showMenu(this,1);
             filter.areaType = 1;
+            filter.areaList = "";
         });
         $("#search-btn2").bind("click",function (){
             aa.showMenu(this,2);
             filter.areaType = 2;
+            filter.areaList = "";
         });
         $("#search-btn3").bind("click",function (){
             aa.showMenu(this,3);
             filter.areaType = 3;
+            filter.areaList = "";
         });
     }
     //筛选品牌之后
@@ -371,7 +403,7 @@ $(function (){
                 nodes = zTree.getCheckedNodes(true),
                 filterList = [];
             for (var i = 0; i < nodes.length; i++) {
-                filterList.push(nodes[i].dictCode);
+                filterList.push(nodes[i].code);
             }
             $("#menuContent").slideUp("fast");
             filter.areaList = filterList.join();
@@ -381,6 +413,10 @@ $(function (){
     //下载表格
     function downloadTable(){
         $("#download").click(function (){
+            if(sendData.areaList == "" || sendData.areaList == null){
+                alert("请选择一个sbu或经销商或门店");
+                return;
+            }
             var beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
             var endDate = $.fn.getUserDateArea($("#dateInput2"),0);
             window.location.href = window.roleInfo.url2+
@@ -397,16 +433,19 @@ $(function (){
         $("#search-btn4").click(function (){
             $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
             tableFilter.areaType = "1";
+            tableFilter.pageNo = 1;
             getTableData(tableFilter);
         });
         $("#search-btn5").click(function (){
             $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
             tableFilter.areaType = "2";
+            tableFilter.pageNo = 1;
             getTableData(tableFilter);
         });
         $("#search-btn6").click(function (){
             $(this).addClass("btn-primary").siblings().removeClass("btn-primary");
             tableFilter.areaType = "3";
+            tableFilter.pageNo = 1;
             getTableData(tableFilter);
         });
     }
@@ -419,6 +458,7 @@ $(function (){
     //展示图表数据
     function showCharts(){
         var newData = $.extend(true,{},optionData,tempCountData);
+        myEcharts.clear();
         myEcharts.setOption(newData);
         setTimeout(function (){
             myEcharts.resize();

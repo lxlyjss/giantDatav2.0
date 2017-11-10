@@ -122,7 +122,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-list home-page active">
+                <li class="nav-list home-page">
                     <a>
                         <i class="iconfont icon-xiaoxi"></i>
                         产品
@@ -146,7 +146,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-list">
+                <li class="nav-list active">
                     <a>
                         <i class="iconfont icon-shuju"></i>
                         门店
@@ -165,7 +165,7 @@
                         <li>
                             <a href="storePing.html">门店服务评价</a>
                         </li>
-                        <li>
+                        <li class="current">
                             <a href="storeList.html">服务评价列表</a>
                         </li>
                     </ul>
@@ -259,15 +259,15 @@
 </div>
 <script>
     $(function () {
-        //$.fn.isSign();
+        $.fn.isSign();
         var tableData;//存储数据
         var filterData;//存储筛选条件
         var filter = {
-            role:window.roleInfo.role,
-            roleCode:window.roleInfo.roleCode,
+            role: window.roleInfo.role,
+            roleCode: window.roleInfo.roleCode,
             beginDate:getDateArea(1),
             endDate: getDateArea(0),
-            areaList: window.roleInfo.roleCode,//区域列表
+            areaList: "",//区域列表
             areaType:"",//类型1,sbu,2经销商,3门店
             pageNo: 1,
             pageSize: "30"
@@ -283,7 +283,8 @@
             }else if(filter.role == "storeManager"){
                 filter.areaType = 3;
             }
-            if(filter.roleCode == ""){
+            console.log(filter.roleCode)
+            if(filter.roleCode == "" || filter.roleCode== "%22%22"){
                 filter.areaList = "GCK,GCC,GCT";
             }
         }
@@ -309,6 +310,11 @@
         };
         //获取后台数据,页面初始化
         function getTableData() {
+            if(filter.areaList == "" || filter.areaList == null){
+                alert("请选择一个sbu或经销商或门店");
+                return;
+            }
+            var dfd = $.Deferred();
             $("#loading2").show();
             $.ajax({
                 url: window.roleInfo.url2 + "giantService/report/storeServe/serveList",
@@ -317,6 +323,7 @@
                 console.log(res)
                 console.log(filter)
                 if(res.result == 1){
+                    dfd.resolve(res);
                     tableData = res;
                     setTableData();
                 }else{
@@ -327,15 +334,18 @@
             }).complete(function (){
                 $("#loading2").hide();
             });
+            return dfd.promise();
         }
         //获取筛选接口
         function getFilterData() {
+            var dfd = $.Deferred();
             $("#loading2").show();
             $.ajax({
                 url: window.roleInfo.url1 + "giantService/report/storeEva/conditionEva",
                 data: filter
             }).done(function (res){
                 if(res.result == 1){
+                    dfd.resolve(res);
                     filterData = res;
                     setFilterData(res);
                 }else{
@@ -346,6 +356,7 @@
             }).complete(function (){
                 $("#loading2").hide();
             });
+            return dfd.promise();
         }
         //所有数据都成功之后的回调函数
         function getData(){
@@ -427,14 +438,17 @@
             $("#search-btn1").click(function (){
                 newBrand.showMenu(this,1);
                 filter.areaType = 1;
+                filter.areaList = "";
             });
             $("#search-btn2").click(function (){
                 newBrand.showMenu(this,2);
                 filter.areaType = 2;
+                filter.areaList = "";
             });
             $("#search-btn3").click(function (){
                 newBrand.showMenu(this,3);
                 filter.areaType = 3;
+                filter.areaList = "";
             });
             selectFilter();
         }
@@ -444,7 +458,6 @@
                 var zTree = $.fn.zTree.getZTreeObj("treeBox"),
                     nodes = zTree.getCheckedNodes(true),
                     filterList = [];
-                console.log(nodes)
                 for (var i = 0; i < nodes.length; i++) {
                     filterList.push(nodes[i].code);
                 }
@@ -457,7 +470,10 @@
         //下载表格
         function downloadTable(){
             $("#download").click(function (){
-                console.log(filter)
+                if(filter.areaList == "" || filter.areaList == null){
+                    alert("请选择一个sbu或经销商或门店");
+                    return;
+                }
                 var beginDate = $.fn.getUserDateArea($("#dateInput"),1);
                 var endDate = $.fn.getUserDateArea($("#dateInput"),0);
                 window.location.href = window.roleInfo.url2+

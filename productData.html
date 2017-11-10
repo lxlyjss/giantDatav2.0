@@ -25,8 +25,8 @@
                 $("body").addClass("nav-sm");
             }
             //当前文档的高度
-
             $("#content").css("height", $(window).height());
+            console.log(moment)
             //时间选择
             var dateOption = {
                 //最大时间
@@ -135,7 +135,7 @@
                         <li>
                             <a href="product.html">产品数据</a>
                         </li>
-                        <li>
+                        <li class="current">
                             <a href="productData.html">QRcode</a>
                         </li>
                         <li>
@@ -247,13 +247,13 @@
                 <div class="col-md-12">
                     <!--查询条件-->
                     <div class="row search-content">
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-5 col-sm-5">
                             <div class="input-group date-select">
                                 <span class="input-group-addon">时间段</span>
                                 <input type="text" class="form-control" id="dateInput1"/>
                                 <span class="input-group-btn">
-							                <button class="btn btn-primary" type="button">查询</button>
-							            </span>
+                                    <button class="btn btn-primary" type="button">查询</button>
+                                </span>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
@@ -277,7 +277,7 @@
                     <p>数据表格</p>
                 </div>
                 <div class="row btn-block">
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-5 col-sm-5">
                         <div class="input-group date-select">
                             <span class="input-group-addon">时间段</span>
                             <input type="text" class="form-control" id="dateInput2"/>
@@ -293,8 +293,8 @@
                             <button class="btn btn-default" id="search-btn6">车型</button>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 sm-marginTop">
-                        <div class="btn btn-success">下载表格</div>
+                    <div class="col-md-3 col-sm-3 sm-marginTop">
+                        <div class="btn btn-success" id="download">下载表格</div>
                     </div>
                 </div>
                 <div class="table-responsive lx-container">

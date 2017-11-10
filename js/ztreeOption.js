@@ -41,7 +41,6 @@ function setAreaData(ele,data) {
     this.jsonData = data;
     this.setJsonData = function (type) {
         this.zNodes = [];
-        console.log(this.jsonData)
         for (var i = 0; i < this.jsonData.list.length; i++) {
             var temp1 = {
                 id: (i + 1) * 2000, pId: 0,
@@ -70,7 +69,6 @@ function setAreaData(ele,data) {
             }
             this.zNodes.push(temp1);
         }
-        console.log(this.zNodes)
         $.fn.zTree.init($(ele), this.setting, this.zNodes);
     };
     this.beforeClick = function (treeId, treeNode) {
@@ -162,7 +160,6 @@ function setBrandData(ele,data) {
     this.jsonData = data;
     this.setJsonData = function (type) {
         this.zNodes = [];
-        console.log(this.jsonData);
         for (var i = 0; i < this.jsonData.list.length; i++) {
             var temp1 = {
                 id: (i + 1) * 2000, pId: 0, name: this.jsonData.list[i].name,
@@ -195,7 +192,6 @@ function setBrandData(ele,data) {
             }
             this.zNodes.push(temp1);
         }
-        console.log(this.zNodes)
         $.fn.zTree.init($(ele), this.setting, this.zNodes);
     };
     this.beforeClick = function (treeId, treeNode) {

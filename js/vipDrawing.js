@@ -1,5 +1,5 @@
 $(function (){
-    //$.fn.isSign();
+    // $.fn.isSign();
     //初始化折线图
     var myEcharts1 = echarts.init(document.getElementById("echarts1"));
     var myEcharts2 = echarts.init(document.getElementById("echarts2"));
@@ -173,7 +173,8 @@ $(function (){
             formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
         legend: {
-            orient: 'vertical',
+            // orient: 'vertical',
+            orient:"horizontal",
             left: 'left',
             data: []
         },
@@ -227,7 +228,7 @@ $(function (){
             data:[]
         },
         series: [{
-            name: "数量",
+            name: "各年龄数量",
             type: "bar",
             smooth: true,
             data: []
@@ -411,10 +412,11 @@ $(function (){
             url:window.roleInfo.url2+"giantService/report/dataDraw/sex",
             data: sendData
         }).done(function (res){
+            console.log(res);
             if(res.result == 1){
                 dfd.resolve(res);
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
@@ -428,10 +430,11 @@ $(function (){
             url:window.roleInfo.url2+"giantService/report/dataDraw/from",
             data: sendData
         }).done(function (res){
+            console.log(res);
             if(res.result == 1){
                 dfd.resolve(res);
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
@@ -445,10 +448,11 @@ $(function (){
             url:window.roleInfo.url2+"giantService/report/dataDraw/age",
             data: sendData
         }).done(function (res){
+            console.log(res);
             if(res.result == 1){
                 dfd.resolve(res);
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
@@ -462,11 +466,12 @@ $(function (){
             url:window.roleInfo.url2+"giantService/report/dataDraw/mapData",
             data: sendData
         }).done(function (res){
+            console.log(res);
             if(res.result == 1){
                 dfd.resolve(res);
                 console.log(res)
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
@@ -481,12 +486,13 @@ $(function (){
             url:window.roleInfo.url2+"giantService/report/dataDraw/source",
             data: sendData
         }).done(function (res){
+            console.log(res);
             if(res.result == 1){
                 dfd.resolve(res);
                 areaData = res;
                 setAreaData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
@@ -502,10 +508,11 @@ $(function (){
             url:window.roleInfo.url2+"giantService/report/dataDraw/carMember",
             data: sendData
         }).done(function (res){
+            console.log(res);
             if(res.result == 1){
                 dfd.resolve(res);
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
@@ -519,10 +526,11 @@ $(function (){
             url:window.roleInfo.url2+"giantService/report/dataDraw/labels",
             data: sendData
         }).done(function (res){
+            console.log(res);
             if(res.result == 1){
                 dfd.resolve(res);
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             alert("失败!")
@@ -532,34 +540,34 @@ $(function (){
     //所有数据都成功之后的回调函数
     function getData(){
         $.when(
-            // getSexData(filter),
-            // getFromData(filter),
-            // getAgeData(filter),
-            // getMapData(filter),//地图数据
-            // getAreaData(filter),//表格数据
-            //getCarData(filter),//车主比例
+            getSexData(filter),
+            getFromData(filter),
+            getAgeData(filter),
+            getMapData(filter),//地图数据
+            getAreaData(filter),//表格数据
+            getCarData(filter),//车主比例
             getTagData(filter)
         ).done(function (
-            // res1,
-            // res2,
-            // res3,
-            // res4,
-            // res5,
-            //res6,
+            res1,
+            res2,
+            res3,
+            res4,
+            res5,
+            res6,
             res7
         ){
-            // sexData = res1;
-            // setSexData();
-            // fromData = res2;
-            // setFromData();
-            // ageData = res3;
-            // setAgeData();
-            // mapData = res4;
-            // setMapData();
-            // areaData = res5;
-            // setAreaData();
-            // carData = res6;
-            // setCarData();
+            sexData = res1;
+            setSexData();
+            fromData = res2;
+            setFromData();
+            ageData = res3;
+            setAgeData();
+            mapData = res4;
+            setMapData();
+            areaData = res5;
+            setAreaData();
+            carData = res6;
+            setCarData();
             tagData = res7;
             setTagData();
         }).fail(function (res){
@@ -613,7 +621,6 @@ $(function (){
     }
     //设置地图数据
     function setMapData(){
-        console.log(mapData);
         var mapList = [];
         for(var i = 0; i < mapData.data.length;i++){
             var temp = {
@@ -664,7 +671,6 @@ $(function (){
     changeCity();
     //设置车主比例
     function setCarData(){
-        console.log(carData);
         var nameArr = ["车主","非车主"];
         var tempData = [];
         var legendData = [];
@@ -681,7 +687,6 @@ $(function (){
     }
     //设置标签云图
     function setTagData(){
-        console.log(tagData)
         var tempData = [];
         for(var i = 0; i < tagData.data.length;i++){
             var tempName = tagData.data[i].name.substring(0,tagData.data[i].name.indexOf("["));
@@ -738,7 +743,7 @@ $(function (){
         tempCountData3.series[0].data = [];
         tempCountData3.legend.data = [];
         tempCountData4.xAxis.data = [];
-        tempCountData4.series = [];
+        tempCountData4.series[0].data = [];
         tempCountData4.legend.data = [];
         tempCountData5.series[0].data = [];
         tempCountData6.xAxis.data = [];

@@ -1,5 +1,5 @@
 $(function (){
-    //$.fn.isSign();
+    // $.fn.isSign();
     //初始化折线图
     var myEcharts1 = echarts.init(document.getElementById("myEcharts1"));
     var myEcharts2 = echarts.init(document.getElementById("myEcharts2"));
@@ -16,7 +16,7 @@ $(function (){
             }
         },
         title:{
-            text:"捷安特会员消费能力",
+            text:"会员消费能力柱状图",
             left:"center"
         },
         //提示框 鼠标移入图表上面的提示信息框
@@ -78,7 +78,7 @@ $(function (){
     };
     var optionData2 = {
         title : {
-            text: '捷安特会员消费能力',
+            text: '会员消费能力占比',
             subtext: '消费能力',
             x:'center'
         },
@@ -87,8 +87,9 @@ $(function (){
             formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
         legend: {
-            orient: 'vertical',
+            orient: 'horizontal',
             left: 'left',
+            top: "50",
             data: []
         },
         series : []
@@ -214,7 +215,7 @@ $(function (){
                 quotaData = res;
                 setQuotaData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).complete(function (){
             $("#loading2").hide();
@@ -236,7 +237,7 @@ $(function (){
                 setChartsData();
                 setPieData(0);
             }else{
-                alert("获取接口失败!");
+                alert("result=0");
             }
         }).complete(function (){
             $("#loading2").hide();
@@ -257,7 +258,7 @@ $(function (){
                 tableData = res;
                 setTableData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).complete(function (){
             $("#loading2").hide();

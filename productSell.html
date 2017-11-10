@@ -137,7 +137,7 @@
                         <li>
                             <a href="productData.html">QRcode</a>
                         </li>
-                        <li>
+                        <li class="current">
                             <a href="productSell.html">产品销量</a>
                         </li>
                         <li>
@@ -187,21 +187,28 @@
                     <p>昨日关键指标</p>
                 </div>
                 <div class="row block-content" id="quotaBox">
-                    <div class="col-md-4 col-sm-4 col-xs-6 block-one">
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
                         <p class="header-title">销售总金额</p>
                         <p class="header-title big-number"></p>
                         <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
                         <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
                         <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-6 block-one">
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
+                        <p class="header-title">销售产品总数</p>
+                        <p class="header-title big-number"></p>
+                        <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
+                        <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
                         <p class="header-title">整车销量</p>
                         <p class="header-title big-number"></p>
                         <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
                         <p class="header-title">周 <span class="arrow"></span><span class="count"></span></p>
                         <p class="header-title">月 <span class="arrow"></span><span class="count"></span></p>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-6 block-one">
+                    <div class="col-md-3 col-sm-3 col-xs-6 block-one">
                         <p class="header-title">商品销量</p>
                         <p class="header-title big-number"></p>
                         <p class="header-title">日 <span class="arrow"></span><span class="count"></span></p>
@@ -220,9 +227,10 @@
                     <div class="row search-content">
                         <div class="col-md-8 col-sm-8">
                             <div class="btn-group" id="vipClass">
-                                <div class="btn btn-primary">销售总金额</div>
-                                <div class="btn btn-default">整车销售</div>
-                                <div class="btn btn-default">商品销售</div>
+                                <div class="btn btn-primary">整车销售金额</div>
+                                <div class="btn btn-default">整合销售数量</div>
+                                <div class="btn btn-default">商品销售金额</div>
+                                <div class="btn btn-default">商品销售数量</div>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
@@ -285,7 +293,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3 sm-marginTop">
-                        <div class="btn btn-success">下载表格</div>
+                        <div class="btn btn-success" id="download">下载表格</div>
                     </div>
                 </div>
                 <div class="table-responsive lx-container">
@@ -302,12 +310,12 @@
                         <tbody>
                         </tbody>
                     </table>
-                    <div class="col-md-8 page-container page-selection" style="display: none">
+                    <div class="col-md-8 col-sm-8 page-container page-selection" style="display: none">
                         <nav aria-label="Page navigation" style="text-align: center;">
                             <ul class="pagination"></ul>
                         </nav>
                     </div>
-                    <div class="col-md-4 page-selection" style="display: none">
+                    <div class="col-md-4 col-sm-4 page-selection" style="display: none">
                         <div class="input-group page-select">
                             <span class="input-group-addon">跳转页</span>
                             <input type="number" class="form-control" id="dateInput"/>

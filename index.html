@@ -210,7 +210,7 @@
                 <div class="block-title">
                     <p>QRcode数据昨日关键指标</p>
                 </div>
-                <div class="row block-content" id="QrcodeData">
+                <div class="row block-content" id="quotaBox2">
                     <div class="col-md-3 col-sm-3 col-xs-6 block-one">
                         <p class="header-title">Qrcode激活数量</p>
                         <p class="header-title big-number"></p>
@@ -245,7 +245,7 @@
                 <div class="block-title">
                     <p>产品昨日关键指标</p>
                 </div>
-                <div class="row block-content" id="ProductData">
+                <div class="row block-content" id="quotaBox3">
                     <div class="col-md-3 col-sm-3 col-xs-6 block-one">
                         <p class="header-title">销售总金额</p>
                         <p class="header-title big-number"></p>
@@ -280,7 +280,7 @@
                 <div class="block-title">
                     <p>门店昨日关键指标</p>
                 </div>
-                <div class="row block-content" id="StoreData">
+                <div class="row block-content" id="quotaBox4">
                     <div class="col-md-3 col-sm-3 col-xs-6 block-one">
                         <p class="header-title">门店总评价</p>
                         <p class="header-title big-number"></p>
@@ -316,6 +316,173 @@
     </div>
     <!--右侧内容结束-->
 </div>
-<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(function (){
+        $.fn.isSign();
+        //设置筛选条件
+        var filter = {
+            role:window.roleInfo.role,
+            roleCode:window.roleInfo.roleCode
+        };
+        var quotaData1,quotaData2,quotaData3,quotaData4;
+        //请求数据1
+        function getQuotaData1(){
+            var dfd = $.Deferred();
+            $.ajax({
+                url:window.roleInfo.url2+"giantService/report/userData/userNumber",
+                data:filter
+            }).done(function (res){
+                dfd.resolve(res);
+                if(res.result == 1){
+                    quotaData1 = res;
+                    setQuotaData1();
+                }else{
+                    dfd.reject();
+                    alert("result=0");
+                }
+            }).fail(function (){
+                dfd.reject();
+                alert("fail");
+            });
+            return dfd.promise();
+        }
+        //请求数据2
+        function getQuotaData2(){
+            var dfd = $.Deferred();
+            $.ajax({
+                url:window.roleInfo.url2+"giantService/report/product/productQRcodeTarget",
+                data:filter
+            }).done(function (res){
+                dfd.resolve(res);
+                if(res.result == 1){
+                    quotaData2 = res;
+                    setQuotaData2();
+                }else{
+                    alert("请求数据失败!");
+                }
+            }).fail(function (){
+                dfd.reject();
+                alert("fail");
+            });
+            return dfd.promise();
+        }
+        //请求数据3
+        function getQuotaData3(){
+            var dfd = $.Deferred();
+            $.ajax({
+                url:window.roleInfo.url1+"giantService/report/product/productSaleTarget",
+                data:filter
+            }).done(function (res){
+                dfd.resolve(res);
+                if(res.result == 1){
+                    quotaData3 = res;
+                    setQuotaData3();
+                }else{
+                    alert("请求数据失败!");
+                }
+            }).fail(function (){
+                dfd.reject();
+                alert("fail");
+            });
+            return dfd.promise();
+        }
+        //请求数据4
+        function getQuotaData4(){
+            var dfd = $.Deferred();
+            $.ajax({
+                url:window.roleInfo.url2+"giantService/report/storeServe/keyIndex",
+                data:filter,
+            }).done(function (res){
+                dfd.resolve(res);
+                console.log(res);
+                if(res.result == 1){
+                    quotaData4 = res;
+                    setQuotaData4();
+                }else{
+                    alert("请求数据失败!");
+                }
+            }).fail(function (){
+                dfd.reject();
+                alert("fail");
+            });
+            return dfd.promise();
+        }
+        //所有数据都成功之后的回调函数
+        function getData(){
+            $.when(
+                getQuotaData1(),
+                getQuotaData2(),
+                getQuotaData3(),
+                getQuotaData4()
+            ).then(function (){
+                $("#loading1").hide();
+            });
+        }
+        getData();
+        //设置数据
+        function setQuotaData1() {
+            var vipbox1 = $(".vip-box").eq(0);
+            var vipbox2 = $(".vip-box").eq(1);
+            vipbox1.children(".box-left").children(".big-number").text(quotaData1.vipAddCount);
+            vipbox1.children(".box-right").children("p").eq(0).children("span").text(quotaData1.qrAddCount);
+            vipbox1.children(".box-right").children("p").eq(1).children("span").text(quotaData1.appAddCount);
+            vipbox1.children(".box-right").children("p").eq(2).children("span").text(quotaData1.clubAddCount);
+            vipbox1.children(".box-right").children("p").eq(3).children("span").text(quotaData1.webAddCount);
+            vipbox2.children(".box-left").children(".big-number").text(quotaData1.vipTotalCount);
+            vipbox2.children(".box-right").children("p").eq(0).children("span").text(quotaData1.qrTotalCount);
+            vipbox2.children(".box-right").children("p").eq(1).children("span").text(quotaData1.appTotalCount);
+            vipbox2.children(".box-right").children("p").eq(2).children("span").text(quotaData1.clubTotalCount);
+            vipbox2.children(".box-right").children("p").eq(3).children("span").text(quotaData1.webTotalCount);
+
+            //设置数据
+        }
+        //设置指标数据
+        function setQuotaData2(){
+            var dataArr = [quotaData2.VipAddCount,quotaData2.VipLostCount,quotaData2.VipTotalCount];
+            quotaData($("#quotaBox2"),dataArr);
+        }
+        //设置指标数据
+        function setQuotaData3(){
+            var dataArr = [quotaData3.totalPrice,quotaData3.totalCount,quotaData3.bikeCount,quotaData3.productCount];
+            quotaData($("#quotaBox3"),dataArr);
+        }
+        //设置关键指标
+        function setQuotaData4() {
+            quotaData4.serviceScore.count/=100;
+            quotaData4.attitudeCount.count/=100;
+            quotaData4.levelCount.count/=100;
+            var dataArr = [quotaData4.serviceScore,quotaData4.commentCount,quotaData4.attitudeCount,quotaData4.levelCount];
+            quotaData($("#quotaBox4"),dataArr);
+        }
+        //设置关键指标
+        var quotaData = function(ele,dataArr) {
+            var quotaBox = ele.children("div");
+            function arrow(count) {
+                if (count > 0) {
+                    return "<img src=\"img/arrow-up.png\" class=\"arrow-change\">"
+                } else if (count < 0) {
+                    return "<img src=\"img/arrow-down.png\" class=\"arrow-change\">"
+                } else if (count == 0) {
+                    return "";
+                }
+            }
+            function setData(ele, data) {
+                ele.text(data + "%");
+            }
+            function setArrow(ele, data) {
+                ele.html(data)
+            }
+            for(var i = 0; i < dataArr.length;i++){
+                quotaBox.eq(i).children("p").eq(1).text(dataArr[i].count);
+                setData(quotaBox.eq(i).children("p").eq(2).children(".count"), dataArr[i].day);
+                setData(quotaBox.eq(i).children("p").eq(3).children(".count"), dataArr[i].week);
+                setData(quotaBox.eq(i).children("p").eq(4).children(".count"), dataArr[i].month);
+                setArrow(quotaBox.eq(i).children("p").eq(2).children(".arrow"), arrow(dataArr[i].day));
+                setArrow(quotaBox.eq(i).children("p").eq(3).children(".arrow"), arrow(dataArr[i].week));
+                setArrow(quotaBox.eq(i).children("p").eq(4).children(".arrow"), arrow(dataArr[i].month));
+            }
+        };
+    });
+</script>
 </body>
 </html>

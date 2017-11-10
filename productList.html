@@ -141,7 +141,7 @@
                         <li>
                             <a href="productPing.html">产品评价</a>
                         </li>
-                        <li>
+                        <li class="current">
                             <a href="productList.html">产品评价列表</a>
                         </li>
                     </ul>
@@ -264,7 +264,7 @@
 </div>
 <script>
     $(function () {
-        //$.fn.isSign();
+//        $.fn.isSign();
         var tableData;//存储数据
         var filterData;//存储筛选条件
         var filter = {
@@ -304,6 +304,11 @@
         };
         //获取后台数据,页面初始化
         function getTableData(sendData) {
+            if(filter.dataList.length==0 || filter.dataList == null){
+                alert("请选择一个品牌或车系或车型");
+                return;
+            }
+            var dfd = $.Deferred();
             $("#loading2").show();
             $("#menuContent").hide();
             var sendData = $.extend(true,{},filter);
@@ -318,6 +323,7 @@
             }).done(function (res){
                 console.log(res);
                 if(res.result == 1){
+                    dfd.resolve(res);
                     tableData = res;
                     setTableData();
                 }else{
@@ -328,9 +334,11 @@
             }).complete(function (){
                 $("#loading2").hide();
             });
+            return dfd.promise();
         }
         //获取筛选接口
         function getFilterData() {
+            var dfd = $.Deferred();
             $("#loading2").show();
             $.ajax({
                 url: window.roleInfo.url1 + "giantService/report/selectBikeType",
@@ -341,6 +349,7 @@
             }).done(function (res){
                 console.log(res);
                 if(res.result == 1){
+                    dfd.resolve(res);
                     filterData = res;
                     setFilterData(brandType(filterData,2));
                 }else{
@@ -351,6 +360,7 @@
             }).complete(function (){
                 $("#loading2").hide();
             });
+            return dfd.promise();
         }
         //所有数据都成功之后的回调函数
         function getData(){
@@ -422,6 +432,7 @@
             $(".date-select .btn").click(function (){
                 filter.beginDate = $.fn.getUserDateArea($("#dateInput"),1);
                 filter.endDate = $.fn.getUserDateArea($("#dateInput"),0);
+                filter.page = 1;
                 getTableData(filter);
             });
         }
@@ -439,12 +450,17 @@
                     });
                 }
                 filter.dataList = tempArr;
+                filter.page = 1;
                 getTableData(filter);
             });
         }
         //下载表格
         function downloadTable(){
             $("#download").click(function (){
+                if(filter.dataList.length==0 || filter.dataList == null){
+                    alert("请选择一个品牌或车系或车型");
+                    return;
+                }
                 var beginDate = $.fn.getUserDateArea($("#dateInput"),1);
                 var endDate = $.fn.getUserDateArea($("#dateInput"),0);
                 var dataList = JSON.stringify(filter.dataList);
@@ -472,22 +488,27 @@
             $("#search-btn4").click(function (){
                 newBrand.showMenu(this,1);
                 filter.dimension = 1;
+                filter.dataList = [];
             });
             $("#search-btn5").click(function (){
                 newBrand.showMenu(this,2);
                 filter.dimension = 2;
+                filter.dataList = [];
             });
             $("#search-btn6").click(function (){
                 newBrand.showMenu(this,3);
                 filter.dimension = 3;
+                filter.dataList = [];
             });
         }
         //切换选择自行车和电动车
         function selectBrand(){
             $("#brand1").click(function (){
+                filter.dataList = [];
                 setFilterData(brandType(filterData,2));
             });
             $("#brand2").click(function (){
+                filter.dataList = [];
                 setFilterData(brandType(filterData,1));
             });
         };

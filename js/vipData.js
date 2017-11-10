@@ -1,5 +1,5 @@
 $(function (){
-    //$.fn.isSign();
+    $.fn.isSign();
     //初始化折线图
     var myEcharts = echarts.init(document.getElementById("myEcharts"));
     var optionData = {
@@ -122,13 +122,14 @@ $(function (){
             url: window.roleInfo.url2+"giantService/report/userData/userLines",
             data: sendData
         }).done(function (res){
-            console.log(res)
+            console.log(res);
+            console.log(filter)
             if(res.result == 1){
                 dfd.resolve(res);
                 chartsData = res;
                 setChartsData();
             }else{
-                alert("获取数据失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             dfd.reject();
@@ -151,7 +152,7 @@ $(function (){
                 quotaData = res;
                 setQuotaData();
             }else{
-                alert("获取接口失败!");
+                alert("result=0");
             }
         }).fail(function (){
             dfd.reject();
@@ -167,13 +168,13 @@ $(function (){
         $.ajax({
             url: window.roleInfo.url1+"giantService/report/userData/selectCondition",
         }).done(function (res){
-            console.log(res)
+            console.log(res);
             if(res.result == 1){
                 dfd.resolve(res);
                 filterData = res;
                 setFilterData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             dfd.reject();
@@ -191,12 +192,13 @@ $(function (){
             data: sendData
         }).done(function (res){
             console.log(res)
+            console.log(tableFilter)
             if(res.result == 1){
                 dfd.resolve(res);
                 tableData = res
                 setTableData();
             }else{
-                alert("获取接口失败!"+res.msg);
+                alert("result=0");
             }
         }).fail(function (){
             dfd.reject();
@@ -210,8 +212,8 @@ $(function (){
         $.when(
             getQuotaData(filter),
             getChartsData(filter),
-            getTableData(tableFilter)
-            // getFilterData()
+            getTableData(tableFilter),
+            getFilterData()
         ).then(function (){
             $("#loading1").hide();
             $("#loading2").hide();
@@ -230,7 +232,16 @@ $(function (){
                 "&endDate="+endDate
         });
     };
-    downloadTable();
+    //选页
+    window.selectPage = function (n){
+        if(n > 0 && n <= Math.ceil(tableData.count/30)) {
+            $.fn.cutPage(Math.ceil(tableData.count/30), n);
+            tableFilter.pageNo = n;
+            getTableData(tableFilter);
+        }else{
+            alert("没有更多了^_^");
+        }
+    };
     //设置指标数据
     function setQuotaData(){
         var dataArr = [quotaData.VipAddCount,quotaData.VipLostCount,quotaData.VipTotalCount];
@@ -392,6 +403,7 @@ $(function (){
     //展示图表数据
     function showCharts(){
         var newData = $.extend(true,{},optionData,tempCountData);
+        myEcharts.clear();
         myEcharts.setOption(newData);
         setTimeout(function (){
             myEcharts.resize();
@@ -406,6 +418,7 @@ $(function (){
         clickPingTai();
         selectType();
         dateSelect();
+        downloadTable();
     }
     initFun();
 });

@@ -13,8 +13,8 @@ $(function (){
         userId:"",//用户id
         roleImg:"",//用户头像
         token:"",//用户登录的token
-        role:"sbu",//用户角色
-        roleCode:"GCC",//角色code
+        role:"admin",//用户角色
+        roleCode:"",//角色code
         // url1:"http://service.giant.com.cn:8080/",
         // url2:"http://service.giant.com.cn:8080/",
         url1:"http://192.168.9.13:8080/",
@@ -34,16 +34,17 @@ $(function (){
                 async:false,
                 timeout:"20000",
                 success:function (data){
+                    console.log(data)
                     if(data._status == true){//判断该用户已登录
-                        window.roleInfo.role = data._user.role;//模拟数据
-                        window.roleInfo.roleCode = data._user.role_code;//模拟数据
+                        // window.roleInfo.role = data._user.role;//模拟数据
+                        // window.roleInfo.roleCode = data._user.role_code;//模拟数据
                         window.roleInfo.name = data._user.username;//用户名
                         window.roleInfo.userId = data._user.id;//用户id
                         window.roleInfo.roleImg = data._user.userImg;//用户头像
                         setRoleInfo(window.roleInfo.name,window.roleInfo.roleImg,window.roleInfo.role,window.roleInfo.showList);//设置用户显示
                     }else{//未登录则跳转捷安特官网
                         alert("请重新登录!");
-                        //window.location.href = "http://www.giant.com.cn/front/loginout";
+                        window.location.href = "http://www.giant.com.cn/front/loginout";
 					}
                 },
                 error:function (){
@@ -51,10 +52,10 @@ $(function (){
                 }
             });
         }else{
-            $.fn.setCookie("access_token","2553fbec-d7bf-45cd-ae93-533a9f4613db");//gck角色
+            // $.fn.setCookie("access_token","2553fbec-d7bf-45cd-ae93-533a9f4613db");//gck角色
             //未获取到token
-            //alert("请重新登录结案特官网!");
-            //window.location.href = "http://www.giant.com.cn";
+            alert("请重新登录结案特官网!");
+            window.location.href = "http://www.giant.com.cn";
         }
         //设置用户显示
         function setRoleInfo(name,img,role,showList){

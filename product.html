@@ -103,7 +103,7 @@
                         <i class="iconfont icon-fangxiangyou"></i>
                     </a>
                     <ul class="child-slide-menu" style="display: block;">
-                        <li>
+                        <li class="current">
                             <a href="product.html">产品数据</a>
                         </li>
                         <li>
@@ -156,7 +156,7 @@
                 <div class="block-title">
                     <p>昨日关键指标</p>
                 </div>
-                <div class="row block-content" id="vipData">
+                <div class="row block-content" id="quotaBox">
                     <div class="col-md-4 col-sm-4 col-xs-4 block-one">
                         <p class="header-title">QRcode激活数</p>
                         <p class="header-title big-number"></p>
@@ -189,26 +189,6 @@
     $(function () {
         //$.fn.isSign();
         var quotaData;//指标数据
-        quotaData = {
-            QRcodeCount: {//QRcode激活数
-                count: 8714,
-                day: 0.32,
-                week: -0.23,
-                month: 0.63
-            },
-            ProductCount: {//总交易量
-                count: 8284,
-                day: 0.32,
-                week: -0.23,
-                month: 0.63
-            },
-            EvaluateCount: {//产品评价均分
-                count: 8384,
-                day: 0.32,
-                week: -0.23,
-                month: 0.63
-            }
-        };
         //获取数据
         var filter = {
             role:window.roleInfo.role,
@@ -236,6 +216,7 @@
         }
         //设置指标数据
         function setQuotaData(){
+            quotaData.EvaluateCount.count/=100;
             var dataArr = [quotaData.QRcodeCount,quotaData.ProductCount,quotaData.EvaluateCount];
             $.fn.quotaData(dataArr);
         }

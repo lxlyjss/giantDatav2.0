@@ -1,5 +1,5 @@
 $(function (){
-    //$.fn.isSign();
+    // $.fn.isSign();
     var resultData,filterData;
     //点击查看详细会员信息
     $.fn.readMore = function (index){
@@ -12,8 +12,7 @@ $(function (){
                     url:window.roleInfo.url1+"giantService/report/userData/userConsumption",
                     data:{
                         username:resultData.vipData[index].userName,//用户名,是手机号才传
-                        // mobile:resultData.vipData[index].userTel
-                        mobile:"13012865905"
+                        mobile:resultData.vipData[index].userTel
                     },
                     success:function (res){
                         $(".loading-wrapper").hide();
@@ -50,6 +49,11 @@ $(function (){
             if(data.userPicture != "" && data.userPicture != null){
                 $(".vip-img-box").css({
                     "background":"url("+data.userPicture+")",
+                    "backgroundSize":"100%"
+                });
+            }else{
+                $(".vip-img-box").css({
+                    "background":"url(img/touxiangbg.jpg) no-repeat",
                     "backgroundSize":"100%"
                 });
             }
@@ -96,39 +100,40 @@ $(function (){
             }
             $("#joinClub table tbody").empty().append(joinList);
         }
-        function addTag(index){//添加标签
-            $("#addTag").click(function (){
-                if($("#tagInput").val() == ""){
-                    alert("请输入标签名称!");
-                    return;
-                    if($("#tagInput").val().length > 10){
-                        alert("标签名不能超过20个字符!");
-                        return;
-                    }
-                }
-                $.ajax({
-                    url:window.roleInfo.url1+"giantService/report/userData/selectCondition",
-                    data: {
-                        code: 11,
-                        userId: resultData.vipData[index].id,
-                        labelName: $("#tagInput").val()
-                    }
-                }).done(function (res){
-                    if(res.result == 1){
-                        $("#tagList td").append(","+$("#tagInput").val());
-                        alert("添加成功!");
-                    }else{
-                        alert("获取性别接口失败!"+res.msg);
-                    }
-                });
-            });
-        }
-        addTag(index);
+        //给添加标签添加index
+        $("#addTag").attr("userId",index);
     };
+    $("#addTag").click(function (){
+        if($("#tagInput").val() == ""){
+            alert("请输入标签名称!");
+            return;
+            if($("#tagInput").val().length > 10){
+                alert("标签名不能超过20个字符!");
+                return;
+            }
+        }
+        var index = $("#addTag").attr("userId");
+        console.log(resultData.vipData[index].id);
+        $.ajax({
+            url:window.roleInfo.url1+"giantService/report/userDate/addLabel",
+            data: {
+                code: 11,
+                userId: resultData.vipData[index].id,
+                labelName: $("#tagInput").val()
+            }
+        }).done(function (res){
+            if(res.result == 1){
+                $("#tagList td").append(","+$("#tagInput").val());
+                alert("添加成功!");
+            }else{
+                alert("添加失败!result=0");
+            }
+        });
+    });
     var filter = {
         role:window.roleInfo.role,
         roleCode:window.roleInfo.roleCode,
-        page:"1",
+        page: 1,
         pageNum: 30,
         labelIds:"",//标签id
         applicationIds:"",//平台id
@@ -157,7 +162,7 @@ $(function (){
                 filterData = res;
                 setFilterData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).complete(function (){
             $("#loading2").hide();
@@ -181,7 +186,7 @@ $(function (){
                 resultData = res;
                 setTableData();
             }else{
-                alert("获取性别接口失败!"+res.msg);
+                alert("result=0");
             }
         }).complete(function (){
             $("#loading2").hide();
@@ -308,7 +313,7 @@ $(function (){
     //跳转页
     $(".page-select .btn").click(function (){
         var page = parseInt($(".page-select input[type=number]").val());
-        var reg = /([1-9]\d+)|[2-9]/;
+        var reg = /([1-9]\d+)|[1-9]/;
         if(reg.test(page) && page > 0){
             if(page > Math.ceil(resultData.vipCount/30)){
                 alert("输入的页数超过了最大页数!请重新输入!");
