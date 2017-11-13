@@ -208,7 +208,6 @@
                     url: window.roleInfo.url2 + "giantService/report/storeData/keyIndex",
                     data: sendData
                 }).done(function (res) {
-                    console.log(res);
                     if (res.result == 1) {
                         quotaData = res;
                         setQuotaData();

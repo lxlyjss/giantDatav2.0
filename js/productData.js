@@ -175,12 +175,9 @@ $(function () {
                 dataType: "json",
                 type: "post"
             }).done(function (res) {
-                console.log(nowSend)
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     chartsData = res;
-                    console.log(chartsData)
                     setChartsData();
                 } else {
                     alert("result=0");
@@ -201,8 +198,6 @@ $(function () {
                 url: window.roleInfo.url1 + "giantService/report/product/productQRcodeTarget",
                 data: sendData
             }).done(function (res) {
-                console.log(filter)
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     quotaData = res;
@@ -225,8 +220,6 @@ $(function () {
             $.ajax({
                 url: window.roleInfo.url1 + "giantService/report/selectBikeType"
             }).done(function (res) {
-                console.log(filter)
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     filterData = res;
@@ -250,8 +243,6 @@ $(function () {
                 url: window.roleInfo.url1 + "giantService/report/product/productQRcodeTendencyList",
                 data: sendData
             }).done(function (res) {
-                console.log(tableFilter)
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     tableData = res;
@@ -403,7 +394,6 @@ $(function () {
                 var zTree = $.fn.zTree.getZTreeObj("treeBox"),
                     nodes = zTree.getCheckedNodes(true),
                     filterList = [];
-                console.log(nodes)
                 for (var i = 0; i < nodes.length; i++) {
                     filterList.push({
                         code: nodes[i].brandCode,

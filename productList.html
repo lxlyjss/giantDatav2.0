@@ -324,15 +324,12 @@
             $("#menuContent").hide();
             var sendData = $.extend(true,{},filter);
             sendData.dataList = JSON.stringify(sendData.dataList);
-            console.log(filter);
-            console.log(sendData);
             $.ajax({
                 url: window.roleInfo.url1 + "giantService/report/product/selectProductScore",
                 data: sendData,
                 dataType:"json",
                 type:"post"
             }).done(function (res){
-                console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
                     tableData = res;
@@ -358,7 +355,6 @@
                 dataType:"json",
                 contentType: "application/json; charset=utf-8"
             }).done(function (res){
-                console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
                     filterData = res;
@@ -569,7 +565,6 @@
             this.jsonData = data;
             this.setJsonData = function (type) {
                 this.zNodes = [];
-                console.log(this.jsonData);
                 for (var i = 0; i < this.jsonData.list.length; i++) {
                     var temp1 = {
                         id: (i + 1) * 2000, pId: 0, name: this.jsonData.list[i].name,

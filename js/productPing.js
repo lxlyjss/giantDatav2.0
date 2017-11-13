@@ -285,15 +285,11 @@ $(function () {
                 dataType: "json",
                 type: "post"
             }).done(function (res) {
-                console.log(res);
-                console.log(sendData);
-                console.log(filter)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     chartsData = res;
                     selectType();
                     tempChartsData = cutChartsData(chartsData, filter.dimension);
-                    console.log(tempChartsData);
                     setChartsData();
                 } else {
                     alert("result=0");
@@ -315,7 +311,6 @@ $(function () {
                 url: window.roleInfo.url1 + "giantService/report/product/productEvaluateTarget",
                 data: sendData
             }).done(function (res) {
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     quotaData = res;
@@ -361,7 +356,6 @@ $(function () {
                 url: window.roleInfo.url1 + "giantService/report/product/productTendencyList",
                 data: sendData
             }).done(function (res) {
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     tableData = res;
@@ -445,7 +439,6 @@ $(function () {
             tempCountData.legend.data = legend;
             tempCountData.xAxis.data = xData;
             tempCountData.series = serData;
-            console.log(tempCountData)
             showCharts();
         }
 

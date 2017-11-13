@@ -124,8 +124,6 @@ $(function () {
                 url: window.roleInfo.url2 + "giantService/report/userData/userLines",
                 data: sendData
             }).done(function (res) {
-                console.log(res);
-                console.log(filter)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     chartsData = res;
@@ -149,7 +147,6 @@ $(function () {
                 url: window.roleInfo.url2 + "giantService/report/userData/keyIndex",
                 data: sendData
             }).done(function (res) {
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     quotaData = res;
@@ -171,8 +168,8 @@ $(function () {
             var dfd = $.Deferred();
             $.ajax({
                 url: window.roleInfo.url1 + "giantService/report/userData/selectCondition",
+                data:filter
             }).done(function (res) {
-                console.log(res);
                 if (res.result == 1) {
                     dfd.resolve(res);
                     filterData = res;
@@ -196,8 +193,6 @@ $(function () {
                 url: window.roleInfo.url2 + "giantService/report/userData/userDatas",
                 data: sendData
             }).done(function (res) {
-                console.log(res)
-                console.log(tableFilter)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     tableData = res
@@ -274,7 +269,6 @@ $(function () {
 
         //设置表格数据
         function setTableData() {
-            console.log(tableData)
             var tableList = [];
             for (var i = 0; i < tableData.list.length; i++) {
                 var temp = $("<tr>\n" +
@@ -296,7 +290,6 @@ $(function () {
                 e.stopPropagation();
                 var ThisTop = $(this).offset().top + $("#content").scrollTop();
                 var ThisLeft = $(this).offset().left - 230 <= 10 ? 10 : $(this).offset().left - 230;
-                console.log(ThisLeft)
                 $(".search-box1").css({
                     "top": ThisTop + 40,
                     "left": ThisLeft

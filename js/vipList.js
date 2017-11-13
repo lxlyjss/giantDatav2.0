@@ -172,7 +172,8 @@ $(function () {
             $("#loading2").show();
             var dfd = $.Deferred();
             $.ajax({
-                url: window.roleInfo.url1 + "giantService/report/userData/selectCondition"
+                url: window.roleInfo.url1 + "giantService/report/userData/selectCondition",
+                data: filter
             }).done(function (res) {
                 if (res.result == 1) {
                     dfd.resolve(res);
@@ -190,7 +191,6 @@ $(function () {
         //获取后台数据,页面初始化
         function getTableData(filter) {
             $("#loading2").show();
-            console.log(filter);
             var dfd = $.Deferred();
             $.ajax({
                 url: window.roleInfo.url1 + "giantService/report/userData/userList",

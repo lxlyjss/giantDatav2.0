@@ -325,8 +325,6 @@
                 url: window.roleInfo.url2 + "giantService/report/storeServe/serveList",
                 data: filter
             }).done(function (res){
-                console.log(res)
-                console.log(filter)
                 if(res.result == 1){
                     dfd.resolve(res);
                     tableData = res;
@@ -524,7 +522,6 @@
             this.jsonData = data;
             this.setJsonData = function (type) {
                 this.zNodes = [];
-                console.log(this.jsonData)
                 for (var i = 0; i < this.jsonData.list.length; i++) {
                     var temp1 = {
                         id: (i + 1) * 2000, pId: 0,
@@ -553,7 +550,6 @@
                     }
                     this.zNodes.push(temp1);
                 }
-                console.log(this.zNodes)
                 $.fn.zTree.init($(ele), this.setting, this.zNodes);
             };
             this.beforeClick = function (treeId, treeNode) {

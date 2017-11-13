@@ -166,8 +166,6 @@ $(function () {
                 url: window.roleInfo.url2 + "giantService/report/storeQRcode/qrcodeLines",
                 data: sendData
             }).done(function (res) {
-                console.log(filter);
-                console.log(res);
                 if (res.result == 1) {
                     dfd.resolve(res);
                     chartsData = res;
@@ -191,7 +189,6 @@ $(function () {
                 url: window.roleInfo.url1 + "giantService/report/product/productQRcodeTarget",
                 data: sendData
             }).done(function (res) {
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     quotaData = res;
@@ -237,8 +234,6 @@ $(function () {
                 url: window.roleInfo.url2 + "giantService/report/storeQRcode/qrcodeDatas",
                 data: sendData
             }).done(function (res) {
-                console.log(res);
-                console.log(tableFilter)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     tableData = res;

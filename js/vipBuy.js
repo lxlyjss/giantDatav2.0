@@ -210,7 +210,6 @@ $(function () {
                 url: window.roleInfo.url1 + "giantService/report/consumptionTarget",
                 data: sendData
             }).done(function (res) {
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     quotaData = res;
@@ -232,7 +231,6 @@ $(function () {
                 url: window.roleInfo.url1 + "giantService/report/consumption",
                 data: sendData
             }).done(function (res) {
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     chartsData = res;
@@ -255,7 +253,6 @@ $(function () {
                 url: window.roleInfo.url1 + "giantService/report/consumptionList",
                 data: sendData
             }).done(function (res) {
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     tableData = res;
@@ -318,7 +315,6 @@ $(function () {
 
         //设置柱状图数据
         function setChartsData() {
-            console.log(chartsData);
             defaultData();
             var legend = [];
             var xData = [];

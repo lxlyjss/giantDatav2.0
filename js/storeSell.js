@@ -167,8 +167,6 @@ $(function () {
                 url: window.roleInfo.url2 + "giantService/report/storeSale/storeLines",
                 data: sendData
             }).done(function (res) {
-                console.log(filter);
-                console.log(res);
                 if (res.result == 1) {
                     dfd.resolve(res);
                     chartsData = res;
@@ -192,8 +190,6 @@ $(function () {
                 url: window.roleInfo.url1 + "giantService/report/product/productSaleTarget",
                 data: sendData
             }).done(function (res) {
-                console.log(res);
-                console.log(filter);
                 if (res.result == 1) {
                     dfd.resolve(res);
                     quotaData = res;
@@ -216,7 +212,6 @@ $(function () {
             $.ajax({
                 url: window.roleInfo.url1 + "giantService/report/storeEva/conditionEva"
             }).done(function (res) {
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     filterData = res;
@@ -240,8 +235,6 @@ $(function () {
                 url: window.roleInfo.url2 + "giantService/report/storeSale/storeDatas",
                 data: sendData
             }).done(function (res) {
-                console.log(tableFilter)
-                console.log(res)
                 if (res.result == 1) {
                     dfd.resolve(res);
                     tableData = res;

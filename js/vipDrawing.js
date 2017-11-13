@@ -412,7 +412,6 @@ $(function (){
                 url:window.roleInfo.url2+"giantService/report/dataDraw/sex",
                 data: sendData
             }).done(function (res){
-                console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
                 }else{
@@ -430,7 +429,6 @@ $(function (){
                 url:window.roleInfo.url2+"giantService/report/dataDraw/from",
                 data: sendData
             }).done(function (res){
-                console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
                 }else{
@@ -448,7 +446,6 @@ $(function (){
                 url:window.roleInfo.url2+"giantService/report/dataDraw/age",
                 data: sendData
             }).done(function (res){
-                console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
                 }else{
@@ -466,10 +463,8 @@ $(function (){
                 url:window.roleInfo.url2+"giantService/report/dataDraw/mapData",
                 data: sendData
             }).done(function (res){
-                console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
-                    console.log(res)
                 }else{
                     alert("result=0");
                 }
@@ -486,7 +481,6 @@ $(function (){
                 url:window.roleInfo.url2+"giantService/report/dataDraw/source",
                 data: sendData
             }).done(function (res){
-                console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
                     areaData = res;
@@ -508,7 +502,6 @@ $(function (){
                 url:window.roleInfo.url2+"giantService/report/dataDraw/carMember",
                 data: sendData
             }).done(function (res){
-                console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
                 }else{
@@ -526,7 +519,6 @@ $(function (){
                 url:window.roleInfo.url2+"giantService/report/dataDraw/labels",
                 data: sendData
             }).done(function (res){
-                console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
                 }else{
@@ -575,7 +567,6 @@ $(function (){
             }).fail(function (res){
                 //alert("获取不成功");
             }).then(function (){
-                console.log(filter)
                 $("#loading1").hide();
                 $("#loading2").hide();
             });

@@ -272,7 +272,6 @@ $(function (){
     //根据角色拆分数据
     $.fn.getRoleData = function (data,code,role){
         var newData = null;
-        console.log(data);
         if(role == "admin"){
             newData = data;
         }else if(role == "sbu"){
@@ -304,7 +303,6 @@ $(function (){
         }else{
             alert("未知的角色!");
         }
-        console.log(newData);
         return newData;
     };
     //控制区域显示
