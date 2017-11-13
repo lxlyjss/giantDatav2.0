@@ -237,6 +237,21 @@ $(function (){
                 name:"莫曼顿",
                 code:"1",
                 type:"2"
+            },
+            {
+                name:"liv",
+                code:"2",
+                type:"2"
+            },
+            {
+                name:"MMT电动车",
+                code:"1",
+                type:"1"
+            },
+            {
+                name:"Giant电动车",
+                code:"2",
+                type:"1"
             }
         ],//型号列表
         dimension: 1,//产品类型1,品牌,2车系,3车型
