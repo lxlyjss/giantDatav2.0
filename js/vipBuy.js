@@ -196,8 +196,8 @@ $(function (){
     var tableFilter = {
         role:window.roleInfo.role,
         roleCode:window.roleInfo.roleCode,
-        pageNo:"1",
-        pageSize:"30",
+        pageNo: 1,
+        pageSize: 30,
         beginDate:getDateArea(1),
         endDate:getDateArea(0)
     };

@@ -402,8 +402,8 @@ $(function (){
         beginDate: getDateArea(1),
         endDate: getDateArea(0),
         type:"1",
-        pageNo:"1",
-        pageSize:"10"
+        pageNo: 1,
+        pageSize: 10
     };
     //请求性别数据
     function getSexData(sendData){

@@ -247,6 +247,10 @@ $(function (){
         }
         $(".vip-container table tbody").empty().append(tableList);
     }
+    //根据平台来源id返回平台来源
+    function getFromName(fromData,fromId){
+
+    }
     //设置条件筛选
     function setFilterData(){
         var fromList = filterData.applicationMap;

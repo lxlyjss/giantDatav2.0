@@ -128,8 +128,8 @@ $(function (){
         beginDate: getDateArea(1),
         endDate: getDateArea(0),
         areaType:"",//类型1,sbu,2经销商,3门店
-        pageNo:"1",
-        pageSize:"30"
+        pageNo: 1,
+        pageSize: 30
     };
     setAreaType();
     function setAreaType(){

@@ -135,14 +135,16 @@ $(function (){
         beginDate: getDateArea(1),
         endDate: getDateArea(0),
         dimension: 1,//产品类型1,品牌,2车系,3车型
-        pageNo:"1",
-        pageSize:"30"
+        pageNo: 1,
+        pageSize: 30
     };
     //请求图表数据
     function getChartsData(sendData){
         if(sendData.dataList == "" || sendData.dataList == null){
-            alert("请选择一个品牌或车系或车型");
-            return;
+            if(sendData.type == 1 || sendData.type == 2){
+                alert("请选择一个品牌或车系或车型");
+                return;
+            }
         }
         $("#loading2").show();
         var dfd = $.Deferred();

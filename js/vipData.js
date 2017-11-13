@@ -111,8 +111,8 @@ $(function (){
         roleCode: window.roleInfo.roleCode,
         beginDate: getDateArea(1),
         endDate: getDateArea(0),
-        pageNo:"1",
-        pageSize:"30"
+        pageNo: 1,
+        pageSize: 30
     };
     //请求图表数据
     function getChartsData(sendData){

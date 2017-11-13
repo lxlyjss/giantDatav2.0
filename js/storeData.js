@@ -128,8 +128,8 @@ $(function (){
         beginDate: getDateArea(1),
         endDate: getDateArea(0),
         areaType:"",//
-        pageNo:"1",
-        pageSize:"30"
+        pageNo: 1,
+        pageSize: 30
     };
     setAreaType();
     function setAreaType(){
