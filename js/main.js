@@ -20,7 +20,7 @@ $(function (){
         // url1:"http://192.168.9.13:8080/",
         // url2:"http://192.168.9.21:8080/",
     };
-	$.fn.isSign = function (){
+	$.fn.isSign = function (callback){
 		window.roleInfo.token = $.fn.getCookie("access_token");//获取token
         window.roleInfo.role = $.fn.getCookie("role");//获取角色
         window.roleInfo.roleCode = $.fn.getCookie("role_code");//获取角色code
@@ -38,6 +38,7 @@ $(function (){
                         window.roleInfo.userId = data._user.id;//用户id
                         window.roleInfo.roleImg = data._user.userImg;//用户头像
                         setRoleInfo(window.roleInfo.name,window.roleInfo.roleImg,window.roleInfo.role,window.roleInfo.showList);//设置用户显示
+                        callback();
                     }else{//未登录则跳转捷安特官网
                         alert("请重新登录!");
                         window.location.href = "http://www.giant.com.cn/front/loginout";

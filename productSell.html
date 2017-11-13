@@ -37,10 +37,10 @@
                     format: 'YYYY/MM/DD'
                 },
                 ranges: {
-                    "最近3日": [moment().subtract(3, 'days'), moment()],
-                    '最近7日': [moment().subtract(7, 'days'), moment()],
-                    '最近30日': [moment().subtract(30, 'days'), moment()],
-                    "最近3个月":[moment().subtract(3, 'month'), moment()]
+                    "最近3日": [moment().subtract(3, 'days'), moment().subtract(1, 'days')],
+                    '最近7日': [moment().subtract(7, 'days'), moment().subtract(1, 'days')],
+                    '最近30日': [moment().subtract(30, 'days'), moment().subtract(1, 'days')],
+                    '最近3个月': [moment().subtract(3, 'month'), moment().subtract(1, 'days')]
                 }
             };
             //时间选择

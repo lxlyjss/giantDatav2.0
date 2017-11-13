@@ -187,41 +187,47 @@
 </div>
 <script>
     $(function () {
-        $.fn.isSign();
-        var quotaData;//指标数据
-        //获取数据
-        var filter = {
-            role:window.roleInfo.role,
-            roleCode:window.roleInfo.roleCode
-        };
-        //请求指标数据
-        function getQuotaData(){
-            $(".loading-wrapper").show();
-            $.ajax({
-                url: window.roleInfo.url1+"giantService/report/product/productIndex",
-                data: filter
-            }).done(function (res){
-                $(".loading-wrapper").hide();
-                if(res.result == 1){
-                    quotaData = res;
-                    setQuotaData();
-                }else{
-                    alert("获取接口失败!");
-                }
+        $.fn.pageData = function () {
+            var quotaData;//指标数据
+            //获取数据
+            var filter = {
+                role: window.roleInfo.role,
+                roleCode: window.roleInfo.roleCode
+            };
 
-            }).fail(function (){
-                $(".loading-wrapper").hide();
-                alert("失败!")
-            });
-        }
-        //设置指标数据
-        function setQuotaData(){
-            quotaData.EvaluateCount.count/=100;
-            var dataArr = [quotaData.QRcodeCount,quotaData.ProductCount,quotaData.EvaluateCount];
-            $.fn.quotaData(dataArr);
-        }
-        getQuotaData();
-    })
+            //请求指标数据
+            function getQuotaData() {
+                $(".loading-wrapper").show();
+                $.ajax({
+                    url: window.roleInfo.url1 + "giantService/report/product/productIndex",
+                    data: filter
+                }).done(function (res) {
+                    $(".loading-wrapper").hide();
+                    if (res.result == 1) {
+                        quotaData = res;
+                        setQuotaData();
+                    } else {
+                        alert("获取接口失败!");
+                    }
+
+                }).fail(function () {
+                    $(".loading-wrapper").hide();
+                    alert("失败!")
+                });
+            }
+
+            //设置指标数据
+            function setQuotaData() {
+                quotaData.EvaluateCount.count /= 100;
+                var dataArr = [quotaData.QRcodeCount, quotaData.ProductCount, quotaData.EvaluateCount];
+                $.fn.quotaData(dataArr);
+            }
+
+            getQuotaData();
+        };
+        //回调函数
+        $.fn.isSign($.fn.pageData);
+    });
 </script>
 </body>
 </html>

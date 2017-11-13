@@ -36,10 +36,10 @@
                     format: 'YYYY/MM/DD'
                 },
                 ranges: {
-                    "最近3日": [moment().subtract(3, 'days'), moment()],
-                    '最近7日': [moment().subtract(7, 'days'), moment()],
-                    '最近30日': [moment().subtract(30, 'days'), moment()],
-                    '最近3个月': [moment().subtract(3, 'month'), moment()]
+                    "最近3日": [moment().subtract(3, 'days'), moment().subtract(1, 'days')],
+                    '最近7日': [moment().subtract(7, 'days'), moment().subtract(1, 'days')],
+                    '最近30日': [moment().subtract(30, 'days'), moment().subtract(1, 'days')],
+                    '最近3个月': [moment().subtract(3, 'month'), moment().subtract(1, 'days')]
                 }
             };
             //时间选择
@@ -260,7 +260,7 @@
 </div>
 <script>
     $(function () {
-        $.fn.isSign();
+        $.fn.pageData = function () {
         var tableData;//存储数据
         var filterData;//存储筛选条件
         var filter = {
@@ -601,6 +601,9 @@
                 }
             };
         };
+        };
+        //回调函数
+        $.fn.isSign($.fn.pageData);
     });
 </script>
 </body>

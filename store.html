@@ -195,43 +195,49 @@
 </div>
 <script>
     $(function () {
-        $.fn.isSign();
-        var quotaData;//指标数据
-        var filter = {
-            role:window.roleInfo.role,
-            roleCode:window.roleInfo.roleCode
+        $.fn.pageData = function () {
+            var quotaData;//指标数据
+            var filter = {
+                role: window.roleInfo.role,
+                roleCode: window.roleInfo.roleCode
+            };
+
+            function getQuotaData(sendData) {
+                $("#loading1").show();
+                $.ajax({
+                    url: window.roleInfo.url2 + "giantService/report/storeData/keyIndex",
+                    data: sendData
+                }).done(function (res) {
+                    console.log(res);
+                    if (res.result == 1) {
+                        quotaData = res;
+                        setQuotaData();
+                    } else {
+                        alert("result=0");
+                    }
+                }).fail(function () {
+                    aler("fail")
+                }).complete(function () {
+                    $("#loading1").hide();
+                });
+            }
+
+            getQuotaData(filter);
+
+            //设置关键指标
+            function setQuotaData() {
+                var dataArr = [
+                    quotaData.VipAddCount,
+                    quotaData.QRactivation,
+                    quotaData.sellCount,
+                    quotaData.serviceScore
+                ];
+                quotaData.serviceScore.count /= 100;
+                $.fn.quotaData(dataArr);
+            }
         };
-        function getQuotaData(sendData){
-            $("#loading1").show();
-            $.ajax({
-                url: window.roleInfo.url2+"giantService/report/storeData/keyIndex",
-                data:sendData
-            }).done(function (res){
-                console.log(res);
-                if(res.result == 1){
-                    quotaData = res;
-                    setQuotaData();
-                }else{
-                    alert("result=0");
-                }
-            }).fail(function (){
-                aler("fail")
-            }).complete(function (){
-                $("#loading1").hide();
-            });
-        }
-        getQuotaData(filter);
-        //设置关键指标
-        function setQuotaData() {
-            var dataArr = [
-                quotaData.VipAddCount,
-                quotaData.QRactivation,
-                quotaData.sellCount,
-                quotaData.serviceScore
-            ];
-            quotaData.serviceScore.count/=100;
-            $.fn.quotaData(dataArr);
-        }
+        //回调函数
+        $.fn.isSign($.fn.pageData);
     })
 </script>
 </body>
