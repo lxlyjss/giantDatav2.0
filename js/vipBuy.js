@@ -1,5 +1,5 @@
 $(function (){
-    // $.fn.isSign();
+    $.fn.isSign();
     //初始化折线图
     var myEcharts1 = echarts.init(document.getElementById("myEcharts1"));
     var myEcharts2 = echarts.init(document.getElementById("myEcharts2"));

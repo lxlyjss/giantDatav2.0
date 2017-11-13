@@ -1,5 +1,5 @@
 $(function (){
-    // $.fn.isSign();
+    $.fn.isSign();
     $.fn.setAreaShow(window.roleInfo.role);
     //初始化折线图
     var myEcharts = echarts.init(document.getElementById("myEcharts"));
@@ -80,7 +80,7 @@ $(function (){
     };
     var tempCountData = {
         title:{
-            text:""
+            text:"捷安特QRcode激活趋势图"
         },
         legend: {
             data: []
@@ -312,10 +312,6 @@ $(function (){
     //下载表格
     function downloadTable(){
         $("#download").click(function (){
-            if(sendData.areaList == "" || sendData.areaList == null){
-                alert("请选择一个sbu或经销商或门店");
-                return;
-            }
             var beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
             var endDate = $.fn.getUserDateArea($("#dateInput2"),0);
             window.location.href = window.roleInfo.url2+
@@ -378,7 +374,7 @@ $(function (){
             $("#vipClass").children().eq(index).click(function (){
                 $(this).addClass("btn-primary").removeClass("btn-default").siblings().removeClass("btn-primary").addClass("btn-default");
                 filter.countType = index+1;
-                tempCountData.title.text = titleArr[i];
+                tempCountData.title.text = titleArr[index];
                 getChartsData(filter);
             });
         });

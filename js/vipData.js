@@ -116,7 +116,7 @@ $(function (){
     };
     //请求图表数据
     function getChartsData(sendData){
-        $("#loading2").hide();
+        $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
             url: window.roleInfo.url2+"giantService/report/userData/userLines",

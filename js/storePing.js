@@ -348,10 +348,6 @@ $(function (){
     //下载表格
     function downloadTable(){
         $("#download").click(function (){
-            if(sendData.areaList == "" || sendData.areaList == null){
-                alert("请选择一个sbu或经销商或门店");
-                return;
-            }
             var beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
             var endDate = $.fn.getUserDateArea($("#dateInput2"),0);
             window.location.href = window.roleInfo.url2+

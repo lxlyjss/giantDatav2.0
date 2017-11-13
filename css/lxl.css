@@ -165,7 +165,7 @@ html, body {
             left: 5px; }
       #aside .navbar .user-info .user-welcome {
         width: 90px;
-        padding: 25px 20px 10px;
+        padding: 25px 0px 10px;
         float: left; }
         #aside .navbar .user-info .user-welcome p:first-of-type {
           color: #BAB8B8; }

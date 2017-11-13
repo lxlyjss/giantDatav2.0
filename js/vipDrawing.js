@@ -1,8 +1,8 @@
 $(function (){
-    // $.fn.isSign();
+    $.fn.isSign();
     //初始化折线图
     var myEcharts1 = echarts.init(document.getElementById("echarts1"));
-    var myEcharts2 = echarts.init(document.getElementById("echarts2"));
+    // var myEcharts2 = echarts.init(document.getElementById("echarts2"));
     var myEcharts3 = echarts.init(document.getElementById("echarts3"));
     var myEcharts4 = echarts.init(document.getElementById("echarts4"));
     var myEcharts5 = echarts.init(document.getElementById("echarts5"));
@@ -127,13 +127,13 @@ $(function (){
             axisTick: {
                 alignWithLabel: true
             },
-            data: ["男","女","保密"]
+            data: []
         },
         series: [{
             name: "性别",
             type: "bar",
             barWidth: '40%',
-            data: ["100","100","100"]
+            data: []
         }]
     };
     var tempCountData2 = {
@@ -539,6 +539,8 @@ $(function (){
     }
     //所有数据都成功之后的回调函数
     function getData(){
+        $("#loading1").show();
+        $("#loading2").show();
         $.when(
             getSexData(filter),
             getFromData(filter),
@@ -573,6 +575,7 @@ $(function (){
         }).fail(function (res){
             //alert("获取不成功");
         }).then(function (){
+            console.log(filter)
             $("#loading1").hide();
             $("#loading2").hide();
         });
@@ -705,7 +708,6 @@ $(function (){
         defaultData();
         getData();
     });
-
     //选页
     window.selectPage = function (n){
         if(n > 0 && n <= Math.ceil(areaData.count/10)) {
@@ -732,7 +734,7 @@ $(function (){
         }
     });
     //初始化数据
-    function defaultData(){
+    function defaultData() {
         tempCountData1.xAxis.data = [];
         tempCountData1.series[0].data = [];
         tempCountData1.legend.data = [];
@@ -753,26 +755,17 @@ $(function (){
         tempCountData7.series[0].data = [];
         tempCountData7.legend.data = [];
     }
-    //添加筛选条件
-    function addFilter(){
-        var filterList = [];
-        for(var i = 0; i < resultData.filter.length;i++){
-            var temp = $("<option value='"+resultData.filter[i].id+"'>"+resultData.filter[i].code+"</option>");
-            filterList.push(temp);
-        }
-        $(".filter-select .areaSelect").append(filterList);
-    }
     //展示图表数据
     function showCharts(){
         var newData1 = $.extend(true,{},optionData,tempCountData1);
-        var newData2 = $.extend(true,{},optionData,tempCountData2);
+        // var newData2 = $.extend(true,{},optionData,tempCountData2);
         var newData3 = $.extend(true,{},optionData,tempCountData3);
         var newData4 = $.extend(true,{},optionData,tempCountData4);
         var newData5 = $.extend(true,{},optionMap,tempCountData5);
         var newData6 = $.extend(true,{},optionData,tempCountData6);
         var newData7 = $.extend(true,{},optionData,tempCountData7);
         myEcharts1.setOption(newData1);
-        myEcharts2.setOption(newData2);
+        // myEcharts2.setOption(newData2);
         myEcharts3.setOption(newData3);
         myEcharts4.setOption(newData4);
         myEcharts5.setOption(newData5);
@@ -780,7 +773,7 @@ $(function (){
         myEcharts7.setOption(newData7);
         setTimeout(function (){
             myEcharts1.resize();
-            myEcharts2.resize();
+            // myEcharts2.resize();
             myEcharts3.resize();
             myEcharts4.resize();
             myEcharts5.resize();
@@ -790,7 +783,7 @@ $(function (){
     }
     $(window).resize(function (){
         myEcharts1.resize();
-        myEcharts2.resize();
+        // myEcharts2.resize();
         myEcharts3.resize();
         myEcharts4.resize();
         myEcharts5.resize();

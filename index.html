@@ -102,7 +102,7 @@
                         会员
                         <i class="iconfont icon-fangxiangyou"></i>
                     </a>
-                    <ul class="child-slide-menu" style="display: block;">
+                    <ul class="child-slide-menu">
                         <li>
                             <a href="vipData.html">会员数据</a>
                         </li>
@@ -354,6 +354,7 @@
                 data:filter
             }).done(function (res){
                 dfd.resolve(res);
+                console.log(res)
                 if(res.result == 1){
                     quotaData2 = res;
                     setQuotaData2();
@@ -438,12 +439,23 @@
         }
         //设置指标数据
         function setQuotaData2(){
-            var dataArr = [quotaData2.VipAddCount,quotaData2.VipLostCount,quotaData2.VipTotalCount];
+            var dataArr = [
+                quotaData2.qrcodeCount,
+                quotaData2.actTotalCount,
+                quotaData2.bdCount,
+                quotaData2.bdTotalCount
+            ];
             quotaData($("#quotaBox2"),dataArr);
         }
         //设置指标数据
         function setQuotaData3(){
-            var dataArr = [quotaData3.totalPrice,quotaData3.totalCount,quotaData3.bikeCount,quotaData3.productCount];
+            var dataArr = [
+                quotaData3.totalPrice,
+                quotaData3.totalCount,
+                quotaData3.bikeCount,
+                quotaData3.productCount
+            ];
+            quotaData3.totalPrice.count/=100;
             quotaData($("#quotaBox3"),dataArr);
         }
         //设置关键指标

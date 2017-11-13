@@ -80,7 +80,7 @@ $(function (){
     };
     var tempCountData = {
         title:{
-            text:""
+            text:"捷安特销售总金额趋势图"
         },
         legend: {
             data: []
@@ -289,6 +289,7 @@ $(function (){
     });
     //设置关键指标
     function setQuotaData() {
+        quotaData.totalPrice.count/=100;
         var dataArr = [
             quotaData.totalPrice,
             quotaData.totalCount,
@@ -331,7 +332,7 @@ $(function (){
                 if(i == 0){
                     xData.push(chartsData.data[i].data[j].date);
                 }
-                temp.data.push(chartsData.data[i].data[j].count);
+                temp.data.push(filter.countType==1?chartsData.data[i].data[j].count/100:chartsData.data[i].data[j].count);
             }
             serData.push(temp);
         }
@@ -347,7 +348,7 @@ $(function (){
         for(var i = 0; i < tableData.data.length;i++){
             var temp = $("<tr>\n" +
                 "<td>"+tableData.data[i].codeName+"</td>" +
-                "<td>"+tableData.data[i].totalPrice+"</td>" +
+                "<td>"+tableData.data[i].totalPrice/100+"</td>" +
                 "<td>"+tableData.data[i].totalCount+"</td>" +
                 "<td>"+tableData.data[i].bikeCount+"</td>" +
                 "<td>"+tableData.data[i].productCount+"</td>" +
@@ -413,10 +414,6 @@ $(function (){
     //下载表格
     function downloadTable(){
         $("#download").click(function (){
-            if(sendData.areaList == "" || sendData.areaList == null){
-                alert("请选择一个sbu或经销商或门店");
-                return;
-            }
             var beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
             var endDate = $.fn.getUserDateArea($("#dateInput2"),0);
             window.location.href = window.roleInfo.url2+

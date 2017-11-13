@@ -1,5 +1,5 @@
 $(function (){
-    // $.fn.isSign();
+    $.fn.isSign();
     var resultData,filterData;
     //点击查看详细会员信息
     $.fn.readMore = function (index){
@@ -46,6 +46,12 @@ $(function (){
             $("#tel").text(data.userTel);
             $("#email").text(data.userEmail);
             $("#from").text(data.applicationMap);
+            //初始化消费数据
+            $("#allVote").text("0");
+            $("#allPrice").text("0.00");
+            $("#pingjun").text("0.00");
+            $("#nearBuy").text(0);
+
             if(data.userPicture != "" && data.userPicture != null){
                 $(".vip-img-box").css({
                     "background":"url("+data.userPicture+")",
@@ -75,30 +81,38 @@ $(function (){
             $("#AppRegisterDate>td").text(data.appRegister);
             $("#point>td").text(data.point);
             $("#something>td").text(data.something);
-            $("#lastTimeLogin>td").text(data.lastTimeLogin);
+            $("#lastTimeLogin>td").text(data.lastLoginDate);
             var temp = data.tagList.map(function (a){
                 return a.substring(0,a.indexOf("["))
             });
             $("#tagList>td").text(temp.join());
-            var qrBindList = [];
-            for(var i = 0; i < data.qrList.length;i++){
-                var temp = $("<tr>"+
-                    "<td>"+data.qrList[i].vinno+"</td>"+
-                    "<td>"+data.qrList[i].QRcodeStoreName+"</td>"+
-                    "<td>"+data.qrList[i].QRcodeBindDate+"</td>"+
-                    "</tr>");
-                qrBindList.push(temp);
+            if(data.qrList.length>0){
+                var qrBindList = [];
+                for(var i = 0; i < data.qrList.length;i++){
+                    var temp = $("<tr>"+
+                        "<td>"+data.qrList[i].vinno+"</td>"+
+                        "<td>"+data.qrList[i].QRcodeStoreName+"</td>"+
+                        "<td>"+data.qrList[i].QRcodeBindDate+"</td>"+
+                        "</tr>");
+                    qrBindList.push(temp);
+                }
+                $("#qrBind table tbody").empty().append(qrBindList);
+            }else{
+                $("#qrBind table tbody").empty();
             }
-            $("#qrBind table tbody").empty().append(qrBindList);
-            var joinList = [];
-            for(var i = 0; i < data.clubActivity.length;i++){
-                var temp = $("<tr>"+
-                    "<td>"+data.clubActivity[i].activity+"</td>"+
-                    "<td>"+data.clubActivity[i].time+"</td>"+
-                    "</tr>");
-                joinList.push(temp);
+            if(data.clubActivity.length>0){
+                var joinList = [];
+                for(var i = 0; i < data.clubActivity.length;i++){
+                    var temp = $("<tr>"+
+                        "<td>"+data.clubActivity[i].activity+"</td>"+
+                        "<td>"+data.clubActivity[i].time+"</td>"+
+                        "</tr>");
+                    joinList.push(temp);
+                }
+                $("#joinClub table tbody").empty().append(joinList);
+            }else{
+                $("#joinClub table tbody").empty();
             }
-            $("#joinClub table tbody").empty().append(joinList);
         }
         //给添加标签添加index
         $("#addTag").attr("userId",index);
@@ -113,14 +127,15 @@ $(function (){
             }
         }
         var index = $("#addTag").attr("userId");
-        console.log(resultData.vipData[index].id);
         $.ajax({
-            url:window.roleInfo.url1+"giantService/report/userDate/addLabel",
+            url:window.roleInfo.url1+"giantService/report/userData/addLabel",
             data: {
                 code: 11,
                 userId: resultData.vipData[index].id,
                 labelName: $("#tagInput").val()
-            }
+            },
+            type:"post",
+            dataType:"json"
         }).done(function (res){
             if(res.result == 1){
                 $("#tagList td").append(","+$("#tagInput").val());
@@ -136,7 +151,7 @@ $(function (){
         page: 1,
         pageNum: 30,
         labelIds:"",//标签id
-        applicationIds:"",//平台id
+        applicationIds: [],//平台id
         searchName:""//搜索关键词
     };
     //选页
@@ -250,8 +265,10 @@ $(function (){
     //设置标签列表
     function setTagFilter(data){
         var tagList = data;
+        console.log(data)
         var tagArr = [];
         for(var i = 0; i < tagList.length;i++){
+            console.log(tagList[i].labelName)
             var temp = $("<p><label for=\"tag"+i+"\">" +
                 "<input type=\"checkbox\" data-code='"+tagList[i].id+"' id=\"tag"+i+"\">" +
                 "<span>"+tagList[i].labelName.substring(0,tagList[i].labelName.indexOf("["))+"</span>" +
@@ -292,13 +309,13 @@ $(function (){
             console.log(tagFilter);
             filter.applicationIds = fromFilter.join();
             filter.labelIds = tagFilter.join();
+            filter.searchName = "";
             getTableData(filter);
         });
     }
     //查找标签的方法
     function findTag(){
         $("#findTag input").on("input",function (){
-            console.log(0)
             var findText = $(this).val();
             var nowArr = [];
             for(var i = 0; i < filterData.labelData.length;i++){
@@ -333,6 +350,8 @@ $(function (){
                 return;
             }
             filter.searchName = $("#searchInput").val();
+            filter.applicationIds = [];
+            filter.labelIds = "";
             filter.page = 1;
             getTableData(filter);
         });

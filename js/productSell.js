@@ -1,5 +1,5 @@
 $(function (){
-    // $.fn.isSign();
+    $.fn.isSign();
     //初始化折线图
     var myEcharts = echarts.init(document.getElementById("myEcharts"));
     var optionData = {
@@ -148,12 +148,14 @@ $(function (){
         var dfd = $.Deferred();
         var nowSend = $.extend(true,{},sendData);
         nowSend.dataList = JSON.stringify(sendData.dataList);
-        if(filter.dimension == 1 || filter.dimension ==2){//整车销售
+        if(filter.type == 1 || filter.type ==2){//整车销售
             $.ajax({
                 url: window.roleInfo.url1+"giantService/report/product/productBikeSaleTendency",
-                data: nowSend
+                data: nowSend,
+                type:"post",
+                dataType:"json"
             }).done(function (res){
-                console.log(filter);
+                console.log(nowSend);
                 console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
@@ -167,12 +169,14 @@ $(function (){
             }).complete(function (){
                 $("#loading2").hide();
             });
-        }else if(filter.dimension == 3 || filter.dimension == 4){//商品销售
+        }else if(filter.type == 3 || filter.type == 4){//商品销售
             $.ajax({
                 url: window.roleInfo.url1+"giantService/report/product/productCommoditySaleTendency",
-                data: nowSend
+                data: nowSend,
+                type:"post",
+                dataType:"json"
             }).done(function (res){
-                console.log(filter);
+                console.log(nowSend);
                 console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
@@ -241,7 +245,7 @@ $(function (){
         $("#loading2").show();
         var dfd = $.Deferred();
         $.ajax({
-            url:window.roleInfo.url1+"giantService/report/dataDraw/sex",
+            url:window.roleInfo.url1+"giantService/report/product/productBikeSaleTendencyList",
             data: sendData
         }).done(function (res){
             console.log(tableFilter);
@@ -282,24 +286,52 @@ $(function (){
     }
     //拆分数据
     function setChartsData(){
+        if(filter.type == 1){
+            tempChartsData = chartsData.totalPriceData;
+        }else if(filter.type == 2){
+            tempChartsData = chartsData.totalCountData;
+        }else if(filter.type == 3){
+            tempChartsData = chartsData.totalPriceData;
+        }else if(filter.type == 4){
+            tempChartsData = chartsData.totalCountData;
+        }else{
+            alert("未知的数据类型");
+            return;
+        }
         defaultData();
         var legend = [];
         var xData = [];
         var serData = [];
-        for(var i = 0; i < chartsData.data.length;i++){
-            legend.push(chartsData.data[i].name);
+        if(filter.type == 1 || filter.type == 2){
+            for(var i = 0; i < tempChartsData.length;i++){
+                legend.push(tempChartsData[i].brand);
+                var temp = {
+                    name: tempChartsData[i].brand,
+                    type: "line",
+                    smooth: true,
+                    //stack: '总量',
+                    data: []
+                };
+                for(var j = 0; j < tempChartsData[i].data.length;j++){
+                    if(i == 0){
+                        xData.push(tempChartsData[i].data[j].date);
+                    }
+                    temp.data.push(filter.type==1?tempChartsData[i].data[j].count/100:tempChartsData[i].data[j].count);
+                }
+                serData.push(temp);
+            }
+        }else{
+            legend.push(filter.type==3?"商品销售总金额":"商品销售总数量");
             var temp = {
-                name: chartsData.data[i].name,
+                name: filter.type==3?"商品销售总金额":"商品销售总数量",
                 type: "line",
                 smooth: true,
                 //stack: '总量',
                 data: []
             };
-            for(var j = 0; j < chartsData.data[i].data.length;j++){
-                if(i == 0){
-                    xData.push(chartsData.data[i].data[j].date);
-                }
-                temp.data.push(chartsData.data[i].data[j].count/100);
+            for(var j = 0; j < tempChartsData.data.length;j++){
+                xData.push(tempChartsData.data[j].date);
+                temp.data.push(filter.type==3?tempChartsData.data[j].count/100:tempChartsData.data[j].count);
             }
             serData.push(temp);
         }
@@ -327,11 +359,9 @@ $(function (){
         var tableList = [];
         for(var i = 0; i < tempTableData.length;i++){
             var temp = $("<tr>" +
-                "<td>"+tempTableData[i].brand+"</td>" +
-                "<td>"+tempTableData[i].addActivation+"</td>" +
-                "<td>"+tempTableData[i].productCount+"</td>" +
-                "<td>"+tempTableData[i].addBind+"</td>" +
-                "<td>"+tempTableData[i].totalBind+"</td>" +
+                "<td>"+tempTableData[i].name+"</td>" +
+                "<td>"+tempTableData[i].totalPrice/100+"</td>" +
+                "<td>"+tempTableData[i].totalCount+"</td>" +
                 "</tr>");
             tableList.push(temp);
         }
@@ -346,6 +376,11 @@ $(function (){
                 $(this).addClass("btn-primary").removeClass("btn-default").siblings().removeClass("btn-primary").addClass("btn-default");
                 filter.type = index+1;
                 tempCountData.title.text = titleArr[index];
+                if(filter.type == 1 || filter.type == 2){
+                    $("#brandType").show();
+                }else{
+                    $("#brandType").hide();
+                }
                 getChartsData(filter);
             });
         });
@@ -356,6 +391,21 @@ $(function (){
                 filter.dateType = index+1;
                 getChartsData(filter);
             });
+        });
+    }
+    //根据时间段查询
+    function selectDate(){
+        $(".date-select").eq(0).children(".input-group-btn").children(".btn").click(function (){
+            filter.beginDate = $.fn.getUserDateArea($("#dateInput1"),1);
+            filter.endDate = $.fn.getUserDateArea($("#dateInput1"),0);
+            getChartsData(filter);
+        });
+        //时间2选择
+        $(".date-select").eq(1).children(".input-group-btn").children(".btn").click(function (){
+            tableFilter.beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
+            tableFilter.endDate = $.fn.getUserDateArea($("#dateInput2"),0);
+            tableFilter.pageNo = 1;
+            getTableData(tableFilter);
         });
     }
     //设置筛选条件
@@ -404,7 +454,11 @@ $(function (){
                 nodes = zTree.getCheckedNodes(true),
                 filterList = [];
             for (var i = 0; i < nodes.length; i++) {
-                filterList.push(nodes[i].dictCode);
+                filterList.push({
+                    code:nodes[i].brandCode,
+                    name:nodes[i].brandName,
+                    type:nodes[i].brandType
+                });
             }
             $("#menuContent").slideUp("fast");
             filter.dataList = filterList;
@@ -444,7 +498,7 @@ $(function (){
             var beginDate = $.fn.getUserDateArea($("#dateInput2"),1);
             var endDate = $.fn.getUserDateArea($("#dateInput2"),0);
             window.location.href = window.roleInfo.url1+
-                "?"+
+                "giantService/report/product/exportProductBikeSaleTendencyList?"+
                 "role="+window.roleInfo.role+
                 "&roleCode="+window.roleInfo.roleCode+
                 "&beginDate="+beginDate+
@@ -461,8 +515,8 @@ $(function (){
     //展示图表数据
     function showCharts(){
         var newData = $.extend(true,{},optionData,tempCountData);
-        myEcharts.setOption(newData);
         myEcharts.clear();
+        myEcharts.setOption(newData);
         setTimeout(function (){
             myEcharts.resize();
         },200);
@@ -473,6 +527,7 @@ $(function (){
     //初始化页面
     function initFun(){
         selectType();
+        selectDate();
         downloadTable();
     }
     initFun();

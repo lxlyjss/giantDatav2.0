@@ -15,10 +15,10 @@ $(function (){
         token:"",//用户登录的token
         role:"admin",//用户角色
         roleCode:"",//角色code
-        // url1:"http://service.giant.com.cn:8080/",
-        // url2:"http://service.giant.com.cn:8080/",
-        url1:"http://192.168.9.13:8080/",
-        url2:"http://192.168.9.21:8080/",
+        url1:"http://service.giant.com.cn:8080/",
+        url2:"http://service.giant.com.cn:8080/",
+        // url1:"http://192.168.9.13:8080/",
+        // url2:"http://192.168.9.21:8080/",
         showList:[]
     };
 	$.fn.isSign = function (){
@@ -72,70 +72,29 @@ $(function (){
                 });
             }
             //右上角名字
-            name = name.length > 5 ? name.slice(0,5)+".." : name;
+            name = name.length > 11 ? name.slice(0,11)+".." : name;
             $(".user-manage .user-content span").text(name);
             var roleName = "";
             switch (role){
                 case "admin":{
                     roleName = "总公司";
-                    //setMenuList(showList);
                     break;
                 }
                 case "sbu":{
                     roleName = "SBU";
-					$(".nav-slide-menu .nav-list").eq(1).children(".child-slide-menu").children("li").eq(0).hide();
                     break;
                 }
                 case "dealer":{
                     roleName = "经销商";
-					$(".nav-slide-menu .nav-list").eq(1).children(".child-slide-menu").children("li").eq(0).hide();
                     break;
                 }
                 case "storeManager":{
                     roleName = "门店";
-					$(".nav-slide-menu .nav-list").eq(1).children(".child-slide-menu").children("li").eq(0).hide();
                     break;
                 }
             }
             $(".user-info .user-welcome p:first-of-type").text(roleName);
             $(".user-info .user-welcome p:last-of-type").text(name);
-            function setMenuList(showList){
-				showList = decodeURI(showList);
-				showList = showList.replace(/\\/g,"");
-				showList = showList.substring(1,showList.length-1);
-				showList = JSON.parse(showList);
-                function setSmallShow(isShow,ele){
-                    isShow == "1" ? ele.show() : ele.hide();
-                }
-                if(showList){
-                    //控制产品列表显示
-                    setSmallShow(showList[0].product.productList,$(".nav-slide-menu .nav-list").eq(1).children(".child-slide-menu").children("li").eq(0));
-                    setSmallShow(showList[0].product.productData,$(".nav-slide-menu .nav-list").eq(1).children(".child-slide-menu").children("li").eq(1));
-                    setSmallShow(showList[0].product.areaData,$(".nav-slide-menu .nav-list").eq(1).children(".child-slide-menu").children("li").eq(2));
-                    if(showList[0].product.productList == "1" || showList[0].product.productData == "1" || showList[0].product.areaData == "1"){
-                        $(".nav-slide-menu .nav-list").eq(1).show();
-                    }else{
-                        $(".nav-slide-menu .nav-list").eq(1).hide();
-                    }
-                    //控制会员列表显示
-                    setSmallShow(showList[1].vip.vipList,$(".nav-slide-menu .nav-list").eq(2).children(".child-slide-menu").children("li").eq(0));
-                    setSmallShow(showList[1].vip.vipFrom,$(".nav-slide-menu .nav-list").eq(2).children(".child-slide-menu").children("li").eq(1));
-                    setSmallShow(showList[1].vip.vipChange,$(".nav-slide-menu .nav-list").eq(2).children(".child-slide-menu").children("li").eq(2));
-                    if(showList[1].vip.vipList == "1" || showList[1].vip.vipFrom == "1" || showList[1].vip.vipChange == "1"){
-                        $(".nav-slide-menu .nav-list").eq(2).show();
-                    }else{
-                        $(".nav-slide-menu .nav-list").eq(2).hide();
-                    }
-                    //控制门店列表显示
-                    setSmallShow(showList[2].store.serviceList,$(".nav-slide-menu .nav-list").eq(3).children(".child-slide-menu").children("li").eq(0));
-                    setSmallShow(showList[2].store.tongluList,$(".nav-slide-menu .nav-list").eq(3).children(".child-slide-menu").children("li").eq(1));
-                    if(showList[2].store.serviceList == "1" || showList[2].store.tongluList == "1"){
-                        $(".nav-slide-menu .nav-list").eq(3).show();
-                    }else{
-                        $(".nav-slide-menu .nav-list").eq(3).hide();
-                    }
-                }
-            }
         }
 	};
     $.fn.setCookie = function (name,value){
@@ -149,7 +108,11 @@ $(function (){
     $.fn.getCookie = function (name) {
         var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
         if(arr=document.cookie.match(reg)){
-            return encodeURI(arr[2]);
+            if(encodeURI(arr[2]) == "%22%22"){
+                return "";
+            }else{
+                return encodeURI(arr[2]);
+            }
         }else{
             return null;
         }
@@ -353,18 +316,24 @@ $(function (){
         if(role == "admin"){
 
         }else if(role == "sbu"){
-            $("#search-btn1").remove();
+
         }else if(role == "dealer"){
             $("#search-btn1").remove();
-            $("#search-btn2").remove();
+            $("#search-btn4").remove();
         }else if(role == "storeManager"){
             $("#search-btn1").remove();
             $("#search-btn2").remove();
             $("#search-btn3").remove();
+            $("#search-btn4").remove();
+            $("#search-btn5").remove();
+            $("#search-btn6").remove();
         }else{
             $("#search-btn1").remove();
             $("#search-btn2").remove();
             $("#search-btn3").remove();
+            $("#search-btn4").remove();
+            $("#search-btn5").remove();
+            $("#search-btn6").remove();
             alert("未知的角色!")
         }
     };

@@ -39,12 +39,14 @@
                 ranges: {
                     "最近3日": [moment().subtract(3, 'days'), moment()],
                     '最近7日': [moment().subtract(7, 'days'), moment()],
-                    '最近30日': [moment().subtract(30, 'days'), moment()]
+                    '最近30日': [moment().subtract(30, 'days'), moment()],
+                    "最近3个月":[moment().subtract(3, 'month'), moment()]
                 }
             };
             //时间选择
-            $('#dateInput1').daterangepicker($.extend({},dateOption,{dateLimit:{month:"3"}}));
             $('#dateInput2').daterangepicker(dateOption);
+            $('#dateInput1').daterangepicker($.extend({},dateOption,{dateLimit:{month:"3"}}));
+
         })
     </script>
     <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
@@ -255,7 +257,7 @@
 							            </span>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-4 col-sm-4" id="brandType">
                             <div class="btn-group">
                                 <button class="btn btn-primary" id="search-btn1">品牌</button>
                                 <button class="btn btn-default" id="search-btn2">车系</button>
@@ -301,10 +303,8 @@
                         <thead>
                         <tr>
                             <td>品牌</td>
-                            <td>销售总金额</td>
-                            <td>销售产品数量</td>
+                            <td>整车销售金额</td>
                             <td>整车销售数量</td>
-                            <td>商品销售数量</td>
                         </tr>
                         </thead>
                         <tbody>
