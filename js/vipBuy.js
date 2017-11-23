@@ -285,9 +285,9 @@ $(function () {
             for (var i = 0; i < data.length; i++) {
                 var temp = $("<tr>" +
                     "<td>" + data[i].date + "</td>" +
-                    "<td>" + data[i].bikeCount + "</td>" +
-                    "<td>" + data[i].productCount + "</td>" +
-                    "<td>" + data[i].userCount + "</td>" +
+                    "<td>" + setSplit(data[i].bikeCount) + "</td>" +
+                    "<td>" + setSplit(data[i].productCount) + "</td>" +
+                    "<td>" + setSplit(data[i].userCount) + "</td>" +
                     "</tr>");
                 tableList.push(temp);
             }
@@ -488,6 +488,8 @@ $(function () {
         function showCharts() {
             var newData1 = $.extend(true, {}, optionData1, tempCountData1);
             var newData2 = $.extend(true, {}, optionData2, tempCountData2);
+            myEcharts1.clear();
+            myEcharts2.clear();
             myEcharts1.setOption(newData1);
             myEcharts2.setOption(newData2);
             setTimeout(function () {

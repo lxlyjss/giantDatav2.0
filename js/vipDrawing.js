@@ -99,7 +99,7 @@ $(function (){
                 orient : 'vertical',
                 x: 'right',
                 y: 'center',
-                feature : {
+                feature: {
                     mark : {show: true},
                     dataView : {show: true, readOnly: false},
                     restore : {show: true},
@@ -246,40 +246,7 @@ $(function (){
                         emphasis:{label:{show:true}}
                     },
                     data:[
-                        // {name: '北京市',value: Math.round(Math.random()*1000)},
-                        // {name: '天津市',value: Math.round(Math.random()*1000)},
-                        // {name: '上海市',value: Math.round(Math.random()*1000)},
-                        // {name: '重庆市',value: Math.round(Math.random()*1000)},
-                        // {name: '河北省',value: Math.round(Math.random()*1000)},
-                        // {name: '河南省',value: Math.round(Math.random()*1000)},
-                        // {name: '云南省',value: Math.round(Math.random()*1000)},
-                        // {name: '辽宁省',value: Math.round(Math.random()*1000)},
-                        // {name: '黑龙江省',value: Math.round(Math.random()*1000)},
-                        // {name: '湖南省',value: Math.round(Math.random()*1000)},
-                        // {name: '安徽省',value: Math.round(Math.random()*1000)},
-                        // {name: '山东省',value: Math.round(Math.random()*1000)},
-                        // {name: '新疆维吾尔自治区',value: Math.round(Math.random()*1000)},
-                        // {name: '江苏省',value: Math.round(Math.random()*1000)},
-                        // {name: '浙江省',value: Math.round(Math.random()*1000)},
-                        // {name: '江西省',value: Math.round(Math.random()*1000)},
-                        // {name: '湖北省',value: Math.round(Math.random()*1000)},
-                        // {name: '广西壮族自治区',value: Math.round(Math.random()*1000)},
-                        // {name: '甘肃省',value: Math.round(Math.random()*1000)},
-                        // {name: '山西省',value: Math.round(Math.random()*1000)},
-                        // {name: '内蒙古自治区',value: Math.round(Math.random()*1000)},
-                        // {name: '陕西省',value: Math.round(Math.random()*1000)},
-                        // {name: '吉林省',value: Math.round(Math.random()*1000)},
-                        // {name: '福建省',value: Math.round(Math.random()*1000)},
-                        // {name: '贵州省',value: Math.round(Math.random()*1000)},
-                        // {name: '广东省',value: Math.round(Math.random()*1000)},
-                        // {name: '青海省',value: Math.round(Math.random()*1000)},
-                        // {name: '西藏自治区',value: Math.round(Math.random()*1000)},
-                        // {name: '四川省',value: Math.round(Math.random()*1000)},
-                        // {name: '宁夏回族自治区',value: Math.round(Math.random()*1000)},
-                        // {name: '海南省',value: Math.round(Math.random()*1000)},
-                        // {name: '台湾',value: Math.round(Math.random()*1000)},
-                        // {name: '香港',value: Math.round(Math.random()*1000)},
-                        // {name: '澳门',value: Math.round(Math.random()*1000)}
+
                     ]
                 }
             ]
@@ -463,6 +430,7 @@ $(function (){
                 url:window.roleInfo.url2+"giantService/report/dataDraw/mapData",
                 data: sendData
             }).done(function (res){
+                console.log(res)
                 if(res.result == 1){
                     dfd.resolve(res);
                 }else{
@@ -603,7 +571,7 @@ $(function (){
         }
         //设置年龄
         function setAgeData(){
-            var ageArr = ["14岁以下","15-24","25-40","41-55","56-65","其他"];
+            var ageArr = ["14岁以下","15-24","25-40","41-55","56-65","66以上","其他"];
             tempCountData4.xAxis.data = ageArr;
             tempCountData4.series[0].data.push(ageData.data.one);
             tempCountData4.series[0].data.push(ageData.data.two);
@@ -611,10 +579,22 @@ $(function (){
             tempCountData4.series[0].data.push(ageData.data.four);
             tempCountData4.series[0].data.push(ageData.data.five);
             tempCountData4.series[0].data.push(ageData.data.six);
+            tempCountData4.series[0].data.push(ageData.data.other);
             showCharts();
         }
         //设置地图数据
         function setMapData(){
+            //获取数组对象中最大的数取整
+            function getMaxCount(){
+                var tempData = mapData.data;
+                var maxNum = 0;
+                for(var i = 0; i < tempData.length;i++){
+                    if(tempData[i].count>maxNum){
+                        maxNum = tempData[i].count;
+                    }
+                }
+                return Math.ceil(maxNum/10)*10;
+            }
             var mapList = [];
             for(var i = 0; i < mapData.data.length;i++){
                 var temp = {
@@ -623,6 +603,7 @@ $(function (){
                 };
                 mapList.push(temp);
             }
+            optionMap.dataRange.max = getMaxCount();
             tempCountData5.series[0].data = mapList;
             showCharts();
         }
@@ -633,7 +614,7 @@ $(function (){
             for(var i = 0; i < data.length;i++){
                 var temp = $("<tr>" +
                     "<td>"+data[i].name+"</td>" +
-                    "<td>"+data[i].count+"</td>" +
+                    "<td>"+setSplit(data[i].count)+"</td>" +
                     "<td>"+((data[i].proportion)*100).toFixed(2)+"%"+"</td>" +
                     "</tr>");
                 tableList.push(temp);

@@ -317,10 +317,10 @@ $(function () {
             for (var i = 0; i < tableData.data.length; i++) {
                 var temp = $("<tr>\n" +
                     "<td>" + tableData.data[i].bname + "</td>" +
-                    "<td>" + tableData.data[i].qrCount + "</td>" +
-                    "<td>" + tableData.data[i].qrTotalCount + "</td>" +
-                    "<td>" + tableData.data[i].bdCount + "</td>" +
-                    "<td>" + tableData.data[i].bdTotalCount + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].qrCount) + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].qrTotalCount) + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].bdCount) + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].bdTotalCount) + "</td>" +
                     "</tr>");
                 tableList.push(temp);
             }

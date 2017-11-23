@@ -9,21 +9,46 @@
     <link rel="shortcut icon" href="" type="image/x-icon">
     <title>Title</title>
     <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        .box{
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
-<script>
-    window.dd = "";
-    $.fn.a = function (callback){
-        setTimeout(function (){
-            alert("获取成功")
-            window.bb = 88;
-            callback();
-        },2000);
-    };
-    $.fn.b = function (){
-        alert(window.bb);
-    }
-    $.fn.a($.fn.b);
-</script>
+    <div class="box">
+
+    </div>
+    <script>
+        function setSplit(str){
+            if(typeof str == "number"){
+                str = str.toString();
+            }
+            var allStr,floatNum;
+            if(str.indexOf(".") != -1){
+                floatNum = str.split(".")[1];
+                allStr = str.split(".")[0].split("").reverse().join("");
+            }else{
+                allStr = str.split("").reverse().join("");
+            }
+            var temp = "";
+            for(var i = 1;i < allStr.length+1;i++){
+                if(i%3 == 0 && i != allStr.length){
+                    temp += allStr.charAt(i-1)+",";
+                }else{
+                    temp += allStr.charAt(i-1);
+                }
+            }
+            if(typeof floatNum == "undefined"){
+                return temp.split("").reverse().join("");
+            }else{
+                return temp.split("").reverse().join("")+"."+floatNum;
+            }
+        }
+        console.log(setSplit(1440))
+    </script>
 </body>
 </html>

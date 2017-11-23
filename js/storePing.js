@@ -402,7 +402,6 @@ $(function () {
                 getTableData(tableFilter);
             });
         }
-
         //获取筛选条件
         function setFilterData(res) {
             var aa = new setAreaData("#treeBox", $.fn.getRoleData(res, window.roleInfo.roleCode, window.roleInfo.role));
@@ -470,6 +469,7 @@ $(function () {
         //展示图表数据
         function showCharts() {
             var newData = $.extend(true, {}, optionData, tempCountData);
+            myEcharts.clear();
             myEcharts.setOption(newData);
             setTimeout(function () {
                 myEcharts.resize();

@@ -79,7 +79,7 @@ $(function () {
         };
         var tempCountData = {
             title: {
-                text: "捷安特QRcode激活量趋势图"
+                text: "捷安特销量总金额趋势图"
             },
             legend: {
                 data: []
@@ -98,10 +98,10 @@ $(function () {
         var tempChartsData;//存储临时图表数据
         var tempTableData;//存储临时表格数据
         var titleArr = [
-            "捷安特销量总金额趋势图",
-            "捷安特销售产品总数趋势图",
-            "捷安特整车销售趋势图",
-            "捷安特商品销售趋势图"
+            "捷安特整车销量总金额趋势图",
+            "捷安特整车销售数量趋势图",
+            "捷安特商品销售金额趋势图",
+            "捷安特整车销售数量趋势图"
         ];
 
         //获取默认时间
@@ -387,8 +387,8 @@ $(function () {
             for (var i = 0; i < tempTableData.length; i++) {
                 var temp = $("<tr>" +
                     "<td>" + tempTableData[i].name + "</td>" +
-                    "<td>" + tempTableData[i].totalPrice / 100 + "</td>" +
-                    "<td>" + tempTableData[i].totalCount + "</td>" +
+                    "<td>" + setSplit(tempTableData[i].totalPrice / 100) + "</td>" +
+                    "<td>" + setSplit(tempTableData[i].totalCount) + "</td>" +
                     "</tr>");
                 tableList.push(temp);
             }

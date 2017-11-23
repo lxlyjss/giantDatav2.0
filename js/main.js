@@ -6,6 +6,31 @@
 * good good study,day day up!
 *
 * */
+function setSplit(str){
+    if(typeof str == "number"){
+        str = str.toString();
+    }
+    var allStr,floatNum;
+    if(str.indexOf(".") != -1){
+        floatNum = str.split(".")[1];
+        allStr = str.split(".")[0].split("").reverse().join("");
+    }else{
+        allStr = str.split("").reverse().join("");
+    }
+    var temp = "";
+    for(var i = 1;i < allStr.length+1;i++){
+        if(i%3 == 0 && i != allStr.length){
+            temp += allStr.charAt(i-1)+",";
+        }else{
+            temp += allStr.charAt(i-1);
+        }
+    }
+    if(typeof floatNum == "undefined"){
+        return temp.split("").reverse().join("");
+    }else{
+        return temp.split("").reverse().join("")+"."+floatNum;
+    }
+}
 $(function (){
     //登录
     window.roleInfo = {
@@ -13,7 +38,7 @@ $(function (){
         userId:"",//用户id
         roleImg:"",//用户头像
         token:"",//用户登录的token
-        role:"",//用户角色
+        role:"admin",//用户角色
         roleCode:"",//角色code
         url1:"http://service.giant.com.cn:8080/",
         url2:"http://service.giant.com.cn:8080/",
@@ -211,7 +236,7 @@ $(function (){
             ele.html(data)
         }
         for(var i = 0; i < dataArr.length;i++){
-            quotaBox.eq(i).children("p").eq(1).text(dataArr[i].count);
+            quotaBox.eq(i).children("p").eq(1).text(setSplit(dataArr[i].count));
             setData(quotaBox.eq(i).children("p").eq(2).children(".count"), dataArr[i].day);
             setData(quotaBox.eq(i).children("p").eq(3).children(".count"), dataArr[i].week);
             setData(quotaBox.eq(i).children("p").eq(4).children(".count"), dataArr[i].month);
@@ -219,6 +244,26 @@ $(function (){
             setArrow(quotaBox.eq(i).children("p").eq(3).children(".arrow"), arrow(dataArr[i].week));
             setArrow(quotaBox.eq(i).children("p").eq(4).children(".arrow"), arrow(dataArr[i].month));
         }
+
+        // //设置位置
+        // var WIDTH = $(".block-one").width();
+        // var maxWidth = 0;
+        // for(var i = 3;i < 5;i++){
+        //     console.log(maxWidth)
+        //     if($(".block-one > p").eq(i).width() > maxWidth) {
+        //         maxWidth = $(".block-one > p").eq(i).width();
+        //     }
+        // }
+        // console.log(maxWidth,WIDTH)
+        // $(".block-one > p:nth-of-type(3)").css({
+        //     "transform": "translateX(-"+(WIDTH-maxWidth)/2+"px)"
+        // });
+        // $(".block-one > p:nth-of-type(4)").css({
+        //     "transform": "translateX(-"+(WIDTH-maxWidth)/2+"px)"
+        // });
+        // $(".block-one > p:nth-of-type(5)").css({
+        //     "transform": "translateX(-"+(WIDTH-maxWidth)/2+"px)"
+        // });
     };
     //分页
     $.fn.cutPage = function(p,n){
@@ -276,7 +321,7 @@ $(function (){
             newData = data;
         }else if(role == "sbu"){
             for(var i = 0; i < data.list.length;i++){
-                if(data.list[i].code == code){
+                if(data.list[i].code.toUpperCase() == code.toUpperCase()){
                     newData = {
                         list:[]
                     };
@@ -286,7 +331,7 @@ $(function (){
         }else if(role == "dealer"){
             for(var i = 0; i < data.list.length;i++){
                 for(var j = 0;j < data.list[i].list.length;j++){
-                    if(data.list[i].list[j].code == code){
+                    if(data.list[i].list[j].code.toUpperCase() == code.toUpperCase()){
                         newData = {
                             list:[{
                                 name:data.list[i].name,

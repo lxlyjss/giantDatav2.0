@@ -367,10 +367,10 @@ $(function () {
             for (var i = 0; i < tableData.data.length; i++) {
                 var temp = $("<tr>\n" +
                     "<td>" + tableData.data[i].codeName + "</td>" +
-                    "<td>" + tableData.data[i].addActivation + "</td>" +
-                    "<td>" + tableData.data[i].totalActivation + "</td>" +
-                    "<td>" + tableData.data[i].addBind + "</td>" +
-                    "<td>" + tableData.data[i].totalBind + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].addActivation) + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].totalActivation) + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].addBind) + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].totalBind) + "</td>" +
                     "</tr>");
                 tableList.push(temp);
             }

@@ -354,10 +354,10 @@ $(function () {
             for (var i = 0; i < tableData.data.length; i++) {
                 var temp = $("<tr>\n" +
                     "<td>" + tableData.data[i].codeName + "</td>" +
-                    "<td>" + tableData.data[i].totalPrice / 100 + "</td>" +
-                    "<td>" + tableData.data[i].totalCount + "</td>" +
-                    "<td>" + tableData.data[i].bikeCount + "</td>" +
-                    "<td>" + tableData.data[i].productCount + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].totalPrice / 100) + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].totalCount) + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].bikeCount) + "</td>" +
+                    "<td>" + setSplit(tableData.data[i].productCount) + "</td>" +
                     "</tr>");
                 tableList.push(temp);
             }

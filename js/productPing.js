@@ -1,5 +1,5 @@
 $(function () {
-    $.fn.pageData = function () {
+    // $.fn.pageData = function () {
         //初始化折线图
         var myEcharts = echarts.init(document.getElementById("myEcharts"));
         var optionData = {
@@ -647,7 +647,7 @@ $(function () {
         }
 
         initFun();
-    };
+    // };
     //回调函数
-    $.fn.isSign($.fn.pageData);
+    // $.fn.isSign($.fn.pageData);
 });

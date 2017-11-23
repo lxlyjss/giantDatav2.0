@@ -47,7 +47,13 @@
 </head>
 <body class="vip-change">
 <div class="loading-wrapper" id="loading1" style="display: block;">
-    <div class="spinner"></div>
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
 </div>
 <!--头部 开始-->
 <div class="header">
@@ -325,7 +331,6 @@
                 roleCode: window.roleInfo.roleCode
             };
             var quotaData1, quotaData2, quotaData3, quotaData4;
-
             //请求数据1
             function getQuotaData1() {
                 var dfd = $.Deferred();
@@ -429,16 +434,16 @@
             function setQuotaData1() {
                 var vipbox1 = $(".vip-box").eq(0);
                 var vipbox2 = $(".vip-box").eq(1);
-                vipbox1.children(".box-left").children(".big-number").text(quotaData1.vipAddCount);
-                vipbox1.children(".box-right").children("p").eq(0).children("span").text(quotaData1.qrAddCount);
-                vipbox1.children(".box-right").children("p").eq(1).children("span").text(quotaData1.appAddCount);
-                vipbox1.children(".box-right").children("p").eq(2).children("span").text(quotaData1.clubAddCount);
-                vipbox1.children(".box-right").children("p").eq(3).children("span").text(quotaData1.webAddCount);
-                vipbox2.children(".box-left").children(".big-number").text(quotaData1.vipTotalCount);
-                vipbox2.children(".box-right").children("p").eq(0).children("span").text(quotaData1.qrTotalCount);
-                vipbox2.children(".box-right").children("p").eq(1).children("span").text(quotaData1.appTotalCount);
-                vipbox2.children(".box-right").children("p").eq(2).children("span").text(quotaData1.clubTotalCount);
-                vipbox2.children(".box-right").children("p").eq(3).children("span").text(quotaData1.webTotalCount);
+                vipbox1.children(".box-left").children(".big-number").text(setSplit(quotaData1.vipAddCount));
+                vipbox1.children(".box-right").children("p").eq(0).children("span").text(setSplit(quotaData1.qrAddCount));
+                vipbox1.children(".box-right").children("p").eq(1).children("span").text(setSplit(quotaData1.appAddCount));
+                vipbox1.children(".box-right").children("p").eq(2).children("span").text(setSplit(quotaData1.clubAddCount));
+                vipbox1.children(".box-right").children("p").eq(3).children("span").text(setSplit(quotaData1.webAddCount));
+                vipbox2.children(".box-left").children(".big-number").text(setSplit(quotaData1.vipTotalCount));
+                vipbox2.children(".box-right").children("p").eq(0).children("span").text(setSplit(quotaData1.qrTotalCount));
+                vipbox2.children(".box-right").children("p").eq(1).children("span").text(setSplit(quotaData1.appTotalCount));
+                vipbox2.children(".box-right").children("p").eq(2).children("span").text(setSplit(quotaData1.clubTotalCount));
+                vipbox2.children(".box-right").children("p").eq(3).children("span").text(setSplit(quotaData1.webTotalCount));
 
                 //设置数据
             }
@@ -488,7 +493,6 @@
                         return "";
                     }
                 }
-
                 function setData(ele, data) {
                     ele.text(data + "%");
                 }
@@ -498,7 +502,7 @@
                 }
 
                 for (var i = 0; i < dataArr.length; i++) {
-                    quotaBox.eq(i).children("p").eq(1).text(dataArr[i].count);
+                    quotaBox.eq(i).children("p").eq(1).text(setSplit(dataArr[i].count));
                     setData(quotaBox.eq(i).children("p").eq(2).children(".count"), dataArr[i].day);
                     setData(quotaBox.eq(i).children("p").eq(3).children(".count"), dataArr[i].week);
                     setData(quotaBox.eq(i).children("p").eq(4).children(".count"), dataArr[i].month);
@@ -506,6 +510,7 @@
                     setArrow(quotaBox.eq(i).children("p").eq(3).children(".arrow"), arrow(dataArr[i].week));
                     setArrow(quotaBox.eq(i).children("p").eq(4).children(".arrow"), arrow(dataArr[i].month));
                 }
+
             };
         };
         //回调函数

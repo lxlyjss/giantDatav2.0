@@ -273,9 +273,9 @@ $(function () {
             for (var i = 0; i < tableData.list.length; i++) {
                 var temp = $("<tr>\n" +
                     "<td>" + tableData.list[i].date + "</td>" +
-                    "<td>" + tableData.list[i].VipAddCount + "</td>" +
-                    "<td>" + tableData.list[i].VipLostCount + "</td>" +
-                    "<td>" + tableData.list[i].VipTotalCount + "</td>" +
+                    "<td>" + setSplit(tableData.list[i].VipAddCount) + "</td>" +
+                    "<td>" + setSplit(tableData.list[i].VipLostCount) + "</td>" +
+                    "<td>" + setSplit(tableData.list[i].VipTotalCount) + "</td>" +
                     "</tr>");
                 tableList.push(temp);
             }
@@ -383,7 +383,7 @@ $(function () {
                 var temp = $("<p><label for=\"from" + i + "\">" +
                     "<input type=\"checkbox\" data-code='" + fromList[i].id + "' id=\"from" + i + "\">" +
                     "<span>" + fromList[i].applicationName + "</span>" +
-                    "<span>(" + fromList[i].count + ")</span></label></p>");
+                    "<span>(" + setSplit(fromList[i].count) + ")</span></label></p>");
                 fromArr.push(temp);
             }
             $(".from-box").empty().append(fromArr);

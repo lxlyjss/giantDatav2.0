@@ -83,10 +83,10 @@ $(function () {
                 $("#point>td").text(data.point);
                 $("#something>td").text(data.something);
                 $("#lastTimeLogin>td").text(data.lastLoginDate);
-                var temp = data.tagList.map(function (a) {
-                    return a.substring(0, a.indexOf("["))
-                });
-                $("#tagList>td").text(temp.join());
+                // var temp = data.tagList.map(function (a) {
+                //     return a.substring(0, a.indexOf("["))
+                // });
+                $("#tagList>td").text(data.tagList.join());
                 if (data.qrList.length > 0) {
                     var qrBindList = [];
                     for (var i = 0; i < data.qrList.length; i++) {
@@ -199,6 +199,7 @@ $(function () {
                 dataType: "json"
             }).done(function (res) {
                 $("#filterBox").hide();
+                console.log(res);
                 if (res.result == 1) {
                     dfd.resolve(res);
                     resultData = res;
@@ -254,7 +255,7 @@ $(function () {
                 var temp = $("<p><label for=\"from" + i + "\">" +
                     "<input type=\"checkbox\" data-code='" + fromList[i].id + "' id=\"from" + i + "\">" +
                     "<span>" + fromList[i].applicationName + "</span>" +
-                    "<span>(" + fromList[i].count + ")</span></label></p>");
+                    "<span>(" + setSplit(fromList[i].count) + ")</span></label></p>");
                 fromArr.push(temp);
             }
             $(".from-box").empty().append(fromArr);
@@ -269,13 +270,12 @@ $(function () {
             for (var i = 0; i < tagList.length; i++) {
                 var temp = $("<p><label for=\"tag" + i + "\">" +
                     "<input type=\"checkbox\" data-code='" + tagList[i].id + "' id=\"tag" + i + "\">" +
-                    "<span>" + tagList[i].labelName.substring(0, tagList[i].labelName.indexOf("[")) + "</span>" +
+                    "<span>" + tagList[i].labelName + "</span>" +
                     "<span>(" + tagList[i].count + ")</span></label></p>");
                 tagArr.push(temp);
             }
             $(".tag-box").empty().append(tagArr);
         }
-
         //选择条件筛之后
         function selectFilter() {
             var fromFilter = [];
@@ -307,6 +307,7 @@ $(function () {
                 filter.applicationIds = fromFilter.join();
                 filter.labelIds = tagFilter.join();
                 filter.searchName = "";
+                filter.page = 1;
                 getTableData(filter);
             });
         }
@@ -324,7 +325,6 @@ $(function () {
                 setTagFilter(nowArr);
             });
         }
-
         findTag();
         //跳转页
         $(".page-select .btn").click(function () {
