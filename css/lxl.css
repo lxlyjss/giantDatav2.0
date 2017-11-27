@@ -48,6 +48,12 @@
 .icon-jiajian-:before {
   content: "\e666"; }
 
+.menu-icon {
+  margin: 0 5px;
+  width: 16px;
+  height: 16px;
+  vertical-align: -10%; }
+
 .loading-wrapper {
   width: 100%;
   height: 100%;
@@ -207,8 +213,13 @@ html, body {
           display: inline-block;
           padding: 10px; }
           #aside .navbar .nav-slide-menu li.nav-list a i:nth-of-type(1) {
-            padding: 0 10px;
-            font-size: 16px; }
+            float: right;
+            font-size: 16px;
+            -webkit-transition: transform 0.3s;
+            -moz-transition: transform 0.3s;
+            -ms-transition: transform 0.3s;
+            -o-transition: transform 0.3s;
+            transition: transform 0.3s; }
           #aside .navbar .nav-slide-menu li.nav-list a i:nth-of-type(2) {
             float: right;
             font-size: 16px;
@@ -255,7 +266,7 @@ html, body {
           text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
           background: linear-gradient(#334556, #2C4257), #2A3F54;
           box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0; }
-        #aside .navbar .nav-slide-menu li.active i:nth-of-type(2) {
+        #aside .navbar .nav-slide-menu li.active i:nth-of-type(1) {
           -webkit-transform: rotate(90deg);
           -moz-transform: rotate(90deg);
           -ms-transform: rotate(90deg);
@@ -464,10 +475,10 @@ html, body {
     text-align: center; }
     .nav-sm #aside .nav-slide-menu li.nav-list a {
       letter-spacing: 3px; }
+      .nav-sm #aside .nav-slide-menu li.nav-list a .menu-icon {
+        width: 30px;
+        height: 30px; }
       .nav-sm #aside .nav-slide-menu li.nav-list a i:nth-of-type(1) {
-        font-size: 30px !important;
-        padding: 0 12px 0 8px !important; }
-      .nav-sm #aside .nav-slide-menu li.nav-list a i:nth-of-type(2) {
         display: none; }
     .nav-sm #aside .nav-slide-menu li.nav-list ul.child-slide-menu {
       position: absolute;

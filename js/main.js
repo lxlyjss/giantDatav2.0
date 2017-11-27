@@ -244,26 +244,6 @@ $(function (){
             setArrow(quotaBox.eq(i).children("p").eq(3).children(".arrow"), arrow(dataArr[i].week));
             setArrow(quotaBox.eq(i).children("p").eq(4).children(".arrow"), arrow(dataArr[i].month));
         }
-
-        // //设置位置
-        // var WIDTH = $(".block-one").width();
-        // var maxWidth = 0;
-        // for(var i = 3;i < 5;i++){
-        //     console.log(maxWidth)
-        //     if($(".block-one > p").eq(i).width() > maxWidth) {
-        //         maxWidth = $(".block-one > p").eq(i).width();
-        //     }
-        // }
-        // console.log(maxWidth,WIDTH)
-        // $(".block-one > p:nth-of-type(3)").css({
-        //     "transform": "translateX(-"+(WIDTH-maxWidth)/2+"px)"
-        // });
-        // $(".block-one > p:nth-of-type(4)").css({
-        //     "transform": "translateX(-"+(WIDTH-maxWidth)/2+"px)"
-        // });
-        // $(".block-one > p:nth-of-type(5)").css({
-        //     "transform": "translateX(-"+(WIDTH-maxWidth)/2+"px)"
-        // });
     };
     //分页
     $.fn.cutPage = function(p,n){

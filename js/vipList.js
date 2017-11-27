@@ -72,8 +72,8 @@ $(function () {
                 $("#userSex>td").text(data.userSex);
                 $("#userTel>td").text(data.userTel);
                 $("#userEmail>td").text(data.userEmail);
-                $("#userCity>td").text(data.userCity);
-                $("#userAddress>td").text(data.userAddress);
+                $("#userCity>td").text(data.userCity==null?"":data.userCity);
+                $("#userAddress>td").text(data.userAddress==null?"":data.userAddress);
                 $("#userStatus>td").text(data.userStatus);
                 $("#registerDate>td").text(data.registerDate);
                 $("#userFrom>td").text(data.userFrom);
@@ -140,7 +140,7 @@ $(function () {
                 dataType: "json"
             }).done(function (res) {
                 if (res.result == 1) {
-                    $("#tagList td").append("," + $("#tagInput").val());
+                    $("#tagList td").text()==""?$("#tagList td").append($("#tagInput").val()):$("#tagList td").append("," + $("#tagInput").val());
                     alert("添加成功!");
                 } else {
                     alert("添加失败!result=0");

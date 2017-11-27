@@ -332,7 +332,7 @@ $(function (){
                 textPadding: 10,
                 autoSize: {
                     enable: true,
-                    minSize: 10,
+                    minSize: 4,
                     maxSize: 26
                 },
                 textStyle: {
@@ -487,6 +487,7 @@ $(function (){
                 url:window.roleInfo.url2+"giantService/report/dataDraw/labels",
                 data: sendData
             }).done(function (res){
+                console.log(res);
                 if(res.result == 1){
                     dfd.resolve(res);
                 }else{
@@ -662,9 +663,50 @@ $(function (){
         }
         //设置标签云图
         function setTagData(){
+            var tagData = {
+                data:[
+                    {
+                        name:"阳光",
+                        count:"17"
+                    },
+                    {
+                        name:"IT民工",
+                        count:"74"
+                    },
+                    {
+                        name:"80后",
+                        count:"47"
+                    },
+                    {
+                        name:"自由职业",
+                        count:"19"
+                    },
+                    {
+                        name:"农民工",
+                        count:"85"
+                    },
+                    {
+                        name:"骑行爱好者",
+                        count:"7"
+                    },
+                    {
+                        name:"浪漫主义",
+                        count:"36"
+                    },
+                    {
+                        name:"奋斗",
+                        count:"125"
+                    },
+                    {
+                        name:"90后",
+                        count:"13"
+                    }
+                ]
+            };
             var tempData = [];
             for(var i = 0; i < tagData.data.length;i++){
-                var tempName = tagData.data[i].name.substring(0,tagData.data[i].name.indexOf("["));
+                // var tempName = tagData.data[i].name.substring(0,tagData.data[i].name.indexOf("["));
+                var tempName = tagData.data[i].name;
                 tempData.push({
                     name:tempName,
                     value:tagData.data[i].count
@@ -742,7 +784,9 @@ $(function (){
             myEcharts4.setOption(newData4);
             myEcharts5.setOption(newData5);
             myEcharts6.setOption(newData6);
+            myEcharts7.clear();
             myEcharts7.setOption(newData7);
+
             setTimeout(function (){
                 myEcharts1.resize();
                 // myEcharts2.resize();
